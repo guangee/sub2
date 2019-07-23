@@ -1,0 +1,21 @@
+<style scoped>
+  .radio {
+    margin-left: -100px;
+  }
+</style>
+<template>
+  <FormItem>
+    <RadioGroup v-model="formList['result' + formKey]" class="radio" vertical>
+      <Radio label="符合"></Radio>
+      <Radio label="不符合"></Radio>
+      <Radio label="有缺陷"></Radio>
+      <Radio label="无此项"></Radio>
+    </RadioGroup>
+  </FormItem>
+</template>
+<script>
+  export default {
+    name: 'vFormRadio',
+    props: ['formList', 'formKey']
+  }
+</script>
