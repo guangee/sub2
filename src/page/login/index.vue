@@ -73,36 +73,9 @@ export default {
     handleSubmit () {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          /*
-          let params = {
-            "userName": this.form.userName,
-            "passWord": this.form.password,
-            "appid": "ZYKJ"
-          };
-          let data = {
-            url: '/web/login',
-            params: params,
-            method: 'post',
-          };
-          let res = await utils.getData(data);
-          if (res.errcode == 0) {
-            sessionStorage.setItem("session", res.sessionID);
-            sessionStorage.setItem("loginStatus", true);
-            localStorage.setItem("username", this.form.userName);
-            this.$router.push({
-              path: '/allDeviceList?kind=1',
-            });
-          } else {
-            this.$Message.error({
-              content: res.errmsg,
-              duration: 5,
-              closable: true
-            });
-          }
-          */
           localStorage.setItem("username", this.form.userName);
             this.$router.push({
-              path: '/hello',
+              path: '/formList',
             });
           }
       })
