@@ -62,7 +62,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <Input v-model="formList.TECheckDate" placeholder=""></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.TECheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -101,7 +101,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <Input v-model="formList.TECheckDate" placeholder=""></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.TECheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -140,7 +140,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <Input v-model="formList.ESCheckDate" placeholder=""></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.ESCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>

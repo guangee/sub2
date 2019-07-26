@@ -54,7 +54,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <Input v-model="formList.CheckDate_1" placeholder=""></Input>
+          <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_1" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -78,7 +78,7 @@
       </Col>
       <Col span='4' offset='3'>
         <FormItem label="出厂日期">
-          <Input v-model="formList.productDateA" placeholder=""></Input>
+          <DatePicker type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
         </FormItem>
       </Col>
       </Row>
@@ -101,7 +101,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <Input v-model="formList.productDateB" placeholder=""></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -124,7 +124,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <Input v-model="formList.productDateC" placeholder=""></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -147,7 +147,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <Input v-model="formList.productDateD" placeholder=""></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -161,7 +161,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <Input v-model="formList.CheckDate_2" placeholder=""></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
