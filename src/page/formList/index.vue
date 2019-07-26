@@ -66,7 +66,7 @@
                         },
                         on: {
                             click: () => {
-                              this.$router.push('/formDetail');
+                              this.remove(params.index)
                             }
                         }
                     }, '查看详情'),
@@ -80,7 +80,7 @@
                         },
                         on: {
                             click: () => {
-                                this.$router.push('/formDetail');
+                                this.remove(params.index)
                             }
                         }
                     }, '修改'),
@@ -91,7 +91,7 @@
                         },
                         on: {
                             click: () => {
-                                console.log('删除');
+                                this.remove(params.index)
                             }
                         }
                     }, '删除')
