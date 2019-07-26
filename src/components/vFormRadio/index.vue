@@ -5,7 +5,7 @@
 </style>
 <template>
   <FormItem>
-    <RadioGroup v-model="formList['result' + formKey]" class="radio" vertical>
+    <RadioGroup v-model="formList['result_' + formKey]" class="radio" vertical>
       <Radio label="符合"></Radio>
       <Radio label="不符合"></Radio>
       <Radio label="有缺陷"></Radio>

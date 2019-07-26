@@ -8,17 +8,17 @@
 </style>
 <template>
   <div>
-    <Form ref="boilerForm" label-position="left" :model="formList" class="form-wrapper" :label-width="100">
+    <Form ref="boilerForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>锅炉压力容器制造单位监督检查记录表</h2>
       <Row>
         <Col span='11'>
-          <FormItem label="制造单位名称">
+          <FormItem label="制造单位名称" prop="MFname">
             <Input v-model="formList.MFname" placeholder="请输入制造单位名称"></Input>
           </FormItem>
-          <FormItem label="单位负责人">
+          <FormItem label="单位负责人" prop="principal">
             <Input v-model="formList.principal" placeholder="请输入单位负责人名字"></Input>
           </FormItem>
-          <FormItem label="许可证编号">
+          <FormItem label="许可证编号"prop="licenseNo" >
             <Input v-model="formList.licenseNo" placeholder="请输入许可证编号"></Input>
           </FormItem>
           <FormItem label="评审机构名称">
@@ -116,7 +116,7 @@
         </Col>
       </Row>
       <FormItem>
-        <Button type="primary" @click="handleSubmit">Submit</Button>
+        <Button type="primary" @click="handleSubmit('boilerForm')">Submit</Button>
       </FormItem>
     </Form>
   </div>
@@ -133,7 +133,32 @@
     },
     data() {
       return {
-        formList: {},
+        formList: {
+           serialNo: '',//编号
+           MFname: '',//制造单位名称
+           MFadd: '',//制造单位地址
+           principal: '',//单位负责人
+           phoneNo: '', //联系电话
+           licenseNo: '',//许可证编号
+           licenseRange: '',//许可范围
+           licenseDate: '',//许可证有效期
+           EIname: '',//评审机构名称
+           lastDate: '',//最近一次评审日期
+           supervisionOrg: '',//监督检验机构
+           supervisor: '',//监督检验人
+
+        },
+        ruleformList: {
+          MFname: [
+            { required: true, message: '制造单位名称不能为空', trigger: 'blur' }
+          ],
+          principal: [
+            { required: true, message: '单位负责人不能为空', trigger: 'blur' },
+          ],
+          licenseNo: [
+            { required: true, message: '许可证不能为空', trigger: 'blur' }
+          ]
+        },
         tableList: biolerData,
         columns: [{
           'title': '检查项目、内容',
@@ -178,7 +203,7 @@
 
     },
     methods: {
-      async handleSubmit() {
+      async handleSubmit(formName) {
         /*
         let data = {
           method: 'post',
@@ -188,10 +213,14 @@
         let res = await util.httpReq(data);
         */
         console.log(this.formList);
-        this.$refs.boilerForm.validate((valid) => {
+        this.$refs[formName].validate((valid) => {
           if (valid) {
+            this.$Message.success('提交成功!');
             console.log(this.formList);
           }
+            else{
+            this.$Message.error('表单验证失败!');
+            }
         })
       }
     }

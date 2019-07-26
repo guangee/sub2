@@ -41,16 +41,16 @@
         ],
         columns1: [
           {
-            title: 'Name',
+            title: '制造单位名称',
             key: 'name'
           }, {
-            title: 'Age',
+            title: '单位负责人',
             key: 'age'
           }, {
-            title: 'Address',
+            title: '许可证编号',
             key: 'address'
           }, {
-            title: 'Action',
+            title: '操作',
             key: 'action',
             width: 225,
             align: 'center',
