@@ -8,36 +8,36 @@
 </style>
 <template>
   <div>
-    <Form ref="elevatorForm" label-position="left" :model="formList" class="form-wrapper" :label-width="100">
+    <Form ref="elevatorForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>附表 5:电梯制造单位监督抽查记录表(2019版)</h2>
       <Col>
-        <FormItem label="单位名称">
+        <FormItem label="单位名称" prop="corpnName">
           <Input v-model="formList.corpnName" placeholder="请输入单位名称"></Input>
         </FormItem>
-        <FormItem label="制造地址">
+        <FormItem label="制造地址" prop="address">
           <Input v-model="formList.address" placeholder="请输入制造地址"></Input>
         </FormItem>
       </Col>
       <Row>
         <Col span='11'>
-          <FormItem label="单位负责人">
+          <FormItem label="单位负责人" prop="prinpal">
             <Input v-model="formList.prinpal" placeholder="请输入单位负责人"></Input>
           </FormItem>
-          <FormItem label="许可证编号">
+          <FormItem label="许可证编号" prop="licenceNo">
             <Input v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
           </FormItem>
-          <FormItem label="许可证有效期">
+          <FormItem label="许可证有效期" prop="licenceDate">
             <Input v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
           </FormItem>
         </Col>>
         <Col span='11' offset='1'>
-          <FormItem label="联系电话">
+          <FormItem label="联系电话" prop="phoneNo">
             <Input v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
           </FormItem>
-          <FormItem label="传真">
+          <FormItem label="传真" prop="Fax">
             <Input v-model="formList.Fax" placeholder="请输入传真"></Input>
           </FormItem>
-          <FormItem label="许可的范围">
+          <FormItem label="许可的范围" prop="licenceRange">
             <Input v-model="formList.licenceRange" placeholder="请输入许可的范围"></Input>
           </FormItem>
         </Col>
@@ -146,7 +146,7 @@
       </Row>
       <p style="text-align:left">注：第1部分适用于制造，第2部分适用于安装，第3部分适用于维修。</p>
       <FormItem>
-        <Button type="primary" @click="handleSubmit">Submit</Button>
+        <Button type="primary" @click="handleSubmit('elevatorForm')">Submit</Button>
       </FormItem>
     </Form>
   </div>
@@ -166,6 +166,17 @@
         data() {
             return {
                 formList: {},
+                ruleformList: {
+                    corpnName: [
+                        { required: true, message: '单位名称不能为空', trigger: 'blur' }
+                    ],
+                    prinpal: [
+                        { required: true, message: '单位负责人不能为空', trigger: 'blur' },
+                    ],
+                    licenceNo: [
+                        { required: true, message: '许可证编号不能为空', trigger: 'blur' }
+                    ]
+                },
                 tableList: elevatorData,
                 columns: [{
                     'title': '抽查项目',
@@ -247,7 +258,7 @@
 
         },
         methods: {
-            async handleSubmit() {
+            async handleSubmit(formName) {
                 /*
                 let data = {
                   method: 'post',
@@ -256,10 +267,13 @@
                 }
                 let res = await util.httpReq(data);
                 */
-                console.log(this.formList);
-                this.$refs.elevatorForm.validate((valid) => {
+                this.$refs[formName].validate((valid) => {
                     if (valid) {
+                        this.$Message.success('提交成功!');
                         console.log(this.formList);
+                    }
+                    else{
+                        this.$Message.error('表单验证失败!');
                     }
                 })
             }
