@@ -155,11 +155,13 @@
     import {elevatorData} from '@/service/staticData/dElevatorData.js';
     import vFormInput from '@/components/vFormInput';
     import vFormRadio from '@/components/vFormRadio';
+    import vUpload from '@/components/vUpload';
     import util from '@/util/util.js';
     export default {
         components: {
             vFormRadio,
-            vFormInput
+            vFormInput,
+            vUpload,
         },
         data() {
             return {
@@ -178,7 +180,7 @@
                     'key': 'result',
                     'minWidth': 100,
                     render: (h, params) => {
-                        return h(vFormInput, {
+                        return h(vFormRadio, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
@@ -187,16 +189,17 @@
                     }
                 }, {
                     'title': '记录',
-                    'key': 'explain',
+                    'key': 'RCRecord',
                     'minWidth': 100,
                     render: (h, params) => {
-                        return h(vFormInput, {
+                        return h(vUpload, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
                             }
                         })
-                    }
+                    },
+
                 }],
                 rows: [  {
                     'title': '问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：',
