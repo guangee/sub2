@@ -155,6 +155,9 @@
     import {elevatorData} from '@/service/staticData/dElevatorData.js';
     import vFormInput from '@/components/vFormInput';
     import vFormRadio from '@/components/vFormRadio';
+    import vElevatorForm from '@/components/vElevatorForm';
+    import vElevatorForm1 from '@/components/vElevatorForm1';
+    import vElevatorForm2 from '@/components/vElevatorForm2';
     import util from '@/util/util.js';
     export default {
         components: {
@@ -184,6 +187,34 @@
                     'title': '抽查内容及要点',
                     'key': 'method',
                     'minWidth': 200,
+                    render: (h, params) => {
+                        switch (params.row.id) {
+                            case '3_1':
+                                return h(vElevatorForm, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '4_1':
+                                return h(vElevatorForm1, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '4_2':
+                                return h(vElevatorForm2, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            default:
+                                return h('div', {}, params.row.method);
+                        }
+
+                    }
                 }, {
                     'title': '抽查结果',
                     'key': 'result',
@@ -200,14 +231,26 @@
                     'title': '记录',
                     'key': 'explain',
                     'minWidth': 100,
-                    render: (h, params) => {
+                    /*render: function (h) {
+                        return (
+                            <template level={1}>
+                            <Upload
+                        multiple
+                        action="//jsonplaceholder.typicode.com/posts/">
+                            <Button icon="ios-cloud-upload-outline">Upload files</Button>
+                        </Upload>
+                        </template>
+                    )
+
+                    }*/
+                    /*render: (h, params) => {
                         return h(vFormInput, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
                             }
                         })
-                    }
+                    }*/
                 }],
                 rows: [  {
                     'title': '问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：',

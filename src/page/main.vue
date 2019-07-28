@@ -44,7 +44,6 @@
                       <MenuItem name="boiler-Form">锅炉压力容器制造单位监督检查记录表</MenuItem>
                       <MenuItem name="crane-Form">起重机械制造单位监督抽查记录表</MenuItem>
                       <MenuItem name="elevator-Form">电梯维保单位监督检查记录表</MenuItem>
-                      <MenuItem name="elevator-Maintain-Form">电梯监督检查记录表</MenuItem>
                   </Submenu>
               </Menu>
             </Sider>
@@ -68,8 +67,8 @@
         }
       },
       components: {
-        vHeader, 
-        vBreadcrumb,   
+        vHeader,
+        vBreadcrumb,
       },
       methods: {
         routeTo(e) {

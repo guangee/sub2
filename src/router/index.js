@@ -7,7 +7,6 @@ const FormList = r => require.ensure([], () => r(require('@/page/formList')), 'F
 const BoilerForm = r => require.ensure([], () => r(require('@/page/boilerForm')), 'BoilerForm');
 const CraneForm = r => require.ensure([], () => r(require('@/page/craneForm')), 'CraneForm');
 const ElevatorForm = r => require.ensure([], () => r(require('@/page/elevatorForm')), 'ElevatorForm');
-const ElevatorMaintainForm = r => require.ensure([], () => r(require('@/page/elevatorMaintainForm')), 'ElevatorMaintainForm');
 const FormDetail = r => require.ensure([], () => r(require('@/page/formDetail')), 'FormDetail');
 
 Vue.use(Router)
@@ -66,14 +65,6 @@ export default new Router({
           requireAuth: true
         },
         component: ElevatorForm,
-      }, {
-        path: '/elevatorMaintainForm',
-        name: 'elevatorMaintainForm',
-        meta: {
-          label: '电梯维保表单',
-          requireAuth: true
-        },
-        component: ElevatorMaintainForm,
       }]
     }]
 })
