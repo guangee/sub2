@@ -233,12 +233,49 @@
                     'key': 'explain',
                     'minWidth': 100,
                     render: (h, params) => {
-                        return h(vUpload, {
+                        switch (params.row.id) {
+                            case '2_1':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '2_2':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '2_3':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '2_4':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            default:
+                                return h(vFormInput, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                })
+                        }
+                        /*return h(vUpload, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
                             }
-                        })
+                        })*/
                     }
                 }],
                 rows: [  {

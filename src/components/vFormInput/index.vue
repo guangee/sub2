@@ -8,7 +8,6 @@
 <template>
   <FormItem>
     <Input v-model="formList['question_' + formKey]" type="textarea" class="form-input" :autosize="{minRows: 5,maxRows: 5}" placeholder=""></Input>
-
   </FormItem>
 </template>
 <script>
