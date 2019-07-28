@@ -175,11 +175,13 @@
   import {craneData} from '@/service/staticData/dCraneData.js';
   import vFormInput from '@/components/vFormInput';
   import vFormRadio from '@/components/vFormRadio';
+  import vUpload from '@/components/vUpload';
   import util from '@/util/util.js';
   export default {
     components: {
       vFormRadio,
-      vFormInput
+      vFormInput,
+      vUpload,
     },
     data() {
       return {

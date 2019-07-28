@@ -20,7 +20,9 @@
   </div>
 </template>
 <script>
+
   export default {
+
     data () {
       return {
         formType: '',
@@ -60,7 +62,16 @@
                         },
                         on: {
                             click: () => {
-                              this.remove(params.index)
+                              this.$router.push(
+                                {
+                                  path : '/formDetail',
+                                  query: {id: params.index}
+
+
+
+                                }
+                              );
+                              
                             }
                         }
                     }, '查看详情'),
@@ -74,7 +85,8 @@
                         },
                         on: {
                             click: () => {
-                                this.remove(params.index)
+                              console.log(params);
+                              this.remove(params.index);
                             }
                         }
                     }, '修改'),
@@ -116,6 +128,11 @@
             date: '2016-10-04'
           }
         ]
+      }
+    },
+    methods: {
+      remove (index) {
+        this.data1.splice(index, 1);
       }
     }
   }

@@ -116,7 +116,7 @@
         </Col>
       </Row>
       <FormItem>
-        <Button type="primary" @click="handleSubmit('boilerForm')">Submit</Button>
+        <Button type="primary" @click="handleSubmit('boilerForm')">提交</Button>
       </FormItem>
     </Form>
   </div>
@@ -127,6 +127,7 @@
   import vFormRadio from '@/components/vFormRadio';
   import util from '@/util/util.js';
   export default {
+
     components: {
       vFormRadio,
       vFormInput
@@ -188,8 +189,10 @@
           'title': '检查结果',
           'key': 'result',
           'minWidth': 100,
+
           render: (h, params) => {
             return h(vFormRadio, {
+
               props: {
                 formList: this.formList,
                 formKey: params.row.id,
@@ -219,7 +222,7 @@
             console.log(this.formList);
           }
             else{
-            this.$Message.error('表单验证失败!');
+            this.$Message.error('提交失败!');
             }
         })
       }

@@ -42,7 +42,7 @@
           </FormItem>
         </Col>
       </Row>
-      </Row>
+
       <h3>一、资源条件</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
       <p style="text-align:left">注1：制造单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道统称为B级；按照单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道、杂物电梯（含防爆）统称为其他。</p>
@@ -155,14 +155,15 @@
     import {elevatorData} from '@/service/staticData/dElevatorData.js';
     import vFormInput from '@/components/vFormInput';
     import vFormRadio from '@/components/vFormRadio';
-    import vElevatorForm from '@/components/vElevatorForm';
     import vElevatorForm1 from '@/components/vElevatorForm1';
     import vElevatorForm2 from '@/components/vElevatorForm2';
+    import vUpload from '@/components/vUpload';
     import util from '@/util/util.js';
     export default {
         components: {
             vFormRadio,
-            vFormInput
+            vFormInput,
+            vUpload
         },
         data() {
             return {
@@ -231,26 +232,14 @@
                     'title': '记录',
                     'key': 'explain',
                     'minWidth': 100,
-                    /*render: function (h) {
-                        return (
-                            <template level={1}>
-                            <Upload
-                        multiple
-                        action="//jsonplaceholder.typicode.com/posts/">
-                            <Button icon="ios-cloud-upload-outline">Upload files</Button>
-                        </Upload>
-                        </template>
-                    )
-
-                    }*/
-                    /*render: (h, params) => {
-                        return h(vFormInput, {
+                    render: (h, params) => {
+                        return h(vUpload, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
                             }
                         })
-                    }*/
+                    }
                 }],
                 rows: [  {
                     'title': '问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：',
