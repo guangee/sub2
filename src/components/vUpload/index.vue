@@ -1,8 +1,8 @@
 <template>
-  <Upload v-model="formList['question_' + formKey]"
+  <Upload v-model="formList['RCRecord_' + formKey]"
     multiple
     action="//jsonplaceholder.typicode.com/posts/">
-    <i-button type="ghost" icon="ios-cloud-upload-outline">上传文件</i-button>
+    <button type="ghost" icon="ios-cloud-upload-outline">上传文件</button>
   </Upload>
 </template>
 <script>

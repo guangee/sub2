@@ -42,7 +42,7 @@
           </FormItem>
         </Col>
       </Row>
-      </Row>
+
       <h3>一、资源条件</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
       <p style="text-align:left">注1：制造单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道统称为B级；按照单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道、杂物电梯（含防爆）统称为其他。</p>
