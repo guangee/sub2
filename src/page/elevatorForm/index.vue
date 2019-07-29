@@ -221,11 +221,11 @@
                     'key': 'result',
                     'minWidth': 100,
                     render: (h, params) => {
-                        return h(vFormInput, {
+                        return h(vFormRadio, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
-                            }
+                            },
                         })
                     }
                 }, {
