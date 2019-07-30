@@ -230,6 +230,7 @@
                     }
                 }, {
                     'title': '记录',
+
                     'key': 'explain',
                     'minWidth': 100,
                     render: (h, params) => {
@@ -284,6 +285,10 @@
                     'title': '抽查结果',
                     'key': 'result',
                     'minWidth': 100,
+
+                    'key': 'RCRecord',
+                    'minWidth': 400,
+
                     render: (h, params) => {
                         return h(vFormRadio, {
                             props: {
