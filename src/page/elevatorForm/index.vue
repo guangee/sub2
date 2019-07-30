@@ -91,7 +91,7 @@
           </FormItem>
         </Col>
       </Row>
-      <Table :columns="columns" :data="tableList.table_3" ></Table>
+      <Table :columns="columns1" :data="tableList.table_3" ></Table>
       <Row>
         <Table :columns="rows"  :data="tableList.table_0" ></Table>
         <Col span='11'>
@@ -130,7 +130,7 @@
           </FormItem>
         </Col>
       </Row>
-      <Table :columns="columns" :data="tableList.table_4" ></Table>
+      <Table :columns="columns1" :data="tableList.table_4" ></Table>
       <Row>
         <Table :columns="rows"  :data="tableList.table_0" ></Table>
         <Col span='11'>
@@ -270,12 +270,27 @@
                                     }
                                 })
                         }
-                        /*return h(vUpload, {
+                    }
+                }],
+                columns1: [{
+                    'title': '抽查项目',
+                    'key': 'content',
+                    'width': 200,
+                }, {
+                    'title': '抽查内容及要点',
+                    'key': 'method',
+                    'minWidth': 300,
+                }, {
+                    'title': '抽查结果',
+                    'key': 'result',
+                    'minWidth': 100,
+                    render: (h, params) => {
+                        return h(vFormRadio, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
-                            }
-                        })*/
+                            },
+                        })
                     }
                 }],
                 rows: [  {
