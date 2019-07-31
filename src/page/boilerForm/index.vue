@@ -205,16 +205,20 @@
     },
     mounted() {
       console.log(this.$route.query.id);
-      this.formList = {
-        MFname: 'aa',//制造单位名称
-        MFadd: 'dd',//制造单位地址
-        principal: 'cc',//单位负责人
-        phoneNo: '', //联系电话
-        licenseNo: '',//许可证编号
-        licenseRange: '',//许可范围
-        question_1_1: '33',
-        result_1_1:'符合',
-        checker_1:'韩',
+      if (this.$route.query.modify === 0) {
+        this.formList = {
+          MFname: 'aa',//制造单位名称
+          MFadd: 'dd',//制造单位地址
+          principal: 'cc',//单位负责人
+          phoneNo: '', //联系电话
+          licenseNo: '',//许可证编号
+          licenseRange: '',//许可范围
+          question_1_1: '33',
+          result_1_1: '符合',
+          checker_1: '韩',
+        }
+      }else{
+        this.formList ={}
       }
 
     },
