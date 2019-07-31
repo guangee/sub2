@@ -24,7 +24,7 @@
     multiple
     type="drag"
     action="//jsonplaceholder.typicode.com/posts/"
-    style="display: inline-block;width:58px;">
+    style="display: inline-block;width:58px;">   //改成后台提供的接口
     <div style="width: 58px;height:58px;line-height: 58px;">
       <Icon type="ios-camera" size="20"></Icon>
     </div>
@@ -36,7 +36,7 @@
 </template>
 <script>
     export default {
-        props: ['formList', 'formKey'],
+        props: ['formList', 'formKey'],//写上key数组
         data () {
             return {
                 imgName: '',
@@ -55,7 +55,7 @@
             },
             handleSuccess (res, file) {
                 file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
-                file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+                file.name = '7eb99afb9d5f317c912f08b5212fd69a';//将后台提供的接口push到数组上
             },
             handleFormatError (file) {
                 this.$Notice.warning({

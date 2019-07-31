@@ -36,6 +36,7 @@
   </div>
 </template>
 <script>
+    import util from '@/util/util.js';
   export default {
     name: 'vHeader',
     data() {
@@ -53,13 +54,19 @@
 
     },
     methods: {
-      handleClickUserDropdown (name) {
+      async handleClickUserDropdown (name) {
         if (name === 'ownSpace') {
+
           this.$router.push("userInfo");
         } else if (name === 'loginout') {
+            let data = {
+                method: 'delete',
+                url: '/tokens',
+            };
+            let res = await util.httpReq(data);
           localStorage.clear();
           sessionStorage.clear();
-          this.$router.push('login');
+          this.$router.push('/login');
 
         }
       },
