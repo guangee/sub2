@@ -161,7 +161,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
+            <DatePicker disabled="true" type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>

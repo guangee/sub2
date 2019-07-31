@@ -6,9 +6,35 @@
 <template>
   <div>
     <Card class="add-card">
-      <Cascader :data="tableList" trigger="hover" :render-format="format"></Cascader>
-      <Button>添加检查记录表</Button>
+      <Form label-position="left" :label-width="100">
+      <FormItem label="表单类型">
+        <Cascader  :data="tableList" trigger="hover" :render-format="format"></Cascader>
+      </FormItem>
+      </Form>
+      <Form label-position="left" :label-width="100" inline>
+
+        <FormItem label="检查结果" >
+          <RadioGroup  class="radio" >
+            <Radio label="符合" ></Radio>
+            <Radio label="不符合" ></Radio>
+            <Radio label="有缺陷" ></Radio>
+            <Radio label="无此项" ></Radio>
+          </RadioGroup>
+         </FormItem>
+          <FormItem label="制造单位名称" >
+            <Input  placeholder="请输入制造单位名称" />
+          </FormItem>
+          <FormItem label="问题说明及记录" :label-width="120">
+            <Input  placeholder="请输问题说明及记录" />
+          </FormItem>
+        <Button>查询</Button>
+
+
+
+
+      </Form>
     </Card>
+
     <Table border :columns="columns1" :data="data1"></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
@@ -20,72 +46,14 @@
 <script>
 
   import {biolerData} from "../../service/staticData/dBiolerData";
+  import {SearchData} from "../../service/staticData/dBiolerSearch";
 
   export default {
 
     data () {
       return {
 
-        tableList: [
-          {
-            value: '0',
-            label: '锅炉压力容器制造单位监督检查记录表',
-            children:[{
-              value: '0_0',
-              label: '一、基本条件与管理',
-
-
-            },{
-              value: '0_1',
-              label: '二、产品质量与控制，',
-            },{
-              value: '0_2',
-              label: '三、对鉴定评审机构评审情况的检查'
-            },{
-              value: '0_3',
-              label: '四、对监督检验情况的抽查',
-            },
-
-            ]
-          }, {
-            value: '1',
-            label: '起重机械制造单位监督抽查记录表',
-
-            children:[{
-              value: '1_0',
-              label: '1、资源条件及管理',
-
-
-            },{
-              value: '1_1',
-              label: '2、产品质量及控制',
-            },
-
-            ]
-          }, {
-            value: '2',
-            label: '电梯维保单位监督检查记录表',
-            children:[{
-              value: '2_0',
-              label: '一、资源条件',
-
-
-            },{
-              value: '2_1',
-              label: '二、质量管理体系',
-            },{
-              value: '2_2',
-              label: '三、制造/安装/维修质量（曳引式电梯）'
-            },{
-              value: '2_3',
-              label: '四、制造/安装/维修质量（自动扶梯）',
-            },
-
-            ]
-
-          },
-        ],
-        type: [2],
+        tableList: SearchData,
         columns1: [
           {
             title: '制造单位名称',
@@ -120,6 +88,7 @@
                                   query: {
                                     id: params.row.id,
 
+
                                   }
                                 });
                               } else if (params.row.type === 1) {
@@ -127,6 +96,7 @@
                                   path: '/cranecheck',
                                   query: {
                                     id: params.row.id,
+
                                   }
                                 });
                               } else {
@@ -134,6 +104,7 @@
                                   path: '/elevatorcheck',
                                   query: {
                                     id: params.row.id,
+
                                   }
                                 });
                               }
@@ -157,6 +128,7 @@
                                   path: '/boilerForm',
                                   query: {
                                     id: params.row.id,
+                                    modify:0,
 
                                   }
                                 });
@@ -165,6 +137,7 @@
                                   path: '/craneForm',
                                   query: {
                                     id: params.row.id,
+                                    modify:0,
                                   }
                                 });
                               } else {
@@ -172,6 +145,7 @@
                                   path: '/elevatorForm',
                                   query: {
                                     id: params.row.id,
+                                    modify:0,
                                   }
                                 });
                               }
