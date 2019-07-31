@@ -284,11 +284,10 @@
                 }, {
                     'title': '抽查结果',
                     'key': 'result',
-                    'minWidth': 100,
+                    'minWidth': 300,
 
                     'key': 'RCRecord',
-                    'minWidth': 400,
-
+                    'minWidth': 50,
                     render: (h, params) => {
                         return h(vFormRadio, {
                             props: {
@@ -344,17 +343,15 @@
 
         },
         methods: {
-            async handleSubmit(formName) {
-                /*
-                let data = {
-                  method: 'post',
-                  params: this.formList,
-                  url: '/parrot/',
-                }
-                let res = await util.httpReq(data);
-                */
-                this.$refs[formName].validate((valid) => {
+            handleSubmit(formName) {
+                this.$refs[formName].validate(async (valid) => {
                     if (valid) {
+                        let data = {
+                            method: 'post',
+                            params: this.formList,
+                            url: '/Elevator/add',
+                        };
+                        let res = await util.httpReq(data);
                         this.$Message.success('提交成功!');
                         console.log(this.formList);
                     }

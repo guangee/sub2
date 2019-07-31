@@ -186,6 +186,7 @@
     data() {
       return {
         formList: {
+            /*
             corpnName:'',//单位名称
             address:'',//制造地址
             prinpal:'',//单位负责人
@@ -210,6 +211,7 @@
             productDateD:'',//出厂日期
             Checker_2:'',//问题1 监督检查人员
             CheckDate_2:'',//问题1 检查日期
+            */
         },
         ruleformList: {
             corpnName: [
@@ -277,22 +279,18 @@
       }
     },
     mounted() {
-      console.log(this.$router.query.id);
 
     },
     methods: {
-      async handleSubmit(formName) {
-        /*
-        let data = {
-          method: 'post',
-          params: this.formList,
-          url: '/parrot/',
-        }
-        let res = await util.httpReq(data);
-
-        */
-          this.$refs[formName].validate((valid) => {
+       handleSubmit(formName) {
+          this.$refs[formName].validate(async (valid) => {
               if (valid) {
+                  let data = {
+                      method: 'post',
+                      params: this.formList,
+                      url: '/Crane/add',
+                  };
+                  let res = await util.httpReq(data);
                   this.$Message.success('提交成功!');
                   console.log(this.formList);
               }

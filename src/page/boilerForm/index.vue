@@ -222,26 +222,23 @@
 
     },
     methods: {
-      async handleSubmit(formName) {
-        /*
-        let data = {
-          method: 'post',
-          params: this.formList,
-          url: '/parrot/',
+        handleSubmit(formName) {
+            this.$refs[formName].validate(async (valid) => {
+                if (valid) {
+                    let data = {
+                        method: 'post',
+                        params: this.formList,
+                        url: '/boiler/add',
+                    };
+                    let res = await util.httpReq(data);
+                    this.$Message.success('提交成功!');
+                    console.log(this.formList);
+                }
+                else{
+                    this.$Message.error('表单验证失败!');
+                }
+            })
         }
-        let res = await util.httpReq(data);
-        */
-        console.log(this.formList);
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$Message.success('提交成功!');
-            console.log(this.formList);
-          }
-            else{
-            this.$Message.error('提交失败!');
-            }
-        })
-      }
     }
   }
 </script>
