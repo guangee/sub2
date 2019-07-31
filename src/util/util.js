@@ -8,6 +8,18 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.baseURL = '/admin';
 axios.defaults.withCredentials = true;
 
+axios.interceptors.request.use(
+  config => {
+    if (localStorage.getItem('authorization')) {
+      config.headers.Authorization = localStorage.getItem('authorization');
+    }
+ 
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  });
+
 /**
  * 从后端获取数据
  * data:{
@@ -19,17 +31,13 @@ axios.defaults.withCredentials = true;
 
 util.httpReq = function (data) {
   let { method, url, params } = data;
-  if (method === 'get') {
-    return axios({
-      method: method,
-      url: url,
-      params: params, // 请求时带的参数
-      timeout: 5000,
-    }).then(
+  switch (method) {
+    case 'post':
+    return axios.post(url, params).then(
       (response) => {
         if (parseInt(response.status) === 200) {
           return response.data;
-        } else {
+        } else{
           Message.error({
             content: response.data.msg,
             duration: 5,
@@ -45,12 +53,59 @@ util.httpReq = function (data) {
         closable: true
       });
     });
-  } else {
-    return axios.post(url, params).then(
+    case 'delete':
+    return axios.delete(url, { params }).then(
       (response) => {
         if (parseInt(response.status) === 200) {
           return response.data;
         } else{
+          Message.error({
+            content: response.data.msg,
+            duration: 5,
+            closable: true
+          });
+          return response.data;
+        }
+      }
+    ).catch(function (response) {
+      Message.error({
+        content: response.message,
+        duration: 5,
+        closable: true
+      });
+    });
+    case 'put':
+    return axios.put(url, params).then(
+      (response) => {
+        if (parseInt(response.status) === 200) {
+          return response.data;
+        } else{
+          Message.error({
+            content: response.data.msg,
+            duration: 5,
+            closable: true
+          });
+          return response.data;
+        }
+      }
+    ).catch(function (response) {
+      Message.error({
+        content: response.message,
+        duration: 5,
+        closable: true
+      });
+    });
+    default:
+    return axios({
+      method: method,
+      url: url,
+      params: params, // 请求时带的参数
+      timeout: 5000,
+    }).then(
+      (response) => {
+        if (parseInt(response.status) === 200) {
+          return response.data;
+        } else {
           Message.error({
             content: response.data.msg,
             duration: 5,
