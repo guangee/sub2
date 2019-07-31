@@ -135,6 +135,7 @@
     data() {
       return {
         formList: {
+            /*
           serialNo: '',//编号
           MFname: '',//制造单位名称
           MFadd: '',//制造单位地址
@@ -148,6 +149,8 @@
           supervisionOrg: '',//监督检验机构
           supervisor: '',//监督检验人
           type:'0',
+
+             */
         },
         ruleformList: {
           MFname: [
