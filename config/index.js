@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/admin': {
-       target: 'http://10.28.238.110:8080',
+       target: 'http://62.234.138.48:8080',
        changeOrigin: true,
        secure: false,
        pathRewrite: {
@@ -29,7 +29,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

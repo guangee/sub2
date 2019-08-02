@@ -282,23 +282,35 @@
 
     },
     methods: {
-       handleSubmit(formName) {
-          this.$refs[formName].validate(async (valid) => {
-              if (valid) {
-                  let data = {
-                      method: 'post',
-                      params: this.formList,
-                      url: '/Crane/add',
-                  };
-                  let res = await util.httpReq(data);
-                  this.$Message.success('提交成功!');
-                  console.log(this.formList);
-              }
-              else{
-                  this.$Message.error('表单验证失败!');
-              }
-          })
-      }
+        handleSubmit(formName) {
+            this.$refs[formName].validate(async (valid) => {
+                if (valid) {
+                    if (this.$route.query.modify === 0) {
+                        let data = {
+                            method: 'put',
+                            params: this.formList,
+                            url: '/Crane/change',
+                        };
+                        let res = await util.httpReq(data);
+
+                        this.$Message.success('修改成功!');
+
+                    } else {
+                        let data = {
+                            method: 'post',
+                            params: this.formList,
+                            url: '/Crane/add',
+                        };
+                        let res = await util.httpReq(data);
+                        this.$Message.success('提交成功!');
+                        console.log(this.formList);
+                    }
+                }
+                else{
+                    this.$Message.error('表单验证失败!');
+                }
+            })
+        }
     }
   }
 </script>

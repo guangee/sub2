@@ -28,14 +28,9 @@
             <Input  placeholder="请输问题说明及记录" />
           </FormItem>
         <Button>查询</Button>
-
-
-
-
       </Form>
     </Card>
-
-    <Table border :columns="columns1" :data="data1"></Table>
+    <Table border :columns="columns1":data=data1></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
         <Page :total="100" :current="1" @on-change="changePage"></Page>
@@ -52,18 +47,22 @@
 
     data () {
       return {
+          totalProblemList:[],
+          showList:[],
+          dataCount:0,
+          pageSize:10,
 
         tableList: SearchData,
         columns1: [
           {
             title: '制造单位名称',
-            key: 'name'
+            key: 'MFname'
           }, {
             title: '单位负责人',
-            key: 'age'
+            key: 'principal'
           }, {
             title: '许可证编号',
-            key: 'address'
+            key: 'licenseNo'
           }, {
             title: '操作',
             key: 'action',
@@ -108,7 +107,7 @@
                                   }
                                 });
                               }
-                              
+
                             }
                         }
                     }, '查看详情'),
@@ -170,48 +169,95 @@
           }
         ],
         data1: [
-          {
-            type: 0,
-            id: '2223',
-            name: 'John Brown',
-            age: 18,
-            address: 'New York No. 1 Lake Park',
-            date: '2016-10-03',
-            check:false
+          {   id: '222',
+              type:0,
+              MFname: '',
+              principal: '',
+              licenseNo: '',
+              check:false
           }, {
             type: 1,
-            name: 'Jim Green',
-            id: '3334',
-            age: 24,
-            address: 'London No. 1 Lake Park',
-            date: '2016-10-01',
-            check:false
+                MFname: '',
+                principal: '',
+                licenseNo: '',
+                check:false,
+                id:'3333',
           }, {
             type: 2,
-            name: 'Joe Black',
-            id: '3334',
-            age: 30,
-            address: 'Sydney No. 1 Lake Park',
-            date: '2016-10-02',
+                MFname: '',
+                principal: '',
+                licenseNo: '',
             check:false
           }, {
-            name: 'Jon Snow',
-            age: 26,
-            id: '3334',
-            address: 'Ottawa No. 2 Lake Park',
-            date: '2016-10-04',
+            type:3,
+                MFname: '',
+                principal: '',
+                licenseNo: '',
             check:false
           }
         ]
       }
     },
     mounted(){
+        axios
+            .get(config.service.problems,{
+                headers:config.headers
+                })
+            .then(res=>{
+                console.log(res);
+                this.totalProblemList = res.data;
+                this.dataCount = this.totalProblemList.length;
+                if(this.dataCount<this.pageSize)
+                {
+                    this.data1 = this.totalProblemList;
+                }
+                else{
+                    this.data1 = this.totalProblemList.slice(0,this.pageSize);
+                }
+            });
 
-    },
+
+
+                        let data = {
+                            method: 'get',
+                            params: this.formList,
+                            url: '/Elevator/add',
+                        };
+                        console.log(this.formList);
+
+            },
+
+        /*
+        let data1 = {
+            method: 'get',
+            params: this.formList.MFname,
+            url: '/boiler/checkName',
+        };
+
+        let data_1= {
+            method: 'get',
+            params: this.formList.principal,
+            url: '/boiler/checkID',
+        };
+        let data_2= {
+            method: 'get',
+            params: this.formList.licenseNo,
+            url: '/boiler/check',
+        };
+
+         */
+
+
     methods: {
+        changepage(index){
+            var_start = (index - 1) * this.pageSize;
+            var_end = index * this.pageSize;
+            this.data1 = this.totalProblemList.slice(_start,_end);
+        },
+
       remove (index) {
         this.data1.splice(index, 1);
-        
+
       }
     }
   }
