@@ -211,6 +211,7 @@
     mounted() {
       console.log(this.$route.query.id);
       this.formList = {
+          /*
         MFname: '',//制造单位名称
         MFadd: '',//制造单位地址
         principal: '',//单位负责人
@@ -220,6 +221,7 @@
         question_1_1: '',
         result_1_1:'',
         checker_1:'',
+            */
       }
 
     },
