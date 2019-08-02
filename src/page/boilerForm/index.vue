@@ -216,8 +216,6 @@
           result_1_1: '符合',
           checker_1: '韩',
         }
-      }else{
-        this.formList ={}
       }
 
     },
