@@ -223,15 +223,13 @@
           question_1_1: '33',
           result_1_1: '符合',
           checker_1: '韩',
-<<<<<<< HEAD
-        }
-=======
+
              */
 
       }
       else{
         this.formList ={}
->>>>>>> 878c5735b5a868a72b38b5c94b632e2c57118fe8
+
       }
 
     },

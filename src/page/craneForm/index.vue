@@ -278,7 +278,32 @@
           ]
       }
     },
-    mounted() {
+    mounted() { console.log(this.$route.query.id);
+      if (this.$route.query.modify === 0) {
+        this.formList = this.getFormList()
+        console.log(this.formList)
+
+
+
+
+        /*
+      MFname: 'aa',//制造单位名称
+      MFadd: 'dd',//制造单位地址
+      principal: 'cc',//单位负责人
+      phoneNo: '', //联系电话
+      licenseNo: '',//许可证编号
+      licenseRange: '',//许可范围
+      question_1_1: '33',
+      result_1_1: '符合',
+      checker_1: '韩',
+
+         */
+
+      }
+      else{
+        this.formList ={}
+
+      }
 
     },
     methods: {
@@ -310,7 +335,18 @@
                     this.$Message.error('表单验证失败!');
                 }
             })
+        },
+      async getFormList(){
+        let data = {
+          params:{
+            id: this.$route.query.id
+          },
+          method: 'get',
+          url: '/Crane/check',
         }
+        let res = await util.httpReq(data);
+        return res.data;
+      }
     }
   }
 </script>
