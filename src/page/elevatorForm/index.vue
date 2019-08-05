@@ -183,11 +183,11 @@
                 columns: [{
                     'title': '抽查项目',
                     'key': 'content',
-                    'width': 200,
+                    'width': 100,
                 }, {
                     'title': '抽查内容及要点',
                     'key': 'method',
-                    'minWidth': 200,
+                    'minWidth': 300,
                     render: (h, params) => {
                         switch (params.row.id) {
                             case '3_1':

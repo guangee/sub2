@@ -259,18 +259,14 @@
       }
     },
     mounted() {
+        console.log(this.$route.query.id);
+        this.formList = {
+
+        }
 
     },
     methods: {
       async handleSubmit(formName) {
-        /*
-        let data = {
-          method: 'post',
-          params: this.formList,
-          url: '/parrot/',
-        }
-        let res = await util.httpReq(data);
-        */
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.$Message.success('提交成功!');

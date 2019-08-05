@@ -135,22 +135,7 @@
     data() {
       return {
         formList: {
-            /*
-          serialNo: '',//编号
-          MFname: '',//制造单位名称
-          MFadd: '',//制造单位地址
-          principal: '',//单位负责人
-          phoneNo: '', //联系电话
-          licenseNo: '',//许可证编号
-          licenseRange: '',//许可范围
-          licenseDate: '',//许可证有效期
-          EIname: '',//评审机构名称
-          lastDate: '',//最近一次评审日期
-          supervisionOrg: '',//监督检验机构
-          supervisor: '',//监督检验人
-          type:'0',
 
-             */
         },
         ruleformList: {
           MFname: [
@@ -211,30 +196,12 @@
     mounted() {
       console.log(this.$route.query.id);
       this.formList = {
-          /*
-        MFname: '',//制造单位名称
-        MFadd: '',//制造单位地址
-        principal: '',//单位负责人
-        phoneNo: '', //联系电话
-        licenseNo: '',//许可证编号
-        licenseRange: '',//许可范围
-        question_1_1: '',
-        result_1_1:'',
-        checker_1:'',
-            */
+
       }
 
     },
     methods: {
       async handleSubmit(formName) {
-        /*
-        let data = {
-          method: 'post',
-          params: this.formList,
-          url: '/parrot/',
-        }
-        let res = await util.httpReq(data);
-        */
         console.log(this.formList);
         this.$refs[formName].validate((valid) => {
           if (valid) {

@@ -201,19 +201,19 @@
         columns: [{
           'title': '检查项目、内容与要求',
           'key': 'content',
-          'width': 200
+          'width': 250
         }, {
           'title': '检查方法',
           'key': 'method',
-          'minWidth': 100
+          'minWidth': 70
         }, {
           'title': '对应条款',
           'key': 'demand',
-          'minWidth': 100
+          'minWidth': 50
         }, {
           'title': '问题说明及记录',
           'key': 'explain',
-          'minWidth': 100,
+          'minWidth': 250,
           render: (h, params) => {
             return h(vFormInput, {
               props: {
@@ -238,7 +238,6 @@
         rows: [  {
           'title': '问题记录（包括未在“检查内容”栏目中列出的其他项目及其问题）：',
           'key': 'explain',
-          // 'minWidth': 100,
           render: (h, params) => {
             return h(vFormInput, {
               props: {
@@ -258,7 +257,7 @@
     },
     methods: {
         handleSubmit(formName) {
-          this.$refs[formName].validate(async (valid) => {
+          this.$refs[formName].validatce(async (valid) => {
             if (valid) {
               if (this.$route.query.modify === 0) {
                 let data = {

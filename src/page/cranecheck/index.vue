@@ -267,7 +267,6 @@
         rows: [  {
           'title': '问题记录（包括未在“检查内容”栏目中列出的其他项目及其问题）：',
           'key': 'explain',
-          // 'minWidth': 100,
           render: (h, params) => {
             return h(vFormInput, {
               props: {
@@ -283,19 +282,13 @@
     },
     mounted() {
       console.log(this.$router.query.id);
+        this.formList = {
+
+        }
 
     },
     methods: {
       async handleSubmit(formName) {
-        /*
-        let data = {
-          method: 'post',
-          params: this.formList,
-          url: '/parrot/',
-        }
-        let res = await util.httpReq(data);
-
-        */
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.$Message.success('提交成功!');
