@@ -1,4 +1,4 @@
-    1`  <style scoped>
+<style scoped>
   .form-wrapper {
     text-align: center;
   }
@@ -126,31 +126,14 @@
   import vFormInput from '@/components/vFormInput';
   import vFormRadio from '@/components/vFormRadio';
   import util from '@/util/util.js';
-  import vParams from "../../components/vParams/vParams";
   export default {
-
     components: {
       vFormRadio,
       vFormInput
     },
     data() {
       return {
-        formList: {
-          /* serialNo: '',//编号
-           MFname: '',//制造单位名称
-           MFadd: '',//制造单位地址
-           principal: '',//单位负责人
-           phoneNo: '', //联系电话
-           licenseNo: '',//许可证编号
-           licenseRange: '',//许可范围
-           licenseDate: '',//许可证有效期
-           EIname: '',//评审机构名称
-           lastDate: '',//最近一次评审日期
-           supervisionOrg: '',//监督检验机构
-           supervisor: '',//监督检验人
-           type:'0',
-           */
-        },
+        formList: {},
         ruleformList: {
           MFname: [
             { required: true, message: '制造单位名称不能为空', trigger: 'blur' }
@@ -205,76 +188,48 @@
       }
     },
     mounted() {
-      console.log(this.$route.query.id);
       if (this.$route.query.modify === 0) {
-          this.formList = this.getFormList()
-          console.log(this.formList)
-
-
-
-
-            /*
-          MFname: 'aa',//制造单位名称
-          MFadd: 'dd',//制造单位地址
-          principal: 'cc',//单位负责人
-          phoneNo: '', //联系电话
-          licenseNo: '',//许可证编号
-          licenseRange: '',//许可范围
-          question_1_1: '33',
-          result_1_1: '符合',
-          checker_1: '韩',
-
-             */
-
+          this.getFormList();
       }
-      else{
-        this.formList ={}
-
-      }
-
     },
     methods: {
-        handleSubmit(formName) {
-            this.$refs[formName].validate(async (valid) => {
-                if (valid) {
-                    if (this.$route.query.modify === 0) {
-                        let data = {
-                            method: 'put',
-                            params: this.formList,
-                            url: '/boiler/change',
-                        };
-                        let res = await util.httpReq(data);
-
-                        this.$Message.success('修改成功!');
-
-
-                    } else {
-                       let data = {
-                            method: 'post',
-                            params: this.formList,
-                            url: '/boiler/add',
-                        };
-                        let res = await util.httpReq(data);
-                        this.$Message.success('提交成功!');
-                        console.log(this.formList);
-                    }
-                }
-                else{
-                    this.$Message.error('表单验证失败!');
-                }
-            })
-        },
-        async getFormList(){
-                let data = {
-                    params:{
-                        id: this.$route.query.id
-                    },
-                    method: 'get',
-                    url: '/boiler/check',
-                }
-                let res = await util.httpReq(data);
-                return res.data;
+      handleSubmit(formName) {
+        this.$refs[formName].validate(async (valid) => {
+          if (valid) {
+            if (this.$route.query.modify === 0) {
+              let data = {
+                method: 'put',
+                params: this.formList,
+                url: '/boiler/change',
+              };
+              let res = await util.httpReq(data);
+              this.$Message.success('修改成功!');
+            } else {
+              let data = {
+                method: 'post',
+                params: this.formList,
+                url: '/boiler/add',
+              };
+              let res = await util.httpReq(data);
+              this.$Message.success('提交成功!');
+            }
+          }
+          else{
+            this.$Message.error('表单验证失败!');
+          }
+        })
+      },
+      async getFormList(){
+        let data = {
+          params: {
+            id: this.$route.query.id
+          },
+          method: 'get',
+          url: '/boiler/check',
         }
+        let res = await util.httpReq(data);
+        this.formList = res;
+      }
     }
   }
 </script>

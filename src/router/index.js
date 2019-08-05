@@ -1,19 +1,18 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Main from '@/page/main.vue';
+import iView from 'iview';
 
 const Login = r => require.ensure([], () => r(require('@/page/login')), 'Login');
 const FormList = r => require.ensure([], () => r(require('@/page/formList')), 'FormList');
 const BoilerForm = r => require.ensure([], () => r(require('@/page/boilerForm')), 'BoilerForm');
 const CraneForm = r => require.ensure([], () => r(require('@/page/craneForm')), 'CraneForm');
 const ElevatorForm = r => require.ensure([], () => r(require('@/page/elevatorForm')), 'ElevatorForm');
-const FormDetail = r => require.ensure([], () => r(require('@/page/formDetail')), 'FormDetail');
 const BoilerCheck = r => require.ensure([], () => r(require('@/page/boilercheck')), 'boilercheck');
 const CraneCheck = r => require.ensure([], () => r(require('@/page/cranecheck')), 'boilercheck');
 const ElevatorCheck = r => require.ensure([], () => r(require('@/page/elevatorcheck')), 'boilercheck');
 Vue.use(Router)
-
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/login',
@@ -35,14 +34,6 @@ export default new Router({
           requireAuth: true
         },
         component: FormList,
-      }, {
-        path: '/formDetail',
-        name: 'formDetail',
-        meta: {
-          label: '表单详情',
-          requireAuth: true
-        },
-        component: FormDetail,
       }, {
         path: '/boilerForm',
         name: 'boilerForm',
@@ -95,3 +86,23 @@ export default new Router({
       },]
     }]
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(res => res.meta.requireAuth)) {
+    if (localStorage.getItem('authorization')) {// 判断是否登录
+      iView.LoadingBar.start();
+      next()
+    } else {// 没登录则跳转到登录界面
+      next({
+        path: '/login',
+      })
+    }
+  } else {
+    next()
+  }
+});
+router.afterEach(() => {
+  iView.LoadingBar.finish();
+  window.scrollTo(0, 0);
+
+});
+export default router;

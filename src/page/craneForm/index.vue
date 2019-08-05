@@ -19,17 +19,17 @@
           </FormItem>
         </Col>
         <Row>
-        <Col span='11'>
-          <FormItem label="单位负责人" prop="prinpal">
-            <Input v-model="formList.prinpal" placeholder="请输入单位负责人"></Input>
-          </FormItem>
-          <FormItem label="许可证编号" prop="licenceNo">
-            <Input v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
-          </FormItem>
-          <FormItem label="许可证有效期" prop="licenceDate">
-            <Input v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
-          </FormItem>
-        </Col>>
+          <Col span='11'>
+            <FormItem label="单位负责人" prop="prinpal">
+              <Input v-model="formList.prinpal" placeholder="请输入单位负责人"></Input>
+            </FormItem>
+            <FormItem label="许可证编号" prop="licenceNo">
+              <Input v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
+            </FormItem>
+            <FormItem label="许可证有效期" prop="licenceDate">
+              <Input v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
+            </FormItem>
+          </Col>
           <Col span='11' offset='1'>
             <FormItem label="联系电话">
               <Input v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
@@ -40,8 +40,8 @@
             <FormItem label="许可的范围">
               <Input v-model="formList.licenceRange" placeholder="请输入许可的范围"></Input>
             </FormItem>
-        </Col>
-          </Row>
+          </Col>
+        </Row>
 
       <h3>1、资源条件及管理</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
@@ -185,44 +185,17 @@
     },
     data() {
       return {
-        formList: {
-            /*
-            corpnName:'',//单位名称
-            address:'',//制造地址
-            prinpal:'',//单位负责人
-            phoneNo:'',//联系电话
-            licenceNo:'',//许可证编号
-            fax:'',//传真
-            licenceDate:'',//许可证有效期
-            licenceRange:'',//许可的范围
-            Checker_1:'',//问题1 监督检查人员
-            CheckDate_1:'',//问题1 检查日期
-            productNameB:'',//设备名称（品种）
-            productTypeB:'',//型号
-            productNoB:'',//出厂编号
-            productDateB:'',//出厂日期
-            roductNameC:'',//设备名称（品种）
-            productTypeC:'',//型号
-            productNoC:'',//出厂编号
-            productDateC:'',//出厂日期
-            productNameD:'',//设备名称（品种）
-            productTypeD:'',//型号
-            productNoD:'',//出厂编号
-            productDateD:'',//出厂日期
-            Checker_2:'',//问题1 监督检查人员
-            CheckDate_2:'',//问题1 检查日期
-            */
-        },
+        formList: {},
         ruleformList: {
-            corpnName: [
-                { required: true, message: '单位名称不能为空', trigger: 'blur' }
-            ],
-                prinpal: [
-                { required: true, message: '单位负责人不能为空', trigger: 'blur' },
-            ],
-                licenceNo: [
-                { required: true, message: '许可证编号不能为空', trigger: 'blur' }
-            ]
+          corpnName: [
+            { required: true, message: '单位名称不能为空', trigger: 'blur' }
+          ],
+            prinpal: [
+              { required: true, message: '单位负责人不能为空', trigger: 'blur' },
+          ],
+            licenceNo: [
+              { required: true, message: '许可证编号不能为空', trigger: 'blur' }
+          ]
         },
         tableList: craneData,
         columns: [{
@@ -278,63 +251,38 @@
           ]
       }
     },
-    mounted() { console.log(this.$route.query.id);
+    mounted() {
       if (this.$route.query.modify === 0) {
-        this.formList = this.getFormList()
-        console.log(this.formList)
-
-
-
-
-        /*
-      MFname: 'aa',//制造单位名称
-      MFadd: 'dd',//制造单位地址
-      principal: 'cc',//单位负责人
-      phoneNo: '', //联系电话
-      licenseNo: '',//许可证编号
-      licenseRange: '',//许可范围
-      question_1_1: '33',
-      result_1_1: '符合',
-      checker_1: '韩',
-
-         */
-
+        this.getFormList();
       }
-      else{
-        this.formList ={}
-
-      }
-
     },
     methods: {
         handleSubmit(formName) {
-            this.$refs[formName].validate(async (valid) => {
-                if (valid) {
-                    if (this.$route.query.modify === 0) {
-                        let data = {
-                            method: 'put',
-                            params: this.formList,
-                            url: '/Crane/change',
-                        };
-                        let res = await util.httpReq(data);
+          this.$refs[formName].validate(async (valid) => {
+            if (valid) {
+              if (this.$route.query.modify === 0) {
+                let data = {
+                    method: 'put',
+                    params: this.formList,
+                    url: '/Crane/change',
+                };
+                let res = await util.httpReq(data);
+                this.$Message.success('修改成功!');
 
-                        this.$Message.success('修改成功!');
-
-                    } else {
-                        let data = {
-                            method: 'post',
-                            params: this.formList,
-                            url: '/Crane/add',
-                        };
-                        let res = await util.httpReq(data);
-                        this.$Message.success('提交成功!');
-                        console.log(this.formList);
-                    }
-                }
-                else{
-                    this.$Message.error('表单验证失败!');
-                }
-            })
+              } else {
+                let data = {
+                    method: 'post',
+                    params: this.formList,
+                    url: '/Crane/add',
+                };
+                let res = await util.httpReq(data);
+                this.$Message.success('提交成功!');
+              }
+            }
+            else {
+              this.$Message.error('表单验证失败!');
+            }
+          })
         },
       async getFormList(){
         let data = {
@@ -345,7 +293,7 @@
           url: '/Crane/check',
         }
         let res = await util.httpReq(data);
-        return res.data;
+        this.formList = res;
       }
     }
   }

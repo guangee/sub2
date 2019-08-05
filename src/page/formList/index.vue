@@ -39,9 +39,9 @@
   </div>
 </template>
 <script>
-
   import {biolerData} from "../../service/staticData/dBiolerData";
   import {SearchData} from "../../service/staticData/dBiolerSearch";
+  const routerType = ['/boiler', '/crane', '/elevator'];
 
   export default {
 
@@ -82,34 +82,12 @@
                   },
                   on: {
                     click: () => {
-                      console.log(params);
-                      if (params.row.type === 0) {
-                        this.$router.push({
-                          path: '/boilercheck',
-                          query: {
-                            id: params.row.id,
-
-
-                          }
-                        });
-                      } else if (params.row.type === 1) {
-                        this.$router.push({
-                          path: '/cranecheck',
-                          query: {
-                            id: params.row.id,
-
-                          }
-                        });
-                      } else {
-                        this.$router.push({
-                          path: '/elevatorcheck',
-                          query: {
-                            id: params.row.id,
-
-                          }
-                        });
-                      }
-
+                      this.$router.push({
+                        path: routerType[params.row.type] + 'check',
+                        query: {
+                          id: params.row.id,
+                        }
+                      });
                     }
                   }
                 }, '查看详情'),
@@ -123,34 +101,13 @@
                   },
                   on: {
                     click: () => {
-                      console.log(params);
-                      if (params.row.type === 0) {
-                        this.$router.push({
-                          path: '/boilerForm',
-                          query: {
-                            id: params.row.id,
-                            modify: 0,
-
-                          }
-                        });
-                      } else if (params.row.type === 1) {
-                        this.$router.push({
-                          path: '/craneForm',
-                          query: {
-                            id: params.row.id,
-                            modify: 0,
-                          }
-                        });
-                      } else {
-                        this.$router.push({
-                          path: '/elevatorForm',
-                          query: {
-                            id: params.row.id,
-                            modify: 0,
-                          }
-                        });
-                      }
-
+                      this.$router.push({
+                        path: routerType[params.row.type] + 'Form',
+                        query: {
+                          id: params.row.id,
+                          modify: 0,
+                        }
+                      });
                     }
                   }
                 }, '修改'),
@@ -161,7 +118,7 @@
                   },
                   on: {
                     click: () => {
-
+                      // 添加删除接口
                       this.remove(params.index)
                     }
                   }
@@ -172,38 +129,36 @@
         ],
         data1: [
           {
-            id: '343',
+            id: 'c38320362e3d430c9ff7472a464d3e53',
             type: 0,
             MFname: '',
             principal: '',
             licenseNo: '',
-            check: false
           }, {
 
+            type: 0,
+            MFname: '',
+            principal: '',
+            licenseNo: '',
+            id: '084b8a69bca64d55a1242d4d79433c2d',
+          }, {
             type: 1,
             MFname: '',
             principal: '',
             licenseNo: '',
-            check: false,
-            id: '343',
+            id: '15c6bdeabe854016acafddb7def74de1',
           }, {
             type: 2,
             MFname: '',
             principal: '',
             licenseNo: '',
-            check: false
-          }, {
-            type: 3,
-            MFname: '',
-            principal: '',
-            licenseNo: '',
-            check: false
+            id: '',
           }
         ]
       }
     },
     mounted() {
-
+      /*
       console.log(res);
       this.ajaxHistoryData = res.data;
       this.exportdata = res.data;
@@ -213,6 +168,7 @@
       } else {
         this.data1 = this.ajaxHistoryData.slice(0, this.pageSize);
       }
+      */
     },
 
 

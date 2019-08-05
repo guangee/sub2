@@ -8,7 +8,7 @@
 <template>
   <FormItem>
 
-    <Input :disabled="isdisable" v-model="formList['question_' + formKey]" type="textarea" class="form-input" :autosize="{minRows: 5,maxRows: 5}" placeholder="请输入问题说明及记录"></Input>
+    <Input :disabled="isdisable" v-model="formList['problem_' + formKey]" type="textarea" class="form-input" :autosize="{minRows: 5,maxRows: 5}" placeholder="请输入问题说明及记录"></Input>
 
   </FormItem>
 </template>
