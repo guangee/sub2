@@ -5,6 +5,9 @@
   h3 {
     text-align: left;
   }
+  .question-table {
+    margin-bottom: 10px;
+  }
 </style>
 <template>
   <div>
@@ -29,7 +32,7 @@
           <FormItem label="许可证有效期" prop="licenceDate">
             <Input disabled v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
           </FormItem>
-        </Col>>
+        </Col>
         <Col span='11' offset='1'>
           <FormItem label="联系电话">
             <Input disabled v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
@@ -46,7 +49,7 @@
       <h3>1、资源条件及管理</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
       <Row>
-        <Table :columns="rows" :data="tableList.table_0" ></Table>
+        <Table :columns="rows" :data="tableList.table_0" class="question-table"></Table>
         <Col span='11'>
           <FormItem label="监督检查人员">
             <Input disabled v-model="formList.Checker_1" placeholder=""></Input>
@@ -54,120 +57,118 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_1" style="width: 300px"></DatePicker>
+            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.CheckDate_1" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3>2、产品质量及控制<span style='color: red'>（注：①抽查产品中应包括在制品；②抽查数量超过4台时，可另附页）</span></h3>
       <h3><strong>抽查产品A</strong></h3>
-      <Row>
-        <Col span='4'>
+      <Row :gutter="16">
+        <Col span='5'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameA" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='1'>
+        <Col span='5'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeA" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='2'>
+        <Col span='5'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoA" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='3'>
+        <Col span='5'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
+            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3><strong>抽查产品B</strong></h3>
-      <Row>
-        <Col span='4'>
+      <Row :gutter="16">
+        <Col span='5'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameB" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='1'>
+        <Col span='5'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeB" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='2'>
+        <Col span='5'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoB" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='3'>
+        <Col span='5'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
+            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3><strong>抽查产品C</strong></h3>
-      <Row>
-        <Col span='4'>
+      <Row :gutter="16">
+        <Col span='5'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameC" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='1'>
+        <Col span='5'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeC" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='2'>
+        <Col span='5'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoC" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='3'>
+        <Col span='5'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
+            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3><strong>抽查产品D</strong></h3>
-      <Row>
-        <Col span='4'>
+      <Row :gutter="16">
+        <Col span='5'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameD" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='1'>
+        <Col span='5'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeD" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='2'>
+        <Col span='5'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoD" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='4' offset='3'>
+        <Col span='5'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
+            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Table :columns="rows"  :data="tableList.table_0" class="question-table"></Table>
         <Col span='11'>
+          <p></p>
           <FormItem label="监督检查人员">
             <Input disabled v-model="formList.Checker_2" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker disabled="true" type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
+            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
-      <FormItem>
-        <Button type="primary" @click="handleSubmit('craneForm')">Submit</Button>
-      </FormItem>
     </Form>
   </div>
 </template>
@@ -185,34 +186,8 @@
     },
     data() {
       return {
-        formList: {
-          /*
-          corpnName:'',//单位名称
-          address:'',//制造地址
-          prinpal:'',//单位负责人
-          phoneNo:'',//联系电话
-          licenceNo:'',//许可证编号
-          fax:'',//传真
-          licenceDate:'',//许可证有效期
-          licenceRange:'',//许可的范围
-          Checker_1:'',//问题1 监督检查人员
-          CheckDate_1:'',//问题1 检查日期
-          productNameB:'',//设备名称（品种）
-          productTypeB:'',//型号
-          productNoB:'',//出厂编号
-          productDateB:'',//出厂日期
-          roductNameC:'',//设备名称（品种）
-          productTypeC:'',//型号
-          productNoC:'',//出厂编号
-          productDateC:'',//出厂日期
-          productNameD:'',//设备名称（品种）
-          productTypeD:'',//型号
-          productNoD:'',//出厂编号
-          productDateD:'',//出厂日期
-          Checker_2:'',//问题1 监督检查人员
-          CheckDate_2:'',//问题1 检查日期
-          */
-        },
+        formList: {},
+        isDisabled: true,
         ruleformList: {
           corpnName: [
             { required: true, message: '单位名称不能为空', trigger: 'blur' }
@@ -246,7 +221,7 @@
               props: {
                 formList: this.formList,
                 formKey: params.row.id,
-                isdisable:true,
+                isdisable: true,
               }
             })
           }
@@ -259,7 +234,7 @@
               props: {
                 formList: this.formList,
                 formKey: params.row.id,
-                isdisable:true,
+                isdisable: true,
               },
             })
           }
@@ -272,7 +247,7 @@
               props: {
                 formList: this.formList,
                 formKey: params.row.id,
-                isdisable:true,
+                isdisable: true,
               }
             })
           }
@@ -280,25 +255,5 @@
         ]
       }
     },
-    mounted() {
-      console.log(this.$router.query.id);
-        this.formList = {
-
-        }
-
-    },
-    methods: {
-      async handleSubmit(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$Message.success('提交成功!');
-            console.log(this.formList);
-          }
-          else{
-            this.$Message.error('表单验证失败!');
-          }
-        })
-      }
-    }
   }
 </script>
