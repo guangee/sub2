@@ -2,6 +2,9 @@
   .form-wrapper {
     text-align: center;
   }
+  h2 {
+    margin-bottom:12px;
+  }
   h3 {
     text-align: left;
   }

@@ -2,6 +2,10 @@
   .form-wrapper {
     text-align: center;
   }
+  h2 {
+    margin-bottom:12px;
+  }
+
   h3 {
     text-align: left;
   }
@@ -9,7 +13,7 @@
 <template>
   <div>
     <Form ref="craneForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
-      <h2>起重机械制造单位监督抽查记录表(2019版)</h2>
+      <h2>起重机械制造单位监督抽查记录表</h2>
         <Col>
           <FormItem label="单位名称" prop="corpnName">
             <Input v-model="formList.corpnName" placeholder="请输入单位名称"></Input>
