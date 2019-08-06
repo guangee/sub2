@@ -1,9 +1,4 @@
 export const craneData= {
-  table_0:[
-    {
-
-    }
-  ],
   table_1: [{
     id: '1_1',
     content: '1.1 实际制造地址与营业执照和许可证制造地址是否一致；许可证是否在有效期内',

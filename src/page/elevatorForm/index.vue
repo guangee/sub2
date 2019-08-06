@@ -54,15 +54,19 @@
       <h3>二、质量管理体系</h3>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Form :model="formTop" label-position="top" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input v-model="formList.qcProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input v-model="formList.TEChecker" placeholder=""></Input>
+            <Input v-model="formList.qcChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.TECheckDate" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -93,15 +97,19 @@
       </Row>
       <Table :columns="columns1" :data="tableList.table_3" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Form :model="formTop" label-position="top" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input v-model="formList.teProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input v-model="formList.TEChecker" placeholder=""></Input>
+            <Input v-model="formList.teChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.TECheckDate" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.teCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -132,15 +140,19 @@
       </Row>
       <Table :columns="columns1" :data="tableList.table_4" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Form :model="formTop" label-position="top" >
+        <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+          <Input v-model="formList.esProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+        </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input v-model="formList.ESChecker" placeholder=""></Input>
+            <Input v-model="formList.esChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.ESCheckDate" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -297,20 +309,6 @@
                         })
                     }
                 }],
-                rows: [  {
-                    'title': '问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：',
-                    'key': 'TEProblem',
-                    // 'minWidth': 100,
-                    render: (h, params) => {
-                        return h(vFormInput, {
-                            props: {
-                                formList: this.formList,
-                                formKey: params.row.id,
-                            }
-                        })
-                    }
-                },
-                ],
                 columns0: [{
                     'title': '工程技术职称',
                     'key': 'content',

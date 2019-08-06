@@ -1,7 +1,4 @@
 export const elevatorData= {
-  table_0:[{
-
-  }],
   table_1: [{
     id: '1_1',
     content: '',

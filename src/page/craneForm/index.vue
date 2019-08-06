@@ -46,7 +46,11 @@
       <h3>1、资源条件及管理</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
       <Row>
-        <Table :columns="rows" :data="tableList.table_0" ></Table>
+        <Form :model="formTop" label-position="top" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input v-model="formList.problem_1" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
             <Input v-model="formList.Checker_1" placeholder=""></Input>
@@ -153,7 +157,11 @@
       </Row>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Form :model="formTop" label-position="top" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input v-model="formList.problem_2" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
             <Input v-model="formList.Checker_2" placeholder=""></Input>
@@ -235,19 +243,6 @@
             })
           }
         }],
-        rows: [  {
-          'title': '问题记录（包括未在“检查内容”栏目中列出的其他项目及其问题）：',
-          'key': 'explain',
-          render: (h, params) => {
-            return h(vFormInput, {
-              props: {
-                formList: this.formList,
-                formKey: params.row.id,
-              }
-            })
-          }
-        },
-          ]
       }
     },
     mounted() {
