@@ -341,6 +341,9 @@
             }
         },
         mounted() {
+            if (this.$route.query.modify === 0) {
+                this.getFormList();
+            }
 
         },
         methods: {
@@ -354,9 +357,7 @@
                                 url: '/Elevator/change',
                             };
                             let res = await util.httpReq(data);
-
                             this.$Message.success('修改成功!');
-
                         } else {
                             let data = {
                                 method: 'post',
@@ -372,6 +373,17 @@
                         this.$Message.error('表单验证失败!');
                     }
                 })
+            },
+            async getFormList(){
+                let data = {
+                    params: {
+                        id: this.$route.query.id
+                    },
+                    method: 'get',
+                    url: '/Elevator/check',
+                }
+                let res = await util.httpReq(data);
+                this.formList = res;
             }
         }
     }
