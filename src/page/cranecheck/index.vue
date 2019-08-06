@@ -255,5 +255,21 @@
         ]
       }
     },
+      mounted() {
+          this.getFormList();
+      },
+      methods: {
+          async getFormList(){
+              let data = {
+                  params: {
+                      id: this.$route.query.id
+                  },
+                  method: 'get',
+                  url: '/Crane/check',
+              }
+              let res = await util.httpReq(data);
+              this.formList = res;
+          }
+      }
   }
 </script>

@@ -256,7 +256,7 @@
     },
     methods: {
         handleSubmit(formName) {
-          this.$refs[formName].validatce(async (valid) => {
+          this.$refs[formName].validate (async (valid) => {
             if (valid) {
               if (this.$route.query.modify === 0) {
                 let data = {

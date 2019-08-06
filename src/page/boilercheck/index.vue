@@ -194,25 +194,20 @@
       }
     },
     mounted() {
-      console.log(this.$route.query.id);
-      this.formList = {
-
-      }
-
+        this.getFormList();
     },
     methods: {
-      async handleSubmit(formName) {
-        console.log(this.formList);
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$Message.success('提交成功!');
-            console.log(this.formList);
-          }
-          else{
-            this.$Message.error('提交失败!');
-          }
-        })
-      }
+        async getFormList(){
+            let data = {
+                params: {
+                    id: this.$route.query.id
+                },
+                method: 'get',
+                url: '/boiler/check',
+            }
+            let res = await util.httpReq(data);
+            this.formList = res;
+        }
     }
   }
 </script>

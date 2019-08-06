@@ -258,25 +258,21 @@
         ]
       }
     },
-    mounted() {
-        console.log(this.$route.query.id);
-        this.formList = {
-
-        }
-
-    },
-    methods: {
-      async handleSubmit(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$Message.success('提交成功!');
-            console.log(this.formList);
+      mounted() {
+          this.getFormList();
+      },
+      methods: {
+          async getFormList(){
+              let data = {
+                  params: {
+                      id: this.$route.query.id
+                  },
+                  method: 'get',
+                  url: '/Elevator/check',
+              }
+              let res = await util.httpReq(data);
+              this.formList = res;
           }
-          else{
-            this.$Message.error('表单验证失败!');
-          }
-        })
       }
-    }
   }
 </script>
