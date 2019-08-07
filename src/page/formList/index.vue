@@ -47,6 +47,13 @@
 
     data() {
       return {
+        UniteCheckModel: {
+          id: 'c38320362e3d430c9ff7472a464d3e53',
+          content:'problem_1_1',
+          result:'',
+          corpnName:'',
+          type:'Boiler',
+        },
 
         ajaxHistoryData: [],
         exportdata : [],
@@ -83,7 +90,7 @@
                   on: {
                     click: () => {
                       this.$router.push({
-                        path: routerType[params.row.type] + 'check',
+                        path: [params.row.type] + 'check',
                         query: {
                           id: params.row.id,
                         }
@@ -102,12 +109,14 @@
                   on: {
                     click: () => {
                       this.$router.push({
-                        path: routerType[params.row.type] + 'Form',
+
+                        path:[params.row.type] + 'Form',
                         query: {
                           id: params.row.id,
                           modify: 0,
-                        }
+                        },
                       });
+                      console.log(params.row.type)
                     }
                   }
                 }, '修改'),
@@ -119,7 +128,8 @@
                   on: {
                     click: () => {
                       // 添加删除接口
-                      this.remove(params.index)
+                      this.remove(params.index);
+                      this.delete(params.row.id, params.row.type)
                     }
                   }
                 }, '删除')
@@ -129,34 +139,34 @@
         ],
         data1: [
           {
-            id: 'c38320362e3d430c9ff7472a464d3e53',
-            type: 0,
+            id: 'c162882a6c0b41e8ae941353b6e767a5',
+            type: 'Boiler',
             corpnName: '',
             prinpal: '',
             licenceNo: '',
-            UniteCheckModel:'1',
+
           }, {
 
-            type: 0,
+            type: 'Crane',
             corpnName: '',
             prinpal: '',
             licenceNo: '',
             id: '084b8a69bca64d55a1242d4d79433c2d',
-            UniteCheckModel:'3',
+
           }, {
-            type: 1,
+            type:'Elevator',
             corpnName: '',
             prinpal: '',
             licenceNo: '',
             id: '15c6bdeabe854016acafddb7def74de1',
-            UniteCheckModel:'2',
+
           }, {
             type: 2,
             corpnName: '',
             prinpal: '',
             licenceNo: '',
             id: '',
-            UniteCheckModel:'3',
+
           }
         ]
       }
@@ -194,13 +204,13 @@
         }
         let res = await util.httpReq(data);
         this.data1 = res;
+        const response = res;
       },
       async searchList(){
 
         let data = {
-          params: {
-            UniteCheckModel: this.data1.UniteCheckModel
-          },
+          params: this.UniteCheckModel,
+
           method: 'get',
           url: 'all/checkResult',
         }
@@ -210,39 +220,42 @@
       },
 
       async remove(index) {
+
         this.data1.splice(index, 1);
-        if (this.data1.type ==='Boiler') {
+
+      },
+      async delete(id, type){
+        if (type ==='Boiler') {
           let data = {
             params: {
-              id: this.$route.query.id
+              id: id,
             },
             method: 'delete',
             url: 'boiler/delete',
           }
           let res = await util.httpReq(data);
-          this.data1 = res;
 
-        }else if (this.data1.type ==='Crane') {
+        }else if (type ==='Crane') {
 
           let data = {
             params: {
-              id: this.$route.query.id
+              id: id
             },
             method: 'delete',
             url: '/Crane/delete',
           }
           let res = await util.httpReq(data);
-          this.data1 = res;
+
         }else {
           let data = {
             params: {
-              id: this.$route.query.id
+              id: id,
             },
             method: 'delete',
             url: '/Elevator/delete',
           }
           let res = await util.httpReq(data);
-          this.data1 = res;
+
         }
       }
     }
