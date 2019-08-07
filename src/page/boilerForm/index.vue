@@ -7,36 +7,39 @@
   }
   h3 {
     text-align: left;
+    margin-bottom:12px;
   }
 </style>
 <template>
   <div>
     <Form ref="boilerForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>锅炉压力容器制造单位监督检查记录表</h2>
+      <Form :model="formList" label-position="right" :label-width="100">
+      <FormItem label="编号" >
+        <Input v-model="formList.serialNo" placeholder="请输入编号" ></Input>
+      </FormItem>
+      </Form>
       <Row>
         <Col span='11'>
-          <FormItem label="制造单位名称" prop="MFname">
-            <Input v-model="formList.MFname" placeholder="请输入制造单位名称"></Input>
+          <FormItem label="制造单位名称" prop="corpnName">
+            <Input v-model="formList.corpnName" placeholder="请输入制造单位名称"></Input>
           </FormItem>
-          <FormItem label="单位负责人" prop="principal">
-            <Input v-model="formList.principal" placeholder="请输入单位负责人名字"></Input>
+          <FormItem label="单位负责人" prop="prinpal">
+            <Input v-model="formList.prinpal" placeholder="请输入单位负责人名字"></Input>
           </FormItem>
-          <FormItem label="许可证编号"prop="licenseNo" >
-            <Input v-model="formList.licenseNo" placeholder="请输入许可证编号"></Input>
+          <FormItem label="许可证编号"prop="licenceNo" >
+            <Input v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
           </FormItem>
           <FormItem label="评审机构名称">
-            <Input v-model="formList.EIname" placeholder="请输入评审机构名称"></Input>
+            <Input v-model="formList.eiName" placeholder="请输入评审机构名称"></Input>
           </FormItem>
           <FormItem label="监督检验机构">
             <Input v-model="formList.supervisionOrg" placeholder="请输入监督检验机构"></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='2'>
-          <FormItem label="编号">
-            <Input v-model="formList.serialNo" placeholder="请输入编号"></Input>
-          </FormItem>
           <FormItem label="制造单位地址">
-            <Input v-model="formList.MFadd" placeholder="请输入制造单位地址"></Input>
+            <Input v-model="formList.mfAdd" placeholder="请输入制造单位地址"></Input>
           </FormItem>
           <FormItem label="联系电话">
             <Input v-model="formList.phoneNo" placeholder="请输入负责人联系电话"></Input>
@@ -59,7 +62,6 @@
           <FormItem label="监督检查人">
             <Input v-model="formList.supervisor" placeholder="监督检查人"></Input>
           </FormItem>
-
         </Col>
       </Row>
       <h3>一、基本条件与管理，主要核查企业提供的相关资料，必要时现场核查</h3>
@@ -138,13 +140,13 @@
       return {
         formList: {},
         ruleformList: {
-          MFname: [
+            corpnName: [
             { required: true, message: '制造单位名称不能为空', trigger: 'blur' }
           ],
-          principal: [
+            prinpal: [
             { required: true, message: '单位负责人不能为空', trigger: 'blur' },
           ],
-          licenseNo: [
+            licenceNo: [
             { required: true, message: '许可证不能为空', trigger: 'blur' }
           ]
         },

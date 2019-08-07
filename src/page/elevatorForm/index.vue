@@ -10,161 +10,161 @@
   }
 </style>
 <template>
-  <div>
-    <Form ref="elevatorForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
-      <h2>附表 5:电梯制造单位监督抽查记录表(2019版)</h2>
-      <Col>
-        <FormItem label="单位名称" prop="corpnName">
-          <Input v-model="formList.corpnName" placeholder="请输入单位名称"></Input>
+<div>
+  <Form ref="elevatorForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
+    <h2>附表 5:电梯制造单位监督抽查记录表(2019版)</h2>
+    <Col>
+      <FormItem label="单位名称" prop="corpnName">
+        <Input v-model="formList.corpnName" placeholder="请输入单位名称"></Input>
+      </FormItem>
+      <FormItem label="制造地址" prop="address">
+        <Input v-model="formList.address" placeholder="请输入制造地址"></Input>
+      </FormItem>
+    </Col>
+    <Row>
+      <Col span='11'>
+        <FormItem label="单位负责人" prop="prinpal">
+          <Input v-model="formList.prinpal" placeholder="请输入单位负责人"></Input>
         </FormItem>
-        <FormItem label="制造地址" prop="address">
-          <Input v-model="formList.address" placeholder="请输入制造地址"></Input>
+        <FormItem label="许可证编号" prop="licenceNo">
+          <Input v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
+        </FormItem>
+        <FormItem label="许可证有效期" prop="licenceDate">
+          <Input v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
+        </FormItem>
+      </Col>>
+      <Col span='11' offset='1'>
+        <FormItem label="联系电话" prop="phoneNo">
+          <Input  v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
+        </FormItem>
+        <FormItem label="传真" prop="Fax">
+          <Input  v-model="formList.fax" placeholder="请输入传真"></Input>
+        </FormItem>
+        <FormItem label="许可的范围" prop="licenceRange">
+          <Input  v-model="formList.licenceRange" placeholder="请输入许可的范围"></Input>
         </FormItem>
       </Col>
-      <Row>
-        <Col span='11'>
-          <FormItem label="单位负责人" prop="prinpal">
-            <Input v-model="formList.prinpal" placeholder="请输入单位负责人"></Input>
-          </FormItem>
-          <FormItem label="许可证编号" prop="licenceNo">
-            <Input v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
-          </FormItem>
-          <FormItem label="许可证有效期" prop="licenceDate">
-            <Input v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
-          </FormItem>
-        </Col>>
-        <Col span='11' offset='1'>
-          <FormItem label="联系电话" prop="phoneNo">
-            <Input v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
-          </FormItem>
-          <FormItem label="传真" prop="Fax">
-            <Input v-model="formList.Fax" placeholder="请输入传真"></Input>
-          </FormItem>
-          <FormItem label="许可的范围" prop="licenceRange">
-            <Input v-model="formList.licenceRange" placeholder="请输入许可的范围"></Input>
-          </FormItem>
-        </Col>
-      </Row>
+    </Row>
 
-      <h3>一、资源条件</h3>
-      <Table :columns="columns" :data="tableList.table_1" ></Table>
-      <p style="text-align:left">注1：制造单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道统称为B级；按照单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道、杂物电梯（含防爆）统称为其他。</p>
-      <p style="text-align:left">注2：描*的不限制职称和专业范围，其他的均需要为机械或电气专业。</p>
-      <p style="text-align:left">注3：工程技术职称与学历和技术工作年限比照</p>
-      <p style="text-align:center">学历与技术工作年限</p>
-      <Table :columns="columns0":data="tableList.table_5" ></Table>
-      <p style="text-align:left">注：高级技师和技师分别相当于工程师和助理工程师，中专毕业技术工作年限可以参照大专毕业。</p>
-      <h3>二、质量管理体系</h3>
-      <Table :columns="columns" :data="tableList.table_2" ></Table>
-      <Row>
-        <Form :model="formTop" label-position="top" >
-          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
-            <Input v-model="formList.qcProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
-          </FormItem>
-        </Form>
-        <Col span='11'>
-          <FormItem label="监督检查人员">
-            <Input v-model="formList.qcChecker" placeholder=""></Input>
-          </FormItem>
-        </Col>
-        <Col span='11' offset='1'>
-          <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 300px"></DatePicker>
-          </FormItem>
-        </Col>
-      </Row>
-      <p style="text-align:left">抽查结果填写：符合（√）、不符合（×）、有缺陷（○）和无此项（/）；记录主要填写抽查中所发现的不符合的记录，以及抽查人员认为有必要记录的其他见证。</p>
-      <h3>三、制造/安装/维修质量（曳引式电梯）</h3>
-      <Col>
-        <FormItem label="使用单位">
-          <Input v-model="formList.TECorpnName" placeholder=""></Input>
+    <h3>一、资源条件</h3>
+    <Table :columns="columns" :data="tableList.table_1" ></Table>
+    <p style="text-align:left">注1：制造单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道统称为B级；按照单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道、杂物电梯（含防爆）统称为其他。</p>
+    <p style="text-align:left">注2：描*的不限制职称和专业范围，其他的均需要为机械或电气专业。</p>
+    <p style="text-align:left">注3：工程技术职称与学历和技术工作年限比照</p>
+    <p style="text-align:center">学历与技术工作年限</p>
+    <Table :columns="columns0":data="tableList.table_5" ></Table>
+    <p style="text-align:left">注：高级技师和技师分别相当于工程师和助理工程师，中专毕业技术工作年限可以参照大专毕业。</p>
+    <h3>二、质量管理体系</h3>
+    <Table :columns="columns" :data="tableList.table_2" ></Table>
+    <Row>
+      <Form :model="formList" label-position="top" >
+        <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+          <Input v-model="formList.qcProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+        </FormItem>
+      </Form>
+      <Col span='11'>
+        <FormItem label="监督检查人员">
+          <Input  v-model="formList.qcChecker" placeholder=""></Input>
         </FormItem>
       </Col>
-      <Row>
-        <Col span='11'>
-          <FormItem label="产品型号">
-            <Input v-model="formList.TEType" placeholder=""></Input>
-          </FormItem>
-          <FormItem label="额定速度">
-            <Input v-model="formList.TESpeed" placeholder=""></Input>
-          </FormItem>
-        </Col>>
-        <Col span='11' offset='1'>
-          <FormItem label="出厂编号">
-            <Input v-model="formList.fax" placeholder=""></Input>
-          </FormItem>
-          <FormItem label="额定载重量">
-            <Input v-model="formList.TELoad" placeholder=""></Input>
-          </FormItem>
-        </Col>
-      </Row>
-      <Table :columns="columns1" :data="tableList.table_3" ></Table>
-      <Row>
-        <Form :model="formTop" label-position="top" >
-          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
-            <Input v-model="formList.teProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
-          </FormItem>
-        </Form>
-        <Col span='11'>
-          <FormItem label="监督检查人员">
-            <Input v-model="formList.teChecker" placeholder=""></Input>
-          </FormItem>
-        </Col>
-        <Col span='11' offset='1'>
-          <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.teCheckDate" style="width: 300px"></DatePicker>
-          </FormItem>
-        </Col>
-      </Row>
-      <p style="text-align:left">注：第1部分适用于制造，第2部分适用于安装，第3部分适用于维修。</p>
-      <h3>四、制造/安装/维修质量（自动扶梯）</h3>
-      <Col>
-        <FormItem label="使用单位">
-          <Input v-model="formList.ESCorpnName" placeholder=""></Input>
+      <Col span='11' offset='1'>
+        <FormItem label="日期">
+          <DatePicker type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 300px"></DatePicker>
         </FormItem>
       </Col>
-      <Row>
-        <Col span='11'>
-          <FormItem label="产品型号">
-            <Input v-model="formList.ESType" placeholder=""></Input>
-          </FormItem>
-          <FormItem label="名义速度">
-            <Input v-model="formList.ESSpeed" placeholder=""></Input>
-          </FormItem>
-        </Col>>
-        <Col span='11' offset='1'>
-          <FormItem label="出厂编号">
-            <Input v-model="formList.ESNo" placeholder=""></Input>
-          </FormItem>
-          <FormItem label="提升高度">
-            <Input v-model="formList.ESHigh" placeholder=""></Input>
-          </FormItem>
-        </Col>
-      </Row>
-      <Table :columns="columns1" :data="tableList.table_4" ></Table>
-      <Row>
-        <Form :model="formTop" label-position="top" >
+    </Row>
+    <p style="text-align:left">抽查结果填写：符合（√）、不符合（×）、有缺陷（○）和无此项（/）；记录主要填写抽查中所发现的不符合的记录，以及抽查人员认为有必要记录的其他见证。</p>
+    <h3>三、制造/安装/维修质量（曳引式电梯）</h3>
+    <Col>
+      <FormItem label="使用单位">
+        <Input  v-model="formList.teCorpnName" placeholder=""></Input>
+      </FormItem>
+    </Col>
+    <Row>
+      <Col span='11'>
+        <FormItem label="产品型号">
+          <Input  v-model="formList.teType" placeholder=""></Input>
+        </FormItem>
+        <FormItem label="额定速度">
+          <Input  v-model="formList.teSpeed" placeholder=""></Input>
+        </FormItem>
+      </Col>>
+      <Col span='11' offset='1'>
+        <FormItem label="出厂编号">
+          <Input  v-model="formList.teNo" placeholder=""></Input>
+        </FormItem>
+        <FormItem label="额定载重量">
+          <Input  v-model="formList.teLoad" placeholder=""></Input>
+        </FormItem>
+      </Col>
+    </Row>
+    <Table :columns="columns" :data="tableList.table_3" ></Table>
+    <Row>
+      <Form :model="formList" label-position="top" >
+        <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+          <Input v-model="formList.teProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+        </FormItem>
+      </Form>
+      <Col span='11'>
+        <FormItem label="监督检查人员">
+          <Input  v-model="formList.teChecker" placeholder=""></Input>
+        </FormItem>
+      </Col>
+      <Col span='11' offset='1'>
+        <FormItem label="日期">
+          <DatePicker  type="date" placeholder="Select date" v-model="formList.teCheckDate" style="width: 300px"></DatePicker>
+        </FormItem>
+      </Col>
+    </Row>
+    <p style="text-align:left">注：第1部分适用于制造，第2部分适用于安装，第3部分适用于维修。</p>
+    <h3>四、制造/安装/维修质量（自动扶梯）</h3>
+    <Col>
+      <FormItem label="使用单位">
+        <Input  v-model="formList.esCorpnName" placeholder=""></Input>
+      </FormItem>
+    </Col>
+    <Row>
+      <Col span='11'>
+        <FormItem label="产品型号">
+          <Input  v-model="formList.esType" placeholder=""></Input>
+        </FormItem>
+        <FormItem label="名义速度">
+          <Input  v-model="formList.esSpeed" placeholder=""></Input>
+        </FormItem>
+      </Col>>
+      <Col span='11' offset='1'>
+        <FormItem label="出厂编号">
+          <Input  v-model="formList.esNo" placeholder=""></Input>
+        </FormItem>
+        <FormItem label="提升高度">
+          <Input  v-model="formList.esHigh" placeholder=""></Input>
+        </FormItem>
+      </Col>
+    </Row>
+    <Table :columns="columns" :data="tableList.table_4" ></Table>
+    <Row>
+      <Form :model="formList" label-position="top" >
         <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
           <Input v-model="formList.esProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
         </FormItem>
-        </Form>
-        <Col span='11'>
-          <FormItem label="监督检查人员">
-            <Input v-model="formList.esChecker" placeholder=""></Input>
-          </FormItem>
-        </Col>
-        <Col span='11' offset='1'>
-          <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 300px"></DatePicker>
-          </FormItem>
-        </Col>
-      </Row>
-      <p style="text-align:left">注：第1部分适用于制造，第2部分适用于安装，第3部分适用于维修。</p>
-      <FormItem>
-        <Button type="primary" @click="handleSubmit('elevatorForm')">Submit</Button>
-      </FormItem>
-    </Form>
-  </div>
+      </Form>
+      <Col span='11'>
+        <FormItem label="监督检查人员">
+          <Input  v-model="formList.esChecker" placeholder=""></Input>
+        </FormItem>
+      </Col>
+      <Col span='11' offset='1'>
+        <FormItem label="日期">
+          <DatePicker type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 300px"></DatePicker>
+        </FormItem>
+      </Col>
+    </Row>
+    <p style="text-align:left">注：第1部分适用于制造，第2部分适用于安装，第3部分适用于维修。</p>
+    <FormItem>
+      <Button type="primary" @click="handleSubmit('elevatorForm')">Submit</Button>
+    </FormItem>
+  </Form>
+</div>
 </template>
 <script>
     import {elevatorData} from '@/service/staticData/dElevatorData.js';
@@ -245,7 +245,6 @@
                     }
                 }, {
                     'title': '记录',
-
                     'key': 'explain',
                     'minWidth': 100,
                     render: (h, params) => {
@@ -299,9 +298,6 @@
                 }, {
                     'title': '抽查结果',
                     'key': 'result',
-                    'minWidth': 300,
-
-                    'key': 'RCRecord',
                     'minWidth': 50,
                     render: (h, params) => {
                         return h(vFormRadio, {

@@ -50,19 +50,19 @@
       <h3>1、资源条件及管理</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
       <Row>
-        <Form :model="formTop" label-position="top" >
+        <Form :model="formList" label-position="top" >
           <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
             <Input v-model="formList.problem_1" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>
         </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input v-model="formList.Checker_1" placeholder=""></Input>
+            <Input v-model="formList.checker_1" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-          <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_1" style="width: 300px"></DatePicker>
+          <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -161,7 +161,7 @@
       </Row>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
-        <Form :model="formTop" label-position="top" >
+        <Form :model="formList" label-position="top" >
           <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
             <Input v-model="formList.problem_2" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>

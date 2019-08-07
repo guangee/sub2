@@ -2,8 +2,12 @@
   .form-wrapper {
     text-align: center;
   }
+  h2 {
+    margin-bottom:12px;
+  }
   h3 {
     text-align: left;
+    margin-bottom:12px;
   }
   .question-table {
     margin-bottom: 10px;
@@ -12,7 +16,7 @@
 <template>
   <div>
     <Form ref="craneForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
-      <h2>起重机械制造单位监督抽查记录表(2019版)</h2>
+      <h2>起重机械制造单位监督抽查记录表</h2>
       <Col>
         <FormItem label="单位名称" prop="corpnName">
           <Input disabled v-model="formList.corpnName" placeholder="请输入单位名称"></Input>
@@ -49,213 +53,206 @@
       <h3>1、资源条件及管理</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
       <Row>
-        <Table :columns="rows" :data="tableList.table_0" class="question-table"></Table>
+        <Form :model="formList" label-position="top" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input disabled v-model="formList.problem_1" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input disabled v-model="formList.Checker_1" placeholder=""></Input>
+            <Input disabled v-model="formList.checker_1" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.CheckDate_1" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3>2、产品质量及控制<span style='color: red'>（注：①抽查产品中应包括在制品；②抽查数量超过4台时，可另附页）</span></h3>
       <h3><strong>抽查产品A</strong></h3>
-      <Row :gutter="16">
-        <Col span='5'>
+      <Row>
+        <Col span='4'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameA" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='1'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeA" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='2'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoA" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3><strong>抽查产品B</strong></h3>
-      <Row :gutter="16">
-        <Col span='5'>
+      <Row>
+        <Col span='4'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameB" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='1'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeB" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='2'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoB" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3><strong>抽查产品C</strong></h3>
-      <Row :gutter="16">
-        <Col span='5'>
+      <Row>
+        <Col span='4'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameC" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='1'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeC" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='2'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoC" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <h3><strong>抽查产品D</strong></h3>
-      <Row :gutter="16">
-        <Col span='5'>
+      <Row>
+        <Col span='4'>
           <FormItem label="设备名称（品种）">
             <Input disabled v-model="formList.productNameD" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='1'>
           <FormItem label="型号">
             <Input disabled v-model="formList.productTypeD" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='2'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.productNoD" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='5'>
+        <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" class="question-table"></Table>
+        <Form :model="formList" label-position="top" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input disabled v-model="formList.problem_2" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
-          <p></p>
           <FormItem label="监督检查人员">
             <Input disabled v-model="formList.Checker_2" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker :disabled="isDisabled" type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
+      <FormItem>
+        <Button type="primary" @click="handleSubmit('craneForm')">Submit</Button>
+      </FormItem>
     </Form>
   </div>
 </template>
 <script>
-  import {craneData} from '@/service/staticData/dCraneData.js';
-  import vFormInput from '@/components/vFormInput';
-  import vFormRadio from '@/components/vFormRadio';
-  import vUpload from '@/components/vUpload';
-  import util from '@/util/util.js';
-  export default {
-    components: {
-      vFormRadio,
-      vFormInput,
-      vUpload,
-    },
-    data() {
-      return {
-        formList: {},
-        isDisabled: true,
-        ruleformList: {
-          corpnName: [
-            { required: true, message: '单位名称不能为空', trigger: 'blur' }
-          ],
-          prinpal: [
-            { required: true, message: '单位负责人不能为空', trigger: 'blur' },
-          ],
-          licenceNo: [
-            { required: true, message: '许可证编号不能为空', trigger: 'blur' }
-          ]
+    import {craneData} from '@/service/staticData/dCraneData.js';
+    import vFormInput from '@/components/vFormInput';
+    import vFormRadio from '@/components/vFormRadio';
+    import vUpload from '@/components/vUpload';
+    import util from '@/util/util.js';
+    export default {
+        components: {
+            vFormRadio,
+            vFormInput,
+            vUpload,
         },
-        tableList: craneData,
-        columns: [{
-          'title': '检查项目、内容与要求',
-          'key': 'content',
-          'width': 200
-        }, {
-          'title': '检查方法',
-          'key': 'method',
-          'minWidth': 100
-        }, {
-          'title': '对应条款',
-          'key': 'demand',
-          'minWidth': 100
-        }, {
-          'title': '问题说明及记录',
-          'key': 'explain',
-          'minWidth': 100,
-          render: (h, params) => {
-            return h(vFormInput, {
-              props: {
-                formList: this.formList,
-                formKey: params.row.id,
-                isdisable: true,
-              }
-            })
-          }
-        }, {
-          'title': '检查结果',
-          'key': 'result',
-          'minWidth': 100,
-          render: (h, params) => {
-            return h(vFormRadio, {
-              props: {
-                formList: this.formList,
-                formKey: params.row.id,
-                isdisable: true,
-              },
-            })
-          }
-        }],
-        rows: [  {
-          'title': '问题记录（包括未在“检查内容”栏目中列出的其他项目及其问题）：',
-          'key': 'explain',
-          render: (h, params) => {
-            return h(vFormInput, {
-              props: {
-                formList: this.formList,
-                formKey: params.row.id,
-                isdisable: true,
-              }
-            })
-          }
+        data() {
+            return {
+                formList: {},
+                ruleformList: {
+                    corpnName: [
+                        { required: true, message: '单位名称不能为空', trigger: 'blur' }
+                    ],
+                    prinpal: [
+                        { required: true, message: '单位负责人不能为空', trigger: 'blur' },
+                    ],
+                    licenceNo: [
+                        { required: true, message: '许可证编号不能为空', trigger: 'blur' }
+                    ]
+                },
+                tableList: craneData,
+                columns: [{
+                    'title': '检查项目、内容与要求',
+                    'key': 'content',
+                    'width': 250
+                }, {
+                    'title': '检查方法',
+                    'key': 'method',
+                    'minWidth': 70
+                }, {
+                    'title': '对应条款',
+                    'key': 'demand',
+                    'minWidth': 50
+                }, {
+                    'title': '问题说明及记录',
+                    'key': 'explain',
+                    'minWidth': 250,
+                    render: (h, params) => {
+                        return h(vFormInput, {
+                            props: {
+                                formList: this.formList,
+                                formKey: params.row.id,
+                            }
+                        })
+                    }
+                }, {
+                    'title': '检查结果',
+                    'key': 'result',
+                    'minWidth': 100,
+                    render: (h, params) => {
+                        return h(vFormRadio, {
+                            props: {
+                                formList: this.formList,
+                                formKey: params.row.id,
+                            },
+                        })
+                    }
+                }],
+            }
         },
-        ]
-      }
-    },
-      mounted() {
+        mounted() {
           this.getFormList();
       },
       methods: {

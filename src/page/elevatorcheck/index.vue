@@ -35,7 +35,7 @@
             <Input disabled v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
           </FormItem>
           <FormItem label="传真" prop="Fax">
-            <Input disabled v-model="formList.Fax" placeholder="请输入传真"></Input>
+            <Input disabled v-model="formList.fax" placeholder="请输入传真"></Input>
           </FormItem>
           <FormItem label="许可的范围" prop="licenceRange">
             <Input disabled v-model="formList.licenceRange" placeholder="请输入许可的范围"></Input>
@@ -57,12 +57,12 @@
         <Table :columns="rows"  :data="tableList.table_0" ></Table>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input disabled v-model="formList.TEChecker" placeholder=""></Input>
+            <Input disabled v-model="formList.qcChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.TECheckDate" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -70,24 +70,24 @@
       <h3>三、制造/安装/维修质量（曳引式电梯）</h3>
       <Col>
         <FormItem label="使用单位">
-          <Input disabled v-model="formList.TECorpnName" placeholder=""></Input>
+          <Input disabled v-model="formList.teCorpnName" placeholder=""></Input>
         </FormItem>
       </Col>
       <Row>
         <Col span='11'>
           <FormItem label="产品型号">
-            <Input disabled v-model="formList.TEType" placeholder=""></Input>
+            <Input disabled v-model="formList.teType" placeholder=""></Input>
           </FormItem>
           <FormItem label="额定速度">
-            <Input disabled v-model="formList.TESpeed" placeholder=""></Input>
+            <Input disabled v-model="formList.teSpeed" placeholder=""></Input>
           </FormItem>
         </Col>>
         <Col span='11' offset='1'>
           <FormItem label="出厂编号">
-            <Input disabled v-model="formList.fax" placeholder=""></Input>
+            <Input disabled v-model="formList.teNo" placeholder=""></Input>
           </FormItem>
           <FormItem label="额定载重量">
-            <Input disabled v-model="formList.TELoad" placeholder=""></Input>
+            <Input disabled v-model="formList.teLoad" placeholder=""></Input>
           </FormItem>
         </Col>
       </Row>
@@ -96,12 +96,12 @@
         <Table :columns="rows"  :data="tableList.table_0" ></Table>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input disabled v-model="formList.TEChecker" placeholder=""></Input>
+            <Input disabled v-model="formList.teChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.TECheckDate" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.teCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -109,24 +109,24 @@
       <h3>四、制造/安装/维修质量（自动扶梯）</h3>
       <Col>
         <FormItem label="使用单位">
-          <Input disabled v-model="formList.ESCorpnName" placeholder=""></Input>
+          <Input disabled v-model="formList.esCorpnName" placeholder=""></Input>
         </FormItem>
       </Col>
       <Row>
         <Col span='11'>
           <FormItem label="产品型号">
-            <Input disabled v-model="formList.ESType" placeholder=""></Input>
+            <Input disabled v-model="formList.esType" placeholder=""></Input>
           </FormItem>
           <FormItem label="名义速度">
-            <Input disabled v-model="formList.ESSpeed" placeholder=""></Input>
+            <Input disabled v-model="formList.esSpeed" placeholder=""></Input>
           </FormItem>
         </Col>>
         <Col span='11' offset='1'>
           <FormItem label="出厂编号">
-            <Input disabled v-model="formList.ESNo" placeholder=""></Input>
+            <Input disabled v-model="formList.esNo" placeholder=""></Input>
           </FormItem>
           <FormItem label="提升高度">
-            <Input disabled v-model="formList.ESHigh" placeholder=""></Input>
+            <Input disabled v-model="formList.esHigh" placeholder=""></Input>
           </FormItem>
         </Col>
       </Row>
@@ -135,12 +135,12 @@
         <Table :columns="rows"  :data="tableList.table_0" ></Table>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input disabled v-model="formList.ESChecker" placeholder=""></Input>
+            <Input disabled v-model="formList.esChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.ESCheckDate" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -152,112 +152,175 @@
   </div>
 </template>
 <script>
-  import {elevatorData} from '@/service/staticData/dElevatorData.js';
-  import vFormInput from '@/components/vFormInput';
-  import vFormRadio from '@/components/vFormRadio';
-  import vUpload from '@/components/vUpload';
-  import util from '@/util/util.js';
-  export default {
-    components: {
-      vFormRadio,
-      vFormInput,
-      vUpload,
-    },
-    data() {
-      return {
-        formList: {},
-        ruleformList: {
-          corpnName: [
-            { required: true, message: '单位名称不能为空', trigger: 'blur' }
-          ],
-          prinpal: [
-            { required: true, message: '单位负责人不能为空', trigger: 'blur' },
-          ],
-          licenceNo: [
-            { required: true, message: '许可证编号不能为空', trigger: 'blur' }
-          ]
+    import {elevatorData} from '@/service/staticData/dElevatorData.js';
+    import vFormInput from '@/components/vFormInput';
+    import vFormRadio from '@/components/vFormRadio';
+    import vElevatorForm1 from '@/components/vElevatorForm1';
+    import vElevatorForm2 from '@/components/vElevatorForm2';
+    import vUpload from '@/components/vUpload';
+    import util from '@/util/util.js';
+    export default {
+        components: {
+            vFormRadio,
+            vFormInput,
+            vUpload
         },
-        tableList: elevatorData,
-        columns: [{
-          'title': '抽查项目',
-          'key': 'content',
-          'width': 200,
-        }, {
-          'title': '抽查内容及要点',
-          'key': 'method',
-          'minWidth': 200,
-        }, {
-          'title': '抽查结果',
-          'key': 'result',
-          'minWidth': 100,
-          render: (h, params) => {
-            return h(vFormRadio, {
-              props: {
-                formList: this.formList,
-                formKey: params.row.id,
-                isdisable:true,
-              }
-            })
-          }
-        }, {
-          'title': '记录',
-          'key': 'RCRecord',
-          'minWidth': 400,
-          render: (h, params) => {
-            return h(vUpload, {
-              props: {
-                formList: this.formList,
-                formKey: params.row.id,
-                isdisable:true,
+        data() {
+            return {
+                formList: {},
+                ruleformList: {
+                    corpnName: [
+                        { required: true, message: '单位名称不能为空', trigger: 'blur' }
+                    ],
+                    prinpal: [
+                        { required: true, message: '单位负责人不能为空', trigger: 'blur' },
+                    ],
+                    licenceNo: [
+                        { required: true, message: '许可证编号不能为空', trigger: 'blur' }
+                    ]
+                },
+                tableList: elevatorData,
+                columns: [{
+                    'title': '抽查项目',
+                    'key': 'content',
+                    'width': 100,
+                }, {
+                    'title': '抽查内容及要点',
+                    'key': 'method',
+                    'minWidth': 300,
+                    render: (h, params) => {
+                        switch (params.row.id) {
+                            case '3_1':
+                                return h(vElevatorForm, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '4_1':
+                                return h(vElevatorForm1, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '4_2':
+                                return h(vElevatorForm2, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            default:
+                                return h('div', {}, params.row.method);
+                        }
 
-              }
-            })
-          },
-
-        }],
-        rows: [  {
-          'title': '问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：',
-          'key': 'TEProblem',
-          // 'minWidth': 100,
-          render: (h, params) => {
-            return h(vFormInput, {
-              props: {
-                formList: this.formList,
-                formKey: params.row.id,
-                isdisable:true,
-              }
-            })
-          }
+                    }
+                }, {
+                    'title': '抽查结果',
+                    'key': 'result',
+                    'minWidth': 100,
+                    render: (h, params) => {
+                        return h(vFormRadio, {
+                            props: {
+                                formList: this.formList,
+                                formKey: params.row.id,
+                            },
+                        })
+                    }
+                }, {
+                    'title': '记录',
+                    'key': 'explain',
+                    'minWidth': 100,
+                    render: (h, params) => {
+                        switch (params.row.id) {
+                            case '2_1':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '2_2':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '2_3':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            case '2_4':
+                                return h(vUpload, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                });
+                            default:
+                                return h(vFormInput, {
+                                    props: {
+                                        formList: this.formList,
+                                        formKey: params.row.id,
+                                    }
+                                })
+                        }
+                    }
+                }],
+                columns1: [{
+                    'title': '抽查项目',
+                    'key': 'content',
+                    'width': 200,
+                }, {
+                    'title': '抽查内容及要点',
+                    'key': 'method',
+                    'minWidth': 300,
+                }, {
+                    'title': '抽查结果',
+                    'key': 'result',
+                    'minWidth': 50,
+                    render: (h, params) => {
+                        return h(vFormRadio, {
+                            props: {
+                                formList: this.formList,
+                                formKey: params.row.id,
+                            },
+                        })
+                    }
+                }],
+                columns0: [{
+                    'title': '工程技术职称',
+                    'key': 'content',
+                    'minWidth': 100,
+                },
+                    {
+                        'title': '博士',
+                        'key': 'demand1',
+                        'minWidth': 100,
+                    },
+                    {
+                        'title': '硕士',
+                        'key': 'demand2',
+                        'minWidth': 100,
+                    },
+                    {
+                        'title': '大学本科',
+                        'key': 'demand3',
+                        'minWidth': 100,
+                    },
+                    {
+                        'title': '大专',
+                        'key': 'demand4',
+                        'minWidth': 100,
+                    }
+                ]
+            }
         },
-        ],
-        columns0: [{
-          'title': '工程技术职称',
-          'key': 'content',
-          'minWidth': 100,
-        },
-          {
-            'title': '博士',
-            'key': 'demand1',
-            'minWidth': 100,
-          },
-          {
-            'title': '硕士',
-            'key': 'demand2',
-            'minWidth': 100,
-          },
-          {
-            'title': '大学本科',
-            'key': 'demand3',
-            'minWidth': 100,
-          },
-          {
-            'title': '大专',
-            'key': 'demand4',
-            'minWidth': 100,
-          }
-        ]
-      }
-    },
       mounted() {
           this.getFormList();
       },
