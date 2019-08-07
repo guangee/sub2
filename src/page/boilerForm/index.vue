@@ -56,7 +56,7 @@
               </FormItem>
             </Col>
           </Row>
-          <FormItem label="最近一次评审日期">
+          <FormItem label="最近一次评审日">
             <Input v-model="formList.lastDate" placeholder="请输入最近一次评审日期"></Input>
           </FormItem>
           <FormItem label="监督检查人">
@@ -74,7 +74,7 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <Input v-model="formList.checkDate_1" placeholder="请输入日期"></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -88,7 +88,7 @@
           </Col>
           <Col span='11' offset='2'>
             <FormItem label="日期">
-              <Input v-model="formList.checkDate_2" placeholder="请输入日期"></Input>
+              <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_2" style="width: 333px"></DatePicker>
             </FormItem>
           </Col>
         </Row>
@@ -102,7 +102,7 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <Input v-model="formList.checkDate_3" placeholder="请输入日期"></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_3" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -116,7 +116,7 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <Input v-model="formList.checkDate_4" placeholder="请输入日期"></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_4" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
