@@ -27,7 +27,7 @@
           <FormItem label="问题说明及记录" :label-width="120">
             <Input  placeholder="请输问题说明及记录" />
           </FormItem>
-        <Button type="primary" @click="serachList()">查询</Button>
+        <Button type="primary" @click="searchList()">查询</Button>
       </Form>
     </Card>
     <Table border :columns="columns1" :data=data1></Table>
@@ -42,7 +42,7 @@
   import {biolerData} from "../../service/staticData/dBiolerData";
   import {SearchData} from "../../service/staticData/dBiolerSearch";
   const routerType = ['/boiler', '/crane', '/elevator'];
-
+  import util from '@/util/util.js';
   export default {
 
     data() {
@@ -58,13 +58,13 @@
         columns1: [
           {
             title: '制造单位名称',
-            key: 'MFname'
+            key: 'corpnName'
           }, {
             title: '单位负责人',
-            key: 'principal'
+            key: 'prinpal'
           }, {
             title: '许可证编号',
-            key: 'licenseNo'
+            key: 'licenceNo'
           }, {
             title: '操作',
             key: 'action',
@@ -131,33 +131,38 @@
           {
             id: 'c38320362e3d430c9ff7472a464d3e53',
             type: 0,
-            MFname: '',
-            principal: '',
-            licenseNo: '',
+            corpnName: '',
+            prinpal: '',
+            licenceNo: '',
+            UniteCheckModel:'1',
           }, {
 
             type: 0,
-            MFname: '',
-            principal: '',
-            licenseNo: '',
+            corpnName: '',
+            prinpal: '',
+            licenceNo: '',
             id: '084b8a69bca64d55a1242d4d79433c2d',
+            UniteCheckModel:'3',
           }, {
             type: 1,
-            MFname: '',
-            principal: '',
-            licenseNo: '',
+            corpnName: '',
+            prinpal: '',
+            licenceNo: '',
             id: '15c6bdeabe854016acafddb7def74de1',
+            UniteCheckModel:'2',
           }, {
             type: 2,
-            MFname: '',
-            principal: '',
-            licenseNo: '',
+            corpnName: '',
+            prinpal: '',
+            licenceNo: '',
             id: '',
+            UniteCheckModel:'3',
           }
         ]
       }
     },
     mounted() {
+      this.getFormList();
       /*
       console.log(res);
       this.ajaxHistoryData = res.data;
@@ -181,9 +186,64 @@
         let end = index * this.pageSize;
         this.data1 = this.ajaxHistoryData.slice(start, end);
       },
+      async getFormList(){
+        let data = {
+          params: '',
+          method: 'get',
+          url: '/all/check ',
+        }
+        let res = await util.httpReq(data);
+        this.data1 = res;
+      },
+      async searchList(){
 
-      remove(index) {
+        let data = {
+          params: {
+            UniteCheckModel: this.data1.UniteCheckModel
+          },
+          method: 'get',
+          url: 'all/checkResult',
+        }
+        let res = await util.httpReq(data);
+        this.data1 = res;
+
+      },
+
+      async remove(index) {
         this.data1.splice(index, 1);
+        if (this.data1.type ==='Boiler') {
+          let data = {
+            params: {
+              id: this.$route.query.id
+            },
+            method: 'delete',
+            url: 'boiler/delete',
+          }
+          let res = await util.httpReq(data);
+          this.data1 = res;
+
+        }else if (this.data1.type ==='Crane') {
+
+          let data = {
+            params: {
+              id: this.$route.query.id
+            },
+            method: 'delete',
+            url: '/Crane/delete',
+          }
+          let res = await util.httpReq(data);
+          this.data1 = res;
+        }else {
+          let data = {
+            params: {
+              id: this.$route.query.id
+            },
+            method: 'delete',
+            url: '/Elevator/delete',
+          }
+          let res = await util.httpReq(data);
+          this.data1 = res;
+        }
       }
     }
 
