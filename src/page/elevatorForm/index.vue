@@ -1,12 +1,14 @@
 <style scoped>
   .form-wrapper {
     text-align: center;
+    margin-bottom:12px;
   }
   h2 {
     margin-bottom:12px;
   }
   h3 {
     text-align: left;
+    margin-bottom:12px;
   }
 </style>
 <template>
@@ -170,6 +172,7 @@
     import {elevatorData} from '@/service/staticData/dElevatorData.js';
     import vFormInput from '@/components/vFormInput';
     import vFormRadio from '@/components/vFormRadio';
+    import vElevatorForm from '@/components/vElevatorForm';
     import vElevatorForm1 from '@/components/vElevatorForm1';
     import vElevatorForm2 from '@/components/vElevatorForm2';
     import vUpload from '@/components/vUpload';
