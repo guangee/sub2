@@ -65,7 +65,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -89,7 +89,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -112,7 +112,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -135,7 +135,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -158,7 +158,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -176,7 +176,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -234,6 +234,7 @@
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
+                                isdisable:true,
                             }
                         })
                     }
@@ -246,6 +247,7 @@
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
+                                isdisable:true,
                             },
                         })
                     }

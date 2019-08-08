@@ -15,9 +15,13 @@
     <Form ref="boilerForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>锅炉压力容器制造单位监督检查记录表</h2>
       <Form :model="formList" label-position="right" :label-width="100">
+      <Row>
+      <Col span="11" offset="13">
       <FormItem label="编号" >
-        <Input v-model="formList.serialNo" placeholder="请输入编号" ></Input>
+        <Input v-model="formList.serialNo"  label-position="left" placeholder="请输入编号"   style="width: 300px"  ></Input>
       </FormItem>
+      </Col>
+      </Row>
       </Form>
       <Row>
         <Col span='11'>
@@ -74,7 +78,7 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <Input v-model="formList.checkDate_1" placeholder="请输入日期"></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -88,7 +92,7 @@
           </Col>
           <Col span='11' offset='2'>
             <FormItem label="日期">
-              <Input v-model="formList.checkDate_2" placeholder="请输入日期"></Input>
+              <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_2" style="width: 300px"></DatePicker>
             </FormItem>
           </Col>
         </Row>
@@ -102,7 +106,7 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <Input v-model="formList.checkDate_3" placeholder="请输入日期"></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_3" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -116,7 +120,7 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <Input v-model="formList.checkDate_4" placeholder="请输入日期"></Input>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_4" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>

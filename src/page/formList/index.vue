@@ -8,13 +8,13 @@
     <Card class="add-card">
       <Form label-position="left" :label-width="100">
       <FormItem label="表单类型">
-        <Cascader  :data="tableList" trigger="hover" :render-format="format"></Cascader>
+        <Cascader v-model="content" :data="tableList" trigger="hover" :render-format="format"></Cascader>
       </FormItem>
       </Form>
       <Form label-position="left" :label-width="100" inline>
 
         <FormItem label="检查结果" >
-          <RadioGroup  class="radio" >
+          <RadioGroup v-model="result" class="radio" >
             <Radio label="符合" ></Radio>
             <Radio label="不符合" ></Radio>
             <Radio label="有缺陷" ></Radio>
@@ -22,9 +22,9 @@
           </RadioGroup>
          </FormItem>
           <FormItem label="制造单位名称" >
-            <Input  placeholder="请输入制造单位名称" />
+            <Input v-model="corpnName" placeholder="请输入制造单位名称" />
           </FormItem>
-          <FormItem label="问题说明及记录" :label-width="120">
+          <FormItem v-model="problem" label="问题说明及记录" :label-width="120">
             <Input  placeholder="请输问题说明及记录" />
           </FormItem>
         <Button type="primary" @click="searchList()">查询</Button>
@@ -33,7 +33,7 @@
     <Table border :columns="columns1" :data=data1></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
-        <Page :total="100" :current="1" @on-change="changepage"></Page>
+        <Page :total="100" :current="1" @on-change="changepage()"></Page>
       </div>
     </div>
   </div>
@@ -54,6 +54,7 @@
           corpnName:'',
           type:'Boiler',
         },
+        pageIndex:0,
 
         ajaxHistoryData: [],
         exportdata : [],
@@ -191,20 +192,23 @@
 
 
     methods: {
-      changepage(index) {
-        let start = (index - 1) * this.pageSize;
-        let end = index * this.pageSize;
+      changepage(pageindex) {
+        let start = ( pageindex- 1) * this.pageSize;
+        let end = pageindex * this.pageSize;
         this.data1 = this.ajaxHistoryData.slice(start, end);
       },
       async getFormList(){
         let data = {
-          params: '',
+          params: {
+            pageIndex: this.pageIndex,
+            pageSize: this.pageSize,
+          },
           method: 'get',
-          url: '/all/check ',
+          url: '/all/check',
         }
         let res = await util.httpReq(data);
         this.data1 = res;
-        const response = res;
+
       },
       async searchList(){
 

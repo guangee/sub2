@@ -62,7 +62,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -140,7 +140,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 300px"></DatePicker>
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 300px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -153,8 +153,8 @@
 </template>
 <script>
     import {elevatorData} from '@/service/staticData/dElevatorData.js';
-    import vFormInput from '@/components/vFormInput';
-    import vFormRadio from '@/components/vFormRadio';
+    import vesFormInput from '@/components/vesFormInput';
+    import vesFormRadio from '@/components/vesFormRadio';
     import vElevatorForm from '@/components/vElevatorForm';
     import vElevatorForm1 from '@/components/vElevatorForm1';
     import vElevatorForm2 from '@/components/vElevatorForm2';
@@ -162,8 +162,8 @@
     import util from '@/util/util.js';
     export default {
         components: {
-            vFormRadio,
-            vFormInput,
+            vesFormRadio,
+            vesFormInput,
             vUpload
         },
         data() {
@@ -219,19 +219,20 @@
                     }
                 }, {
                     'title': '抽查结果',
-                    'key': 'result',
+                    'key': 'esResult',
                     'minWidth': 100,
                     render: (h, params) => {
-                        return h(vFormRadio, {
+                        return h(vesFormRadio, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
+                                isdisable:true,
                             },
                         })
                     }
                 }, {
                     'title': '记录',
-                    'key': 'explain',
+                    'key': 'esProblem',
                     'minWidth': 100,
                     render: (h, params) => {
                         switch (params.row.id) {
@@ -264,10 +265,11 @@
                                     }
                                 });
                             default:
-                                return h(vFormInput, {
+                                return h(vesFormInput, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
+                                        isdisable:true,
                                     }
                                 })
                         }
@@ -283,13 +285,14 @@
                     'minWidth': 300,
                 }, {
                     'title': '抽查结果',
-                    'key': 'result',
+                    'key': 'esResult',
                     'minWidth': 50,
                     render: (h, params) => {
-                        return h(vFormRadio, {
+                        return h(vesFormRadio, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
+                                isdisable:true,
                             },
                         })
                     }
