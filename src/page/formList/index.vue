@@ -8,13 +8,13 @@
     <Card class="add-card">
       <Form label-position="left" :label-width="100">
       <FormItem label="表单类型">
-        <Cascader v-model="content" :data="tableList" trigger="hover" :render-format="format"></Cascader>
+        <Cascader  :data="tableList" trigger="hover" :render-format="format"></Cascader>
       </FormItem>
       </Form>
       <Form label-position="left" :label-width="100" inline>
 
         <FormItem label="检查结果" >
-          <RadioGroup v-model="result" class="radio" >
+          <RadioGroup v-model="UniteCheckModel.result" class="radio" >
             <Radio label="符合" ></Radio>
             <Radio label="不符合" ></Radio>
             <Radio label="有缺陷" ></Radio>
@@ -22,12 +22,12 @@
           </RadioGroup>
          </FormItem>
           <FormItem label="制造单位名称" >
-            <Input v-model="corpnName" placeholder="请输入制造单位名称" />
+            <Input v-model="UniteCheckModel.corpnName" placeholder="请输入制造单位名称" />
           </FormItem>
-          <FormItem v-model="problem" label="问题说明及记录" :label-width="120">
-            <Input  placeholder="请输问题说明及记录" />
+          <FormItem  label="问题说明及记录" :label-width="120">
+            <Input v-model="UniteCheckModel.problemResult" placeholder="请输问题说明及记录" />
           </FormItem>
-        <Button type="primary" @click="searchList()">查询</Button>
+        <Button type="primary" @click="searchList(pageIndex)">查询</Button>
       </Form>
     </Card>
     <Table border :columns="columns1" :data=data1></Table>
@@ -48,11 +48,13 @@
     data() {
       return {
         UniteCheckModel: {
-          id: 'c38320362e3d430c9ff7472a464d3e53',
+          id: '1d12f4c9ad6547b7a1620bcbef377248',
           content:'problem_1_1',
-          result:'',
+          result:'符合',
           corpnName:'',
           type:'Boiler',
+          pageIndex: 0,
+          pageSize: 10,
         },
         pageIndex:0,
 
@@ -174,17 +176,11 @@
     },
     mounted() {
       this.getFormList();
-      /*
+
       console.log(res);
-      this.ajaxHistoryData = res.data;
-      this.exportdata = res.data;
-      this.dataCount = res.data.length;
-      if (this.dataCount < this.pageSize) {
-        this.data1 = this.ajaxHistoryData;
-      } else {
-        this.data1 = this.ajaxHistoryData.slice(0, this.pageSize);
-      }
-      */
+
+
+
     },
 
 
@@ -192,9 +188,13 @@
 
 
     methods: {
-      changepage(pageindex) {
-        let start = ( pageindex- 1) * this.pageSize;
-        let end = pageindex * this.pageSize;
+      changepage() {
+
+        let count = this.pageIndex;
+        count = count + 1;
+
+        let start = ( count- 1) * this.pageSize;
+        let end = count * this.pageSize;
         this.data1 = this.ajaxHistoryData.slice(start, end);
       },
       async getFormList(){
@@ -207,19 +207,42 @@
           url: '/all/check',
         }
         let res = await util.httpReq(data);
-        this.data1 = res;
+
+        this.ajaxHistoryData = res;
+        this.exportdata = res;
+        this.dataCount = res.length;
+        if (this.dataCount < this.pageSize) {
+          this.data1 = this.ajaxHistoryData;
+        } else {
+          this.data1 = this.ajaxHistoryData.slice(0, this.pageSize);
+        }
 
       },
       async searchList(){
 
         let data = {
-          params: this.UniteCheckModel,
+          params: {
+            UniteCheckModel: this.UniteCheckModel,
+            pageIndex: this.pageIndex,
+            pageSize: this.pageSize,
+          } ,
+          method: 'get',
+          url: '/all/checkResult',
+        }
+        let res_1 = await util.httpReq(data);
+        this.data1 = res_1;
+        let data_0 = {
+          params: {
+            UniteCheckModel: this.UniteCheckModel,
+            pageIndex: this.pageIndex,
+            pageSize: this.pageSize,
+          } ,
 
           method: 'get',
-          url: 'all/checkResult',
+          url: '/all/select',
         }
-        let res = await util.httpReq(data);
-        this.data1 = res;
+        let res_0 = await util.httpReq(data_0);
+        this.data1 = res_0;
 
       },
 
