@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>任命文件：</p>
   <div class="demo-upload-list" v-for="item in uploadList" :key="item.id">
     <div v-if="item.status === 'finished'">
       <img :src="item.url">
@@ -24,9 +25,9 @@
     multiple
     type="drag"
     action="//jsonplaceholder.typicode.com/posts/"
-    style="display: inline-block;width:58px;">   //改成后台提供的接口
+    style="display: inline-block;width:70px;">
     <div style="width: 58px;height:58px;line-height: 58px;">
-      <Icon type="ios-camera" size="20"></Icon>
+      <Icon type="ios-camera" size="40"></Icon>
     </div>
   </Upload>
   <Modal title="View Image" v-model="visible">
@@ -36,7 +37,7 @@
 </template>
 <script>
     export default {
-        props: ['formList', 'formKey'],//写上key数组
+        props: ['formList', 'formKey'],
         data () {
             return {
                 imgName: '',
