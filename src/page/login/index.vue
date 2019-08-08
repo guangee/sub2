@@ -81,7 +81,7 @@
                         };
                         let res = await util.httpReq(data);
                         localStorage.setItem("username", this.form.username );
-                        localStorage.setItem("authorization", res.content.id + '_' + res.content.token);
+                        sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
                         this.$router.push({
                             path: '/formList',
                         });

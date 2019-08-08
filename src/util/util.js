@@ -10,8 +10,8 @@ axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
   config => {
-    if (localStorage.getItem('authorization')) {
-      config.headers.Authorization = localStorage.getItem('authorization');
+    if (sessionStorage.getItem('authorization')) {
+      config.headers.Authorization = sessionStorage.getItem('authorization');
     }
  
     return config;
