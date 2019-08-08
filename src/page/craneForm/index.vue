@@ -8,6 +8,7 @@
 
   h3 {
     text-align: left;
+    margin-bottom:12px;
   }
 </style>
 <template>
@@ -34,7 +35,7 @@
               <Input v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
             </FormItem>
           </Col>
-          <Col span='11' offset='1'>
+          <Col span='11' offset='2'>
             <FormItem label="联系电话">
               <Input v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
             </FormItem>
@@ -46,11 +47,10 @@
             </FormItem>
           </Col>
         </Row>
-
       <h3>1、资源条件及管理</h3>
       <Table :columns="columns" :data="tableList.table_1" ></Table>
       <Row>
-        <Form :model="formList" label-position="top" >
+        <Form :model="formList" label-position="right" >
           <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
             <Input v-model="formList.problem_1" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>
@@ -62,7 +62,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-          <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 300px"></DatePicker>
+          <DatePicker type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -86,7 +86,7 @@
       </Col>
       <Col span='4' offset='3'>
         <FormItem label="出厂日期">
-          <DatePicker type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 300px"></DatePicker>
+          <DatePicker type="date" placeholder="Select date" v-model="formList.productDateA" style="width: 105px"></DatePicker>
         </FormItem>
       </Col>
       </Row>
@@ -109,7 +109,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateB" style="width: 105px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -132,7 +132,7 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateC" style="width: 105px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -155,13 +155,13 @@
         </Col>
         <Col span='4' offset='3'>
           <FormItem label="出厂日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.productDateD" style="width: 105px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
-        <Form :model="formList" label-position="top" >
+        <Form :model="formList" label-position="right" >
           <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
             <Input v-model="formList.problem_2" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>
@@ -173,7 +173,7 @@
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="日期">
-            <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 300px"></DatePicker>
+            <DatePicker type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>

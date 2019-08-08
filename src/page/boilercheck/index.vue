@@ -72,7 +72,9 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 300px"></DatePicker>
+
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 333px"></DatePicker>
+
           </FormItem>
         </Col>
       </Row>
@@ -86,7 +88,9 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_2" style="width: 300px"></DatePicker>
+
+            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_2" style="width: 333px"></DatePicker>
+
           </FormItem>
         </Col>
       </Row>
@@ -100,7 +104,8 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_3" style="width: 300px"></DatePicker>
+
+            <DatePicker  disabled type="date" placeholder="Select date" v-model="formList.checkDate_3" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -114,7 +119,9 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_4" style="width: 300px"></DatePicker>
+
+            <DatePicker  disabled type="date" placeholder="Select date" v-model="formList.checkDate_4" style="width: 333px"></DatePicker>
+
           </FormItem>
         </Col>
       </Row>
