@@ -63,7 +63,11 @@
       <h3>二、质量管理体系</h3>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Form :model="formList" label-position="right" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input disabled v-model="formList.qcProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
             <Input disabled v-model="formList.qcChecker" placeholder=""></Input>
@@ -102,9 +106,13 @@
           </FormItem>
         </Col>
       </Row>
-      <Table :columns="columns" :data="tableList.table_3" ></Table>
+      <Table :columns="columns1" :data="tableList.table_3" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Form :model="formList" label-position="right" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input disabled v-model="formList.teProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
             <Input disabled v-model="formList.teChecker" placeholder=""></Input>
@@ -131,7 +139,7 @@
           <FormItem label="名义速度">
             <Input disabled v-model="formList.esSpeed" placeholder=""></Input>
           </FormItem>
-        </Col>>
+        </Col>
         <Col span='11' offset='2'>
           <FormItem label="出厂编号">
             <Input disabled v-model="formList.esNo" placeholder=""></Input>
@@ -141,9 +149,13 @@
           </FormItem>
         </Col>
       </Row>
-      <Table :columns="columns" :data="tableList.table_4" ></Table>
+      <Table :columns="columns1" :data="tableList.table_4" ></Table>
       <Row>
-        <Table :columns="rows"  :data="tableList.table_0" ></Table>
+        <Form :model="formList" label-position="right" >
+          <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
+            <Input disabled v-model="formList.esProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          </FormItem>
+        </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
             <Input disabled v-model="formList.esChecker" placeholder=""></Input>
@@ -156,16 +168,13 @@
         </Col>
       </Row>
       <p>注：第1部分适用于制造，第2部分适用于安装，第3部分适用于维修。</p>
-      <FormItem>
-        <Button disabled type="primary" @click="handleSubmit('elevatorForm')">Submit</Button>
-      </FormItem>
     </Form>
   </div>
 </template>
 <script>
     import {elevatorData} from '@/service/staticData/dElevatorData.js';
-    import vesFormInput from '@/components/vesFormInput';
-    import vesFormRadio from '@/components/vesFormRadio';
+    import vFormInput from '@/components/vFormInput';
+    import vFormRadio from '@/components/vFormRadio';
     import vElevatorForm from '@/components/vElevatorForm';
     import vElevatorForm1 from '@/components/vElevatorForm1';
     import vElevatorForm2 from '@/components/vElevatorForm2';
@@ -173,8 +182,8 @@
     import util from '@/util/util.js';
     export default {
         components: {
-            vesFormRadio,
-            vesFormInput,
+            vFormRadio,
+            vFormInput,
             vUpload
         },
         data() {
@@ -202,21 +211,21 @@
                     'minWidth': 300,
                     render: (h, params) => {
                         switch (params.row.id) {
-                            case '3_1':
+                            case 'rc3_1':
                                 return h(vElevatorForm, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
-                            case '4_1':
+                            case 'rc4_1':
                                 return h(vElevatorForm1, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
-                            case '4_2':
+                            case 'rc4_2':
                                 return h(vElevatorForm2, {
                                     props: {
                                         formList: this.formList,
@@ -233,7 +242,7 @@
                     'key': 'esResult',
                     'minWidth': 100,
                     render: (h, params) => {
-                        return h(vesFormRadio, {
+                        return h(vFormRadio, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
@@ -247,28 +256,28 @@
                     'minWidth': 100,
                     render: (h, params) => {
                         switch (params.row.id) {
-                            case '2_1':
+                            case 'rc2_1':
                                 return h(vUpload, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
-                            case '2_2':
+                            case 'rc2_2':
                                 return h(vUpload, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
-                            case '2_3':
+                            case 'rc2_3':
                                 return h(vUpload, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
-                            case '2_4':
+                            case 'rc2_4':
                                 return h(vUpload, {
                                     props: {
                                         formList: this.formList,
@@ -276,7 +285,7 @@
                                     }
                                 });
                             default:
-                                return h(vesFormInput, {
+                                return h(vFormInput, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
@@ -299,7 +308,7 @@
                     'key': 'esResult',
                     'minWidth': 50,
                     render: (h, params) => {
-                        return h(vesFormRadio, {
+                        return h(vFormRadio, {
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
