@@ -5,7 +5,7 @@ let util = {};
 
 //axios默认设置
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-axios.defaults.baseURL = '/admin';
+axios.defaults.baseURL = '/api';
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(

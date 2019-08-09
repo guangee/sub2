@@ -33,62 +33,59 @@
 </template>
 
 <script>
-    import util from '@/util/util.js';
-    export default {
-        name: 'Login',
-        props: {
-            userNameRules: {
-                type: Array,
-                default: () => {
-                    return [
-                        { required: true, message: '账号不能为空', trigger: 'blur' }
-                    ]
-                }
-            },
-            passwordRules: {
-                type: Array,
-                default: () => {
-                    return [
-                        { required: true, message: '密码不能为空', trigger: 'blur' }
-                    ]
-                }
-            }
+  import util from '@/util/util.js';
+  export default {
+    name: 'Login',
+    props: {
+      userNameRules: {
+        type: Array,
+        default: () => {
+          return [
+            { required: true, message: '账号不能为空', trigger: 'blur' }
+          ]}
         },
-        data () {
-            return {
-                form: {
-                    username: '',
-                    password: ''
-                }
-            }
-        },
-        computed: {
-            rules () {
-                return {
-                    username: this.userNameRules,
-                    password: this.passwordRules
-                }
-            }
-        },
-        methods: {
-            handleSubmit () {
-                this.$refs.loginForm.validate(async (valid) => {
-                    if (valid) {
-                        let data = {
-                            method: 'post',
-                            params: this.form,
-                            url: '/tokens',
-                        };
-                        let res = await util.httpReq(data);
-                        localStorage.setItem("username", this.form.username );
-                        sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
-                        this.$router.push({
-                            path: '/formList',
-                        });
-                    }
-                })
-            }
+      passwordRules: {
+        type: Array,
+        default: () => {
+          return [
+            { required: true, message: '密码不能为空', trigger: 'blur' }
+          ]}
         }
-    }
-
+      },
+      data () {
+        return {
+          form: {
+            username: '',
+            password: ''
+          }
+        }
+      },
+      computed: {
+        rules () {
+          return {
+            username: this.userNameRules,
+            password: this.passwordRules
+          }
+        }
+      },
+      methods: {
+        handleSubmit () {
+          this.$refs.loginForm.validate(async (valid) => {
+            if (valid) {
+              let data = {
+                method: 'post',
+                params: this.form,
+                url: '/tokens',
+              };
+              let res = await util.httpReq(data);
+              localStorage.setItem("username", this.form.username );
+              sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
+              this.$router.push({
+                  path: '/formList',
+              });
+            }
+          })
+        }
+      }
+  }
 </script>

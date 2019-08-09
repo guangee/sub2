@@ -90,6 +90,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(res => res.meta.requireAuth)) {
     if (sessionStorage.getItem('authorization')) {// 判断是否登录
       iView.LoadingBar.start();
+      window.document.title = '登记审核系统——' + to.meta.label;
       next()
     } else {// 没登录则跳转到登录界面
       next({

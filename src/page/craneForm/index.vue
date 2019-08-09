@@ -178,7 +178,7 @@
         </Col>
       </Row>
       <FormItem>
-        <Button type="primary" @click="handleSubmit('craneForm')">Submit</Button>
+        <Button type="primary" @click="handleSubmit('craneForm')">提交</Button>
       </FormItem>
     </Form>
   </div>
@@ -258,23 +258,31 @@
         handleSubmit(formName) {
           this.$refs[formName].validate (async (valid) => {
             if (valid) {
+              let res, content;
               if (this.$route.query.modify === 0) {
                 let data = {
                     method: 'put',
                     params: this.formList,
                     url: '/Crane/change',
                 };
-                let res = await util.httpReq(data);
-                this.$Message.success('修改成功!');
-
+                res = await util.httpReq(data);
+                content = '修改';
               } else {
                 let data = {
                     method: 'post',
                     params: this.formList,
                     url: '/Crane/add',
                 };
-                let res = await util.httpReq(data);
-                this.$Message.success('提交成功!');
+                res = await util.httpReq(data);
+                content = '提交';
+              }
+              if (res === 'success') {
+                this.$Message.success(content + '成功!');
+                this.$router.push({
+                  path: '/formList',
+                }); 
+              } else {
+                this.$Message.error(content + '失败，请稍后再试');
               }
             }
             else {

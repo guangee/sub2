@@ -33,17 +33,17 @@
           </Header>
           <Layout>
             <Sider hide-trigger :style="{minHeight: '100vh', position: 'fixed', top: '64px', bottom: '0', zIndex: '99'}">
-              <Menu active-name="form-List" theme="dark" width="auto" :open-names="['1']" @on-select="routeTo">
-                <MenuItem name="form-List">
+              <Menu :active-name="activeOption" theme="dark" width="auto" :open-names="openMenu" @on-select="routeTo" ref="leftMenu">
+                <MenuItem name="formList">
                   <span>表单列表</span>
                 </MenuItem>
                   <Submenu name="2">
                       <template slot="title">
                           添加表单
                       </template>
-                      <MenuItem name="boiler-Form">锅炉压力容器制造单位监督检查记录表</MenuItem>
-                      <MenuItem name="crane-Form">起重机械制造单位监督抽查记录表</MenuItem>
-                      <MenuItem name="elevator-Form">电梯维保单位监督检查记录表</MenuItem>
+                      <MenuItem name="boilerForm">锅炉压力容器制造单位监督检查记录表</MenuItem>
+                      <MenuItem name="craneForm">起重机械制造单位监督抽查记录表</MenuItem>
+                      <MenuItem name="elevatorForm">电梯维保单位监督检查记录表</MenuItem>
                   </Submenu>
               </Menu>
             </Sider>
@@ -64,11 +64,23 @@
       data() {
         return {
           homeRoute: '/',
+          activeOption: '',
+          openMenu: [],
         }
       },
       components: {
         vHeader,
         vBreadcrumb,
+      },
+      mounted() {
+        this.activeOption = this.$route.path.replace('/', '');
+        if (this.$route.path !== '/formList') {
+          this.openMenu = ['2'];
+        } 
+        this.$nextTick(() => {
+          this.$refs.leftMenu.updateOpened();
+          this.$refs.leftMenu.updateActiveName();
+        })
       },
       methods: {
         routeTo(e) {

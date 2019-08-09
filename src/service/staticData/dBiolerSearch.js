@@ -1,6 +1,6 @@
 export const SearchData = [
   {
-    value: '1',
+    value: 'Boiler',
     label: '锅炉压力容器制造单位监督检查记录表',
     children:[{
       value: '1',
@@ -180,7 +180,7 @@ export const SearchData = [
 
     ]
   }, {
-    value: '2',
+    value: 'Crane',
     label: '起重机械制造单位监督抽查记录表',
 
     children:[{
@@ -262,10 +262,10 @@ export const SearchData = [
 
     ]
   }, {
-    value: '3',
+    value: 'Elevator',
     label: '电梯维保单位监督检查记录表',
     children:[{
-      value: '1',
+      value: 'rc',
       label: '一、资源条件',
       children:[{
         value: '1',
@@ -328,7 +328,7 @@ export const SearchData = [
       },],
 
     },{
-      value: '2',
+      value: 'qc',
       label: '二、质量管理体系',
       children:[{
         value: '1',
@@ -409,7 +409,7 @@ export const SearchData = [
         label: '12.执行特种设备许可制度',
       },]
     },{
-      value: '3',
+      value: 'te',
       label: '三、制造/安装/维修质量（曳引式电梯）',
       children:[{
         value: '1_1',
@@ -491,7 +491,7 @@ export const SearchData = [
         label: '3.16限速器校验',
       },]
     },{
-      value: '4',
+      value: 'es',
       label: '四、制造/安装/维修质量（自动扶梯）',
       children:[{
         value: '1_1',
@@ -562,7 +562,7 @@ export const SearchData = [
     ]
 
   },
-  ]
+]
 
 
 
