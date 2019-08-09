@@ -13,7 +13,7 @@
       <h2>锅炉压力容器制造单位监督检查记录表</h2>
       <Form :model="formList" label-position="right" :label-width="100">
         <FormItem label="编号" >
-          <Input v-model="formList.serialNo" placeholder="请输入编号" ></Input>
+          <Input v-model="formList.serialNo" placeholder="请输入编号" style="width: 333px" ></Input>
         </FormItem>
       </Form>
       <Row>

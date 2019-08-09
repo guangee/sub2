@@ -176,23 +176,12 @@
     },
     mounted() {
       this.getFormList();
-
       console.log(res);
-
-
-
     },
-
-
-
-
-
     methods: {
       changepage() {
-
         let count = this.pageIndex;
         count = count + 1;
-
         let start = ( count- 1) * this.pageSize;
         let end = count * this.pageSize;
         this.data1 = this.ajaxHistoryData.slice(start, end);
@@ -207,7 +196,6 @@
           url: '/all/check',
         }
         let res = await util.httpReq(data);
-
         this.ajaxHistoryData = res;
         this.exportdata = res;
         this.dataCount = res.length;
@@ -216,10 +204,8 @@
         } else {
           this.data1 = this.ajaxHistoryData.slice(0, this.pageSize);
         }
-
       },
       async searchList(){
-
         let data = {
           params: {
             UniteCheckModel: this.UniteCheckModel,
@@ -237,7 +223,6 @@
             pageIndex: this.pageIndex,
             pageSize: this.pageSize,
           } ,
-
           method: 'get',
           url: '/all/select',
         }
@@ -245,11 +230,8 @@
         this.data1 = res_0;
 
       },
-
       async remove(index) {
-
         this.data1.splice(index, 1);
-
       },
       async delete(id, type){
         if (type ==='Boiler') {
@@ -261,9 +243,7 @@
             url: 'boiler/delete',
           }
           let res = await util.httpReq(data);
-
         }else if (type ==='Crane') {
-
           let data = {
             params: {
               id: id
@@ -272,7 +252,6 @@
             url: '/Crane/delete',
           }
           let res = await util.httpReq(data);
-
         }else {
           let data = {
             params: {
@@ -282,10 +261,8 @@
             url: '/Elevator/delete',
           }
           let res = await util.httpReq(data);
-
         }
       }
     }
-
   }
 </script>

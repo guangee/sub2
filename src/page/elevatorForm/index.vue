@@ -73,7 +73,7 @@
           <Input  v-model="formList.qcChecker" placeholder=""></Input>
         </FormItem>
       </Col>
-      <Col span='11' offset='1'>
+      <Col span='11' offset='2'>
         <FormItem label="日期">
           <DatePicker type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 333px"></DatePicker>
         </FormItem>

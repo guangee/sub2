@@ -63,11 +63,9 @@
             <Input disabled v-model="formList.checker_1" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='11' offset='1'>
+        <Col span='11' offset='2'>
           <FormItem label="日期">
-
             <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 333px"></DatePicker>
-
           </FormItem>
         </Col>
       </Row>
@@ -184,7 +182,7 @@
             <Input disabled v-model="formList.Checker_2" placeholder=""></Input>
           </FormItem>
         </Col>
-        <Col span='11' offset='1'>
+        <Col span='11' offset='2'>
           <FormItem label="日期">
 
             <DatePicker disabled type="date" placeholder="Select date" v-model="formList.CheckDate_2" style="width: 333px"></DatePicker>
