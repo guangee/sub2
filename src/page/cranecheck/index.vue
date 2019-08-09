@@ -58,6 +58,7 @@
             <Input disabled v-model="formList.problem_1" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>
         </Form>
+
         <Col span='11'>
           <FormItem label="监督检查人员">
             <Input disabled v-model="formList.checker_1" placeholder=""></Input>

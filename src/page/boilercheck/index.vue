@@ -12,9 +12,13 @@
     <Form ref="boilerForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>锅炉压力容器制造单位监督检查记录表</h2>
       <Form :model="formList" label-position="right" :label-width="100">
-        <FormItem label="编号" >
-          <Input v-model="formList.serialNo" placeholder="请输入编号" style="width: 333px" ></Input>
-        </FormItem>
+        <Row>
+          <Col span="11" offset="13">
+            <FormItem label="编号" >
+              <Input v-model="formList.serialNo"  placeholder="请输入编号"   style="width: 333px"  ></Input>
+            </FormItem>
+          </Col>
+        </Row>
       </Form>
       <Row>
         <Col span='11'>
@@ -53,17 +57,17 @@
               </FormItem>
             </Col>
           </Row>
-          <FormItem label="最近一次评审日期">
+          <FormItem label="最近一次评审日">
             <Input disabled v-model="formList.lastDate" placeholder="请输入最近一次评审日期"></Input>
           </FormItem>
           <FormItem label="监督检查人">
             <Input disabled v-model="formList.supervisor" placeholder="监督检查人"></Input>
           </FormItem>
-
         </Col>
       </Row>
       <h3>一、基本条件与管理，主要核查企业提供的相关资料，必要时现场核查</h3>
       <Table :columns="columns" :data="tableList.table_1"></Table>
+      <div style="margin-top: 8px">
       <Row>
         <Col span='11'>
           <FormItem label="监督检查人员" >
@@ -72,14 +76,14 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-
             <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_1" style="width: 333px"></DatePicker>
-
           </FormItem>
         </Col>
       </Row>
+      </div>
       <h3>二、产品质量与控制，从抽查的两份在制品记录和两份产品质量档案进行检查，必要时增加相关项目（热处理、试板）检查。</h3>
       <Table :columns="columns" :data="tableList.table_2"></Table>
+      <div style="margin-top: 8px">
       <Row>
         <Col span='11'>
           <FormItem label="监督检查人员">
@@ -88,14 +92,14 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-
             <DatePicker disabled type="date" placeholder="Select date" v-model="formList.checkDate_2" style="width: 333px"></DatePicker>
-
           </FormItem>
         </Col>
       </Row>
+      </div>
       <h3>三、对鉴定评审机构评审情况的检查</h3>
       <Table :columns="columns" :data="tableList.table_3"></Table>
+      <div style="margin-top: 8px">
       <Row>
         <Col span='11'>
           <FormItem label="监督检查人员">
@@ -104,13 +108,14 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-
             <DatePicker  disabled type="date" placeholder="Select date" v-model="formList.checkDate_3" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
+      </div>
       <h3>四、对监督检验情况的抽查</h3>
       <Table :columns="columns" :data="tableList.table_4"></Table>
+      <div style="margin-top: 8px">
       <Row>
         <Col span='11'>
           <FormItem label="监督检查人员">
@@ -119,12 +124,11 @@
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-
             <DatePicker  disabled type="date" placeholder="Select date" v-model="formList.checkDate_4" style="width: 333px"></DatePicker>
-
           </FormItem>
         </Col>
       </Row>
+      </div>
       <FormItem>
         <Button  disabled type="primary" @click="handleSubmit('boilerForm')">提交</Button>
       </FormItem>
