@@ -3,7 +3,7 @@
     text-align: center;
   }
   h2 {
-    margin-bottom:12px;
+    margin-bottom:15px;
   }
   h3 {
     text-align: left;

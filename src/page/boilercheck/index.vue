@@ -2,6 +2,9 @@
   .form-wrapper {
     text-align: center;
   }
+  h2 {
+    margin-bottom:15px;
+  }
   h3 {
     text-align: left;
     margin-bottom:12px;
@@ -52,9 +55,11 @@
               </FormItem>
             </Col>
             <Col span='12'>
+              <Form :model="formList" label-position="right" :label-width="90">
               <FormItem label="许可证有效期">
                 <Input disabled v-model="formList.licenseDate" placeholder="请输入许可证有效期"></Input>
               </FormItem>
+              </Form>
             </Col>
           </Row>
           <FormItem label="最近一次评审日">
@@ -141,7 +146,6 @@
   import vFormRadio from '@/components/vFormRadio';
   import util from '@/util/util.js';
   export default {
-
     components: {
       vFormRadio,
       vFormInput

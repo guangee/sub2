@@ -59,7 +59,7 @@
     <p>注3：工程技术职称与学历和技术工作年限比照</p>
     <p style="text-align:center">学历与技术工作年限</p>
     <Table :columns="columns0":data="tableList.table_5" ></Table>
-    <p>注：高级技师和技师分别相当于工程师和助理工程师，中专毕业技术工作年限可以参照大专毕业。</p>
+    <p style="margin-bottom:10px">注：高级技师和技师分别相当于工程师和助理工程师，中专毕业技术工作年限可以参照大专毕业。</p>
     <h3>二、质量管理体系</h3>
     <Table :columns="columns" :data="tableList.table_2" ></Table>
     <Row>
@@ -375,7 +375,7 @@
                           this.$Message.success(content + '成功!');
                           this.$router.push({
                             path: '/formList',
-                          }); 
+                          });
                         } else {
                           this.$Message.error(content + '失败，请稍后再试');
                         }

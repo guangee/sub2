@@ -3,7 +3,6 @@
     text-align: center;
   }
   h2 {
-    text-align: left;
     margin-bottom:12px;
   }
   h3 {
@@ -57,9 +56,9 @@
       <p>注1：制造单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道统称为B级；按照单位中乘客电梯B级、载货电梯（含防爆）、液压电梯、自动扶梯和自动人行道、杂物电梯（含防爆）统称为其他。</p>
       <p>注2：描*的不限制职称和专业范围，其他的均需要为机械或电气专业。</p>
       <p>注3：工程技术职称与学历和技术工作年限比照</p>
-      <p>学历与技术工作年限</p>
+      <p style="text-align:center">学历与技术工作年限</p>
       <Table :columns="columns0":data="tableList.table_5" ></Table>
-      <p>注：高级技师和技师分别相当于工程师和助理工程师，中专毕业技术工作年限可以参照大专毕业。</p>
+      <p  style="margin-bottom:10px">注：高级技师和技师分别相当于工程师和助理工程师，中专毕业技术工作年限可以参照大专毕业。</p>
       <h3>二、质量管理体系</h3>
       <Table :columns="columns" :data="tableList.table_2" ></Table>
       <Row>
