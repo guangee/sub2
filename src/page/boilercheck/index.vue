@@ -125,9 +125,6 @@
           </FormItem>
         </Col>
       </Row>
-      <FormItem>
-        <Button  disabled type="primary" @click="handleSubmit('boilerForm')">提交</Button>
-      </FormItem>
     </Form>
   </div>
 </template>

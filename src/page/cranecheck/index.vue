@@ -190,9 +190,6 @@
           </FormItem>
         </Col>
       </Row>
-      <FormItem>
-        <Button type="primary" @click="handleSubmit('craneForm')">Submit</Button>
-      </FormItem>
     </Form>
   </div>
 </template>
