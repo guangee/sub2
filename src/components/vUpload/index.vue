@@ -79,9 +79,9 @@
                 let res = await util.httpReq(data);
                 this.formList = res;
             },
-            handleSuccess (res, file) {
+           async handleSuccess (res, file) {
                 //console.log("name:" +  + "\nurl:" + res.toString());
-                this.Lists.push({"url": "http://" + res.toString(), "name": file.name.toString()});
+                this.Lists.push({"url": "http://" + res.toString(), "imgName": file.name.toString()});
                 var i = this.Lists.findIndex(
                     function(value, index, arr){return value.name == file.name.toString();}
                 );
