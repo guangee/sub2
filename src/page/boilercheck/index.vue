@@ -18,7 +18,7 @@
         <Row>
           <Col span="11" offset="13">
             <FormItem label="编号" >
-              <Input v-model="formList.serialNo"  placeholder="请输入编号"   style="width: 333px"  ></Input>
+              <Input disabled v-model="formList.serialNo"  placeholder="请输入编号"   style="width: 333px"  ></Input>
             </FormItem>
           </Col>
         </Row>
