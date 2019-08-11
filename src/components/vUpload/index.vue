@@ -14,7 +14,7 @@
       </div>
     </div>
     <Upload
-      ref="upload"
+      ref="upload" name="file"
       :show-upload-list="false"
       :on-success="handleSuccess"
       :format="['jpg','jpeg','png']"
@@ -24,7 +24,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="//jsonplaceholder.typicode.com/posts/"
+      action="http://62.234.138.48:8080/upload/uploadPic"
       style="display: inline-block;width:70px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
         <Icon type="ios-camera" size="40"></Icon>
@@ -37,7 +37,7 @@
 </template>
 <script>
     export default {
-        props: ['formList', 'formKey'],
+        props: ['formList', 'formKey','url','imgName'],
         data () {
             return {
                 url:'',
@@ -52,6 +52,18 @@
                 this.imgName = name;
                 this.visible = true;
             },
+           /* async getFormList(){
+                let data = {
+                    params:{
+                        id: this.$route.query.id
+                    },
+                    method: 'get',
+                    url: '/upload/getPic',
+                }
+                let res = await util.httpReq(data);
+                this.formList = res;
+            },
+            */
             handleRemove (file) {
                 const fileList = this.$refs.upload.fileList;
                 this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
