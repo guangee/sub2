@@ -43,7 +43,8 @@
                       </template>
                       <MenuItem name="boilerForm">锅炉压力容器制造单位监督检查记录表</MenuItem>
                       <MenuItem name="craneForm">起重机械制造单位监督抽查记录表</MenuItem>
-                      <MenuItem name="elevatorForm">电梯维保单位监督检查记录表</MenuItem>
+                      <MenuItem name="elevatorForm">电梯制造单位监督检查记录表</MenuItem>
+					  <MenuItem name="elevatorkeeperForm">电梯安装维保单位监督检查记录表</MenuItem>
                   </Submenu>
               </Menu>
             </Sider>
@@ -76,7 +77,7 @@
         this.activeOption = this.$route.path.replace('/', '');
         if (this.$route.path !== '/formList') {
           this.openMenu = ['2'];
-        } 
+        }
         this.$nextTick(() => {
           this.$refs.leftMenu.updateOpened();
           this.$refs.leftMenu.updateActiveName();

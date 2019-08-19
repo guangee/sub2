@@ -79,11 +79,12 @@
   import {SearchData} from "../../service/staticData/dBiolerSearch";
   import util from '@/util/util.js';
 
-  const routerType = ['/boiler', '/crane', '/elevator'];
+  const routerType = ['/boiler', '/crane', '/elevator','/elevatorkeeper'];
   const deleteRouter = {
     Boiler: '/boiler/delete',
     Crane: '/Crane/delete',
     Elevator: '/Elevator/delete',
+      ElevatorKeeper: '/ElevatorKeeper/delete',
   };
 
   export default {

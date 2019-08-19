@@ -8,9 +8,12 @@ const FormList = r => require.ensure([], () => r(require('@/page/formList')), 'F
 const BoilerForm = r => require.ensure([], () => r(require('@/page/boilerForm')), 'BoilerForm');
 const CraneForm = r => require.ensure([], () => r(require('@/page/craneForm')), 'CraneForm');
 const ElevatorForm = r => require.ensure([], () => r(require('@/page/elevatorForm')), 'ElevatorForm');
+const ElevatorkeeperForm =r => require.ensure([], () => r(require('@/page/elevatorkeeperForm')), 'ElevatorkeeperForm');
 const BoilerCheck = r => require.ensure([], () => r(require('@/page/boilercheck')), 'boilercheck');
 const CraneCheck = r => require.ensure([], () => r(require('@/page/cranecheck')), 'boilercheck');
 const ElevatorCheck = r => require.ensure([], () => r(require('@/page/elevatorcheck')), 'boilercheck');
+const ElevatorkeeperCheck = r => require.ensure([], () => r(require('@/page/elevatorkeepercheck')), 'elevatorkeepercheck');
+
 Vue.use(Router)
 const router = new Router({
   routes: [
@@ -83,6 +86,23 @@ const router = new Router({
           requireAuth: true
         },
         component: ElevatorCheck,
+      },{
+        path: '/elevatorkeeperForm',
+        name: 'elevatorkeeperForm',
+        meta: {
+          label: '电梯维修表单',
+          requireAuth: true
+        },
+        component: ElevatorkeeperForm,
+
+      }, {
+        path: '/elevatorkeepercheck',
+        name: 'elevatorkeepercheck',
+        meta: {
+          label: '电梯维修表单详情',
+          requireAuth: true
+        },
+        component: ElevatorkeeperCheck,
       },]
     }]
 })

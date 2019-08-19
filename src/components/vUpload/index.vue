@@ -31,7 +31,7 @@
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
-      <img :src="'url'+ imgName + '/large'" v-if="visible" style="width: 100%">
+      <img :src="'item.url'+ imgName + '/large'" v-if="visible" style="width: 100%">
     </Modal>
   </div>
 </template>
