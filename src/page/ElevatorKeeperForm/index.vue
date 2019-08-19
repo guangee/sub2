@@ -189,7 +189,7 @@
                 columns1: [{
                     'title': '检查项目、内容与要求',
                     'key': 'content',
-                    'minwidth': 200,
+                    'minWidth': 200,
                 }, {
                     'title': '检查方法',
                     'key': 'method',
