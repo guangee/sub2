@@ -158,7 +158,7 @@
         </Col>
       </Row>
 	  <FormItem>
-        <Button  type="primary" @click="handleSubmit('boilerForm')">提交</Button>
+        <Button  type="primary" @click="handleSubmit('elevatorkeeperForm')">提交</Button>
      </FormItem>
 	</Form>
   </div>
