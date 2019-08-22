@@ -26,6 +26,7 @@
               <Button @click="handleSubmit" type="primary" long>登录</Button>
             </FormItem>
           </Form>
+          <p class="login-tip" @click="createNew">添加新用户</p>
         </div>
       </Card>
     </div>
@@ -85,7 +86,75 @@
               });
             }
           })
-        }
+        },
+          createNew(){
+              this.$Modal.confirm({
+                  render: (h) => {
+                      return h('div', [
+                          h('P', {
+                              style: {
+                                  color: "#1c2438",
+                                  fontSize: "20px",
+                                  textAlign: 'center'
+                              }
+                          }, "添加新用户"),
+                          h('Span', {
+                              style: {
+                                  color: "#495060",
+                                  fontSize: "14px",
+                              }
+                          }, "用户名："),
+                          h('Input', {
+                              props: {
+                                  value: this.value,
+                                  autofocus: true,
+                                  placeholder: 'Please enter your name...',
+                              },
+                              on: {
+                                  input: (val) => {
+                                      this.name = val;
+                                  }
+                              }
+                          }),
+                          h('Span', {
+                              style: {
+                                  color: "#495060",
+                                  fontSize: "14px",
+                              }
+                          }, "密码："),
+                          h('Input', {
+                              props: {
+                                  value: this.value,
+                                  autofocus: true,
+                                  placeholder: 'Please enter your password...',
+                              },
+                              on: {
+                                  input: (val) => {
+                                      this.pwd = val;
+                                  }
+                              }
+                          }),
+                      ])
+                  },
+                  onOk: async () => {
+                      let data = {
+                          method: 'post',
+                          params: this.form,
+                          url: '/admin/create',
+                      };
+                      let res = await util.httpReq(data);
+                      if (res === 'success') {
+                          this.$Message.success(content + '添加成功!');
+                      } else {
+                          this.$Message.error(content + '该用户名已注册');
+                      }
+                  },
+                  onCancle: () => {
+                      this.$Message.info('Clicked cancle');
+                  }
+              })
+
+          }
       }
   }
 </script>
