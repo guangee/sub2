@@ -157,9 +157,6 @@
           </FormItem>
         </Col>
       </Row>
-	  <FormItem>
-        <Button  type="primary" @click="handleSubmit('elevatorkeeperForm')">提交</Button>
-     </FormItem>
 	</Form>
   </div>
 </template>

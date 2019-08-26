@@ -149,8 +149,8 @@
                           this.$Message.error(content + '该用户名已注册');
                       }
                   },
-                  onCancle: () => {
-                      this.$Message.info('Clicked cancle');
+                  onCancel: () => {
+                      this.$Message.info('Clicked cancel');
                   }
               })
 
