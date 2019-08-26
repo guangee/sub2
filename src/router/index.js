@@ -13,7 +13,7 @@ const BoilerCheck = r => require.ensure([], () => r(require('@/page/boilercheck'
 const CraneCheck = r => require.ensure([], () => r(require('@/page/cranecheck')), 'boilercheck');
 const ElevatorCheck = r => require.ensure([], () => r(require('@/page/elevatorcheck')), 'boilercheck');
 const ElevatorkeeperCheck = r => require.ensure([], () => r(require('@/page/elevatorkeepercheck')), 'elevatorkeepercheck');
-
+const AddUser = r => require.ensure([], () => r(require('@/page/AddUser')), 'AddUser');
 Vue.use(Router)
 const router = new Router({
   routes: [
@@ -103,7 +103,15 @@ const router = new Router({
           requireAuth: true
         },
         component: ElevatorkeeperCheck,
-      },]
+      },{
+        path: '/addUser',
+        name: 'addUser',
+        meta: {
+          label: '添加与修改用户',
+          requireAuth: true
+        },
+        component: AddUser,
+      }]
     }]
 })
 router.beforeEach((to, from, next) => {

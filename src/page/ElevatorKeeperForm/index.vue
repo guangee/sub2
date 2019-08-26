@@ -257,7 +257,7 @@
           },
           method: 'get',
           url: '/keeper/check',
-        }
+        };
         let res = await util.httpReq(data);
         this.formList = res;
       }

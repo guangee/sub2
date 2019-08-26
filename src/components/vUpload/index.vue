@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>任命文件：</p>
-    <div class="demo-upload-list" v-for="item in uploadList" :key="item.id">
+    <div class="demo-upload-list" v-for="item in uploadList" :key="item.Id">
       <div v-if="item.status === 'finished'">
         <img :src="item.url">
         <div class="demo-upload-list-cover">
@@ -24,14 +24,14 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="http://62.234.138.48:8080/upload/uploadPic"
+      action="/upload/uploadPic"
       style="display: inline-block;width:70px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
         <Icon type="ios-camera" size="40"></Icon>
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
-      <img :src="'item.url'+ imgName + '/large'" v-if="visible" style="width: 100%">
+      <img :src="'item.url'+ Id + '/large'" v-if="visible" style="width: 100%">
     </Modal>
   </div>
 </template>
@@ -40,10 +40,12 @@
         props: ['formList', 'formKey','url','imgName'],
         data () {
             return {
-                url:'',
-                imgName: '',
+
                 visible: false,
-                uploadList: []
+                uploadList: [{
+                  url:'/upload/getPic',
+                  Id: '',
+                }]
             }
         },
         methods: {
@@ -68,61 +70,50 @@
                 const fileList = this.$refs.upload.fileList;
                 this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
             },
-            async getFormList(){
-                let data = {
-                    params:{
-                        id: this.$route.query.id
-                    },
-                    method: 'get',
-                    url: '/upload/deletePic',
-                }
-                let res = await util.httpReq(data);
-                this.formList = res;
-            },
-           async handleSuccess (res, file) {
+
+           async handleSuccess ( file) {
                 //console.log("name:" +  + "\nurl:" + res.toString());
-                this.Lists.push({"url": "http://" + res.toString(), "imgName": file.name.toString()});
-                var i = this.Lists.findIndex(
+             let data = {
+               params:{
+                 id: this.$route.query.id
+               },
+               method: 'get',
+               url: '/upload/getPic',
+             }
+             let res = await util.httpReq(data);
+
+             this.uploadList.push({ "Id": res.Id.toString()});
+                var i = this.uploadList.findIndex(
                     function(value, index, arr){return value.name == file.name.toString();}
                 );
                 console.log("add index :" + i );
               //将后台提供的接口push到数组上
             },
-            async getFormList(){
-                let data = {
-                    params:{
-                        id: this.$route.query.id
-                    },
-                    method: 'post',
-                    url: '/upload/uploadPic',
-                }
-                let res = await util.httpReq(data);
-                this.formList = res;
-            },
-            handleFormatError (file) {
-                this.$Notice.warning({
-                    title: 'The file format is incorrect',
-                    desc: 'File format of ' + file.name + ' is incorrect, please select jpg or png.'
-                });
-            },
-            handleMaxSize (file) {
-                this.$Notice.warning({
-                    title: 'Exceeding file size limit',
-                    desc: 'File  ' + file.name + ' is too large, no more than 2M.'
-                });
-            },
-            handleBeforeUpload () {
-                const check = this.uploadList.length < 5;
-                if (!check) {
-                    this.$Notice.warning({
-                        title: 'Up to five pictures can be uploaded.'
-                    });
-                }
-                return check;
+
+          handleFormatError (file) {
+            this.$Notice.warning({
+              title: '文件格式不正确',
+              desc: '文件 ' + file.name + ' 格式不正确，请上传 jpg 或 png 格式的图片。'
+            });
+          },
+          handleMaxSize (file) {
+            this.$Notice.warning({
+              title: '超出文件大小限制',
+              desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+            });
+          },
+          handleBeforeUpload () {
+            const check = this.uploadList.length < 5;
+            if (!check) {
+              this.$Notice.warning({
+                title: '最多只能上传 5 张图片。'
+              });
             }
+            return check;
+          }
         },
         mounted () {
-            this.uploadList = this.$refs.upload.fileList;
+
         }
     }
 </script>

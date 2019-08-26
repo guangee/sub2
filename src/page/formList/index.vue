@@ -10,31 +10,32 @@
 <template>
   <div>
     <Card class="add-card">
-      <!--
-        ** 如果要涉及多种查询，去掉注释
       <Collapse simple accordion>
         <Panel name="1">
           按表单类型查询
           <div slot="content">
             <Select v-model="searchType" style="width:200px">
-              <Option v-for="item in formTypeList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              <Option v-for="item in formTypeList" :value="item.value" :key="item.value" >{{ item.label }}</Option>
             </Select>
-            <Button type="primary" @click="searchTypeList()">查询</Button>
+            <Button type="primary" @click="searchTypeList(value)">查询</Button>
           </div>
         </Panel>
         <Panel name="2">
             按制造单位查询
             <div slot="content">
-              <Input v-model="corpnName" placeholder="请输入制造单位名称" />
+              <Input v-model="findForm.corpnName" placeholder="请输入制造单位名称" />
               <Button type="primary" @click="searchCorpList()">查询</Button>
             </div>
         </Panel>
+        <!--
         <Panel name="3">
             精细查询
             <p slot="content">乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
+
         </Panel>
+        -->
       </Collapse>
-    -->
+
       <Form :model="findForm" label-position="left" :label-width="100">
         <FormItem label="表单类型">
           <Cascader :data="tableList" trigger="hover" v-model="content"></Cascader>
@@ -63,6 +64,7 @@
         </Row>
         <div class="find-button">
           <Button type="primary" @click="searchList()">查询</Button>
+          <Button type="primary" @click="addUser()">添加与删除用户</Button>
         </div>
       </Form>
     </Card>
@@ -93,18 +95,21 @@
       return {
         findForm: {},
         data1: [],
-        // formTypeList: [
-        // {
-        //   value: 'Bioler',
-        //   label: '锅炉压力容器制造单位监督检查记录表',
-        // }, {
-        //   value: 'Crane',
-        //   label: '起重机械制造单位监督抽查记录表',
-        // }, {
-        //   value: 'Elevator',
-        //   label: '电梯维保单位监督检查记录表',
-        // }],
-        // searchType: '',
+         formTypeList: [
+         {
+           value: 'Bioler',
+           label: '锅炉压力容器制造单位监督检查记录表',
+         }, {
+           value: 'Crane',
+           label: '起重机械制造单位监督抽查记录表',
+         }, {
+           value: 'Elevator',
+           label: '电梯维保单位监督检查记录表',
+         },{
+             value: 'Keeper',
+             label: '电梯安装维保单位监督检查记录表',
+           }],
+         searchType: '',
         currentPage: 1,
         pageIndex: 0,
         content: [],
@@ -227,8 +232,21 @@
 
       // 表单类型 查询 待做
       async searchTypeList() {
-        console.log(this.searchType);
+       this.findForm.type = this.searchType;
+        console.log(this.findForm.type);
+        this.pageIndex = 0;
+        this.searchReq();
+        this.isFindProcess = true;
+
+
       },
+      async searchCorpList(){
+        console.log(this.findForm.corpnName);
+        this.pageIndex = 0;
+        this.searchReq();
+        this.isFindProcess = true;
+      },
+
 
       // 查询功能 整合查询数据 请求拿到list
       searchList() {
@@ -280,6 +298,13 @@
         } else {
           this.$Message.error('删除失败，请稍后再试');
         }
+      },
+      addUser(){
+        this.$router.push({
+          path:'/addUser',
+
+        });
+
       }
     }
   }
