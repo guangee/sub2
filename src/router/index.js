@@ -8,13 +8,15 @@ const FormList = r => require.ensure([], () => r(require('@/page/formList')), 'F
 const BoilerForm = r => require.ensure([], () => r(require('@/page/boilerForm')), 'BoilerForm');
 const CraneForm = r => require.ensure([], () => r(require('@/page/craneForm')), 'CraneForm');
 const ElevatorForm = r => require.ensure([], () => r(require('@/page/elevatorForm')), 'ElevatorForm');
-const ElevatorkeeperForm =r => require.ensure([], () => r(require('@/page/elevatorkeeperForm')), 'ElevatorkeeperForm');
+const KeeperForm =r => require.ensure([], () => r(require('@/page/keeperForm')), 'KeeperForm');
 const BoilerCheck = r => require.ensure([], () => r(require('@/page/boilercheck')), 'boilercheck');
 const CraneCheck = r => require.ensure([], () => r(require('@/page/cranecheck')), 'boilercheck');
 const ElevatorCheck = r => require.ensure([], () => r(require('@/page/elevatorcheck')), 'boilercheck');
-const ElevatorkeeperCheck = r => require.ensure([], () => r(require('@/page/elevatorkeepercheck')), 'elevatorkeepercheck');
 const AddUser = r => require.ensure([], () => r(require('@/page/AddUser')), 'AddUser');
-Vue.use(Router)
+const KeeperCheck = r => require.ensure([], () => r(require('@/page/keepercheck')), 'keepercheck');
+
+
+Vue.use(Router);
 const router = new Router({
   routes: [
     {
@@ -45,7 +47,7 @@ const router = new Router({
           requireAuth: true
         },
         component: BoilerForm,
-      },{
+      }, {
         path: '/boilercheck',
         name: 'boilercheck',
         meta: {
@@ -69,7 +71,7 @@ const router = new Router({
           requireAuth: true
         },
         component: CraneCheck,
-      },{
+      }, {
         path: '/elevatorForm',
         name: 'elevatorForm',
         meta: {
@@ -86,24 +88,25 @@ const router = new Router({
           requireAuth: true
         },
         component: ElevatorCheck,
-      },{
-        path: '/elevatorkeeperForm',
-        name: 'elevatorkeeperForm',
+      }, {
+        path: '/keeperForm',
+        name: 'keeperForm',
         meta: {
           label: '电梯维修表单',
           requireAuth: true
         },
-        component: ElevatorkeeperForm,
+        component: KeeperForm,
 
       }, {
-        path: '/elevatorkeepercheck',
-        name: 'elevatorkeepercheck',
+        path: '/keepercheck',
+        name: 'keepercheck',
         meta: {
           label: '电梯维修表单详情',
           requireAuth: true
         },
-        component: ElevatorkeeperCheck,
-      },{
+
+        component: KeeperCheck,
+      }, {
         path: '/addUser',
         name: 'addUser',
         meta: {
@@ -113,7 +116,12 @@ const router = new Router({
         component: AddUser,
       }]
     }]
-})
+  });
+
+
+
+
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(res => res.meta.requireAuth)) {
     if (sessionStorage.getItem('authorization')) {// 判断是否登录

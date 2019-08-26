@@ -44,7 +44,7 @@
                       <MenuItem name="boilerForm">锅炉压力容器制造单位监督检查记录表</MenuItem>
                       <MenuItem name="craneForm">起重机械制造单位监督抽查记录表</MenuItem>
                       <MenuItem name="elevatorForm">电梯制造单位监督检查记录表</MenuItem>
-					  <MenuItem name="elevatorkeeperForm">电梯安装维保单位监督检查记录表</MenuItem>
+					  <MenuItem name="keeperForm">电梯安装维保单位监督检查记录表</MenuItem>
                   </Submenu>
               </Menu>
             </Sider>
