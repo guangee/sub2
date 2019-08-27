@@ -200,7 +200,7 @@
               props: {
                 formList: this.formList,
                 formKey: params.row.id,
-                isdisable:true,
+                isdisable:false,
               }
             })
           }
