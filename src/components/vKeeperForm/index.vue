@@ -19,7 +19,7 @@
       }
     },
     mounted() {
-      if (this.$route.name === 'keepercheck' || this.$route.name === 'keeperForm') {
+      if (this.$route.name === 'elevatorcheck' || this.$route.name === 'elevatorForm') {
         this.key = this.formKey.slice(0,2) + 'Record_' + this.formKey.slice(2);
       } else {
         this.key = 'problem_' + this.formKey;
