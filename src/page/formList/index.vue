@@ -17,13 +17,13 @@
             <Select v-model="searchType" style="width:200px">
               <Option v-for="item in formTypeList" :value="item.value" :key="item.value" >{{ item.label }}</Option>
             </Select>
-            <Button type="primary" @click="searchTypeList(value)">查询</Button>
+            <Button type="primary" @click="searchTypeList()">查询</Button>
           </div>
         </Panel>
         <Panel name="2">
             按制造单位查询
             <div slot="content">
-              <Input v-model="findForm.corpnName" placeholder="请输入制造单位名称" />
+              <Input v-model="searchcorpnName" placeholder="请输入制造单位名称"  style="width:200px"/>
               <Button type="primary" @click="searchCorpList()">查询</Button>
             </div>
         </Panel>
@@ -64,7 +64,7 @@
         </Row>
         <div class="find-button">
           <Button type="primary" @click="searchList()">查询</Button>
-          <Button type="primary" @click="addUser()">添加与删除用户</Button>
+          <Button v-if="this.isadmin === 1" type="primary" @click="addUser()">添加与删除用户</Button>
         </div>
       </Form>
     </Card>
@@ -86,18 +86,21 @@
     Boiler: '/boiler/delete',
     Crane: '/Crane/delete',
     Elevator: '/Elevator/delete',
-      Keeper: '/Keeper/delete',
+      Keeper: '/keeper/delete',
   };
 
   export default {
 
     data() {
       return {
+        searchcorpnName:'',
         findForm: {},
         data1: [],
-         formTypeList: [
+        list:[],
+        isadmin: sessionStorage.getItem("isadmin"),
+        formTypeList: [
          {
-           value: 'Bioler',
+           value: 'Boiler',
            label: '锅炉压力容器制造单位监督检查记录表',
          }, {
            value: 'Crane',
@@ -110,6 +113,7 @@
              label: '电梯安装维保单位监督检查记录表',
            }],
          searchType: '',
+        searchcorpnName:'',
         currentPage: 1,
         pageIndex: 0,
         content: [],
@@ -194,8 +198,8 @@
       this.getFormList();
     },
     methods: {
-      changepage(value) {
-        this.pageIndex = value - 1;
+      changepage(valued) {
+        this.pageIndex = valued - 1;
         if (this.isFindProcess) {
           this.searchReq();
         } else {
@@ -211,7 +215,7 @@
           },
           method: 'get',
           url: '/all/check',
-        }
+        };
         let res = await util.httpReq(data);
         this.data1 = res.list;
         this.pageNum = res.num;
@@ -224,27 +228,64 @@
           params: this.findForm,
           method: 'post',
           url: '/all/select',
-        }
+        };
         let res = await util.httpReq(data);
+
         this.data1 = res.list;
         this.pageNum = res.num;
+        console.log(this.data1);
       },
 
       // 表单类型 查询 待做
-      async searchTypeList() {
+      searchTypeList() {
        this.findForm.type = this.searchType;
-        console.log(this.findForm.type);
+        console.log(this.findForm);
         this.pageIndex = 0;
-        this.searchReq();
-        this.isFindProcess = true;
+         this.searchtype();
+         this.isFindProcess = true;
+
+
+
 
 
       },
-      async searchCorpList(){
-        console.log(this.findForm.corpnName);
+      async searchtype(){
+        this.findForm.pageIndex = this.pageIndex;
+        let data = {
+          params: this.findForm,
+          method: 'get',
+          url: '/all/checkByType',
+        };
+        let res = await util.httpReq(data);
+
+        this.data1 = res.list;
+        this.pageNum = res.num;
+        console.log(this.data1);
+        console.log(this.pageIndex);
+      },
+      async searchcorp(){
+        this.findForm.corpnName = this.searchcorpnName;
+        this.findForm.pageIndex = this.pageIndex;
+        let data = {
+          params: this.findForm,
+          method: 'get',
+          url: '/all/checkByCom',
+        };
+        let res = await util.httpReq(data);
+
+        this.data1 = res.list;
+        this.pageNum = res.num;
+        console.log(this.data1);
+        console.log(this.pageIndex);
+      } ,
+      searchCorpList(){
+        console.log(this.findForm);
         this.pageIndex = 0;
-        this.searchReq();
+        this.searchcorp();
         this.isFindProcess = true;
+        console.log(this.data1)
+
+
       },
 
 
@@ -275,7 +316,7 @@
           this.findForm.problem = problem;
         }
 
-        // 请求第一页的数据
+        console.log(this.findForm);// 请求第一页的数据
         this.pageIndex = 0;
         this.searchReq();
         this.isFindProcess = true;
@@ -289,7 +330,7 @@
           },
           method: 'delete',
           url: deleteRouter[type],
-        }
+        };
         let res = await util.httpReq(data);
         // 防止 删除失败的发生
         if (res === 'success') {

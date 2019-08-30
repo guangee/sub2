@@ -46,6 +46,7 @@
                       <MenuItem name="elevatorForm">电梯制造单位监督检查记录表</MenuItem>
 					            <MenuItem name="keeperForm">电梯安装维保单位监督检查记录表</MenuItem>
                   </Submenu>
+                <MenuItem v-if="isadmin == 1" name="addUser">添加与删除用户</MenuItem>
               </Menu>
             </Sider>
             <Layout :style="{padding: '64px 24px 24px 224px', minWidth: '1200px'}">
@@ -67,6 +68,7 @@
           homeRoute: '/',
           activeOption: '',
           openMenu: [],
+          isadmin:  sessionStorage.getItem("id"),
         }
       },
       components: {

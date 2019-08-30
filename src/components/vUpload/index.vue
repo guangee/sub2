@@ -1,12 +1,12 @@
 <template>
   <div>
     <p>任命文件：</p>
-    <div class="demo-upload-list" v-for="item in uploadList" :key="item.Id">
+    <div class="demo-upload-list" v-for="item in uploadList" :key="item.fileId">
       <div v-if="item.status === 'finished'">
-        <img :src="item.url">
+        <img :src="'item.url' + 'item.fileId'">
         <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
-          <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
+          <Icon type="ios-eye-outline" @click.native="handleView(item.fileId, )"></Icon>
+          <Icon type="ios-trash-outline" @click.native="handleRemove(item, item.fileId)"></Icon>
         </div>
       </div>
       <div v-else>
@@ -24,7 +24,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="/upload/uploadPic"
+      action="api/upload/uploadPic"
       style="display: inline-block;width:70px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
         <Icon type="ios-camera" size="40"></Icon>
@@ -36,22 +36,24 @@
   </div>
 </template>
 <script>
+    import util from '@/util/util.js';
     export default {
-        props: ['formList', 'formKey','url','imgName'],
+        props: ['formList', 'formKey','url','fileId'],
         data () {
             return {
 
                 visible: false,
                 uploadList: [{
-                  url:'/upload/getPic',
-                  Id: '',
-                }]
+                  url:'api/upload/getPic',
+                  fileId: [],
+                }],
+                Id:[]
             }
         },
         methods: {
             handleView (name,url) {
                 this.url = url;
-                this.imgName = name;
+                this.fileId = name;
                 this.visible = true;
             },
            /* async getFormList(){
@@ -66,27 +68,34 @@
                 this.formList = res;
             },
             */
-            handleRemove (file) {
-                const fileList = this.$refs.upload.fileList;
-                this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+           async handleRemove (file, index) {
+              let data = {
+                params: this.Id,
+                method: 'delete',
+                url: 'api/upload/deletePic',
+              };
+              let res = await util.httpReq(data);
+              // 防止 删除失败的发生
+              if (res === 'success') {
+                this.uploadList.splice(index, 1);
+                this.$Message.success('删除成功');
+              } else {
+                this.$Message.error('删除失败，请稍后再试');
+              }
             },
 
            async handleSuccess ( file) {
                 //console.log("name:" +  + "\nurl:" + res.toString());
              let data = {
-               params:{
-                 id: this.$route.query.id
-               },
+               params: this.Id,
                method: 'get',
-               url: '/upload/getPic',
-             }
+               url: 'api/upload/getPic',
+             };
              let res = await util.httpReq(data);
 
-             this.uploadList.push({ "Id": res.Id.toString()});
-                var i = this.uploadList.findIndex(
-                    function(value, index, arr){return value.name == file.name.toString();}
-                );
-                console.log("add index :" + i );
+             this.uploadList.push({ "fileId": res.fileId.toString()});
+             this.Id.push({"Id": res.fileId.toString()})
+
               //将后台提供的接口push到数组上
             },
 

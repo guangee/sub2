@@ -132,7 +132,7 @@
       <Table :columns="columns1" :data="tableList.table_9" ></Table>
       <Form :model="formList" label-position="right" >
         <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
-          <Input v-model="formList. problemRecord_4" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+          <Input v-model="formList.problemRecord_4" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
         </FormItem>
       </Form>
       <h3>10.安装维保单位反映的问题</h3>
@@ -157,6 +157,9 @@
           </FormItem>
         </Col>
       </Row>
+      <FormItem>
+        <Button  type="primary" @click="handleSubmit('keeperForm')">提交</Button>
+      </FormItem>
     </Form>
   </div>
 </template>

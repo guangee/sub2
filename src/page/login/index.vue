@@ -23,10 +23,11 @@
               </Input>
             </FormItem>
             <FormItem>
-              <Button @click="handleSubmit" type="primary" long>登录</Button>
+              <Button @click="handleSubmit" type="primary" long>普通用户登录</Button>
+              <Button @click="handleadminSubmit" type="primary" long>管理员登录</Button>
             </FormItem>
           </Form>
-          <p class="login-tip" @click="createNew">添加新用户</p>
+
         </div>
       </Card>
     </div>
@@ -55,9 +56,14 @@
       },
       data () {
         return {
+
           form: {
             username: '',
             password: ''
+          },
+          adminmodel: {
+            adminName: '',
+            adminPass: ''
           }
         }
       },
@@ -82,7 +88,31 @@
               localStorage.setItem("username", this.form.username );
               sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
               this.$router.push({
-                  path: '/formList',
+                path: '/formList',
+              });
+              console.log(res.content.token )
+            }
+          })
+        },
+        handleadminSubmit () {
+          this.adminmodel.adminName = this.form.username;
+          this.adminmodel.adminPass = this.form.password;
+          console.log(this.adminmodel);
+          this.$refs.loginForm.validate(async (valid) => {
+            if (valid) {
+              let data = {
+                method: 'post',
+                params: this.adminmodel,
+                url: '/admin/login',
+              };
+              let res = await util.httpReq(data);
+              localStorage.setItem("username", this.adminmodel.adminName );
+              sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
+              sessionStorage.setItem("id", res.content.id );
+              console.log(this.username);
+              this.$router.push({
+                path: '/formList',
+
               });
             }
           })

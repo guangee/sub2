@@ -16,6 +16,7 @@ const AddUser = r => require.ensure([], () => r(require('@/page/AddUser')), 'Add
 const KeeperCheck = r => require.ensure([], () => r(require('@/page/keepercheck')), 'keepercheck');
 
 
+
 Vue.use(Router);
 const router = new Router({
   routes: [
@@ -114,7 +115,7 @@ const router = new Router({
           requireAuth: true
         },
         component: AddUser,
-      }]
+      },,]
     }]
   });
 

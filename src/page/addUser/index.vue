@@ -1,10 +1,10 @@
 <template>
-  <Form ref="addForm"  :model="userList" :rules="ruleuserList" label-position="right" :label-width="90">
+  <Form ref="addForm"  :model="usermodel" :rules="ruleuserList" label-position="right" :label-width="90">
   <FormItem label="用户名">
-    <Input v-model="userList.Name" placeholder="请输入用户名" style="width: 333px" ></Input>
+    <Input v-model="usermodel.username" placeholder="请输入用户名" style="width: 333px" ></Input>
   </FormItem>
     <FormItem label="密码">
-      <Input v-model="userList.word" placeholder="请输入密码" style="width: 333px" ></Input>
+      <Input v-model="usermodel.password" placeholder="请输入密码" style="width: 333px" ></Input>
     </FormItem>
     <FormItem>
       <Button  type="primary" @click="handleSubmit()">提交</Button>
@@ -18,15 +18,19 @@
     export default {
         data(){
           return{
-            userList: {
-              Name:'',
+            usermodel: {
+              username:'',
+              password:'',
+            },
+            delete:{
+              name:'',
               word:'',
             },
             ruleuserList: {
-              Name: [
-                { required: true, message: '用户名不能', trigger: 'blur' }
+              username: [
+                { required: true, message: '用户名不能为空', trigger: 'blur' }
               ],
-              word: [
+              password: [
                 { required: true, message: '密码不能为空', trigger: 'blur' }
               ]
             },
@@ -36,18 +40,37 @@
           async handleSubmit () {
             let data = {
               method: 'post',
-              params: this.userList,
-              url: '62.234.138.48:8080/admin/create',
+              params: this.usermodel,
+              url: '/admin/create',
             };
             let res = await util.httpReq(data);
+            if (res === 'success') {
+              this.$Message.success( '添加成功!');
+              this.$router.push({
+                path: '/formList',
+              });
+            } else {
+              this.$Message.error(  '添加失败，请稍后再试');
+            }
           },
           async handelDelet(){
+            this.delete.name = this.usermodel.username;
+            this.delete.word = this.usermodel.password;
             let data = {
-              method: 'post',
-              params: this.userList,
-              url: '62.234.138.48:8080/admin/delete',
+              method: 'delete',
+              params: this.delete,
+              url: '/admin/delete',
             };
             let res = await util.httpReq(data);
+            if (res === 'success') {
+              this.$Message.success( '删除成功!');
+              this.$router.push({
+                path: '/formList',
+
+              });
+            } else {
+              this.$Message.error( '删除失败，请稍后再试');
+            }
           }
 
         }
