@@ -41,7 +41,6 @@
         props: ['formList', 'formKey','url','fileId'],
         data () {
             return {
-
                 visible: false,
                 uploadList: [{
                   url:'api/upload/getPic',
