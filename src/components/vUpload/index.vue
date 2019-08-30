@@ -24,7 +24,7 @@
       :before-upload="handleBeforeUpload"
       multiple
       type="drag"
-      action="/upload/uploadPic"
+      action="api/upload/uploadPic"
       style="display: inline-block;width:70px;">
       <div style="width: 58px;height:58px;line-height: 58px;">
         <Icon type="ios-camera" size="40"></Icon>
@@ -40,7 +40,6 @@
         props: ['formList', 'formKey','url','imgName'],
         data () {
             return {
-
                 visible: false,
                 uploadList: [{
                   url:'/upload/getPic',
