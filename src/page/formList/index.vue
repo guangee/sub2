@@ -63,13 +63,6 @@
             </Form>
           </div>
         </Panel>
-        <!--
-        <Panel name="3">
-            精细查询
-            <p slot="content">乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
-
-        </Panel>
-        -->
       </Collapse>
     </Card>
     <div class="find-button">
