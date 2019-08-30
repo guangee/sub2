@@ -64,42 +64,7 @@
           </div>
         </Panel>
       </Collapse>
-
-
-      <Form :model="findForm" label-position="left" :label-width="100">
-        <FormItem label="表单类型">
-          <Cascader :data="tableList" trigger="hover" v-model="content"></Cascader>
-        </FormItem>
-        <Row type="flex" justify="space-between" class="code-row-bg">
-          <Col span="8">
-            <FormItem label="检查结果" >
-              <RadioGroup v-model="findForm.result" class="radio" >
-                <Radio label="符合" >符合</Radio>
-                <Radio label="不符合" >不符合</Radio>
-                <Radio label="有缺陷" >有缺陷</Radio>
-                <Radio label="无此项" >无此项</Radio>
-              </RadioGroup>
-             </FormItem>
-          </Col>
-          <Col span="6">
-            <FormItem label="制造单位名称" >
-              <Input v-model="findForm.corpnName" placeholder="请输入制造单位名称" />
-            </FormItem>
-          </Col>
-          <Col span="8">
-            <FormItem  label="问题说明及记录" :label-width="120">
-              <Input v-model="findForm.problemResult" placeholder="请输问题说明及记录" />
-            </FormItem>
-          </Col>
-        </Row>
-        <div class="find-button">
-          <Button type="primary" @click="searchList()">查询</Button>
-
-        </div>
-      </Form>
-
     </Card>
-
     <Table border :columns="columns1" :data="data1"></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
