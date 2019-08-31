@@ -177,13 +177,13 @@
     import vElevatorForm from '@/components/vElevatorForm';
     import vElevatorForm1 from '@/components/vElevatorForm1';
     import vElevatorForm2 from '@/components/vElevatorForm2';
-    import vUpload from '@/components/vUpload';
+    import vUpload1 from '@/components/vUpload1';
     import util from '@/util/util.js';
     export default {
         components: {
             vFormRadio,
             vFormInput,
-            vUpload
+            vUpload1
         },
         data() {
             return {
@@ -256,28 +256,28 @@
                     render: (h, params) => {
                         switch (params.row.id) {
                             case 'rc2_1':
-                                return h(vUpload, {
+                                return h(vUpload1, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
                             case 'rc2_2':
-                                return h(vUpload, {
+                                return h(vUpload1, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
                             case 'rc2_3':
-                                return h(vUpload, {
+                                return h(vUpload1, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
                                     }
                                 });
                             case 'rc2_4':
-                                return h(vUpload, {
+                                return h(vUpload1, {
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
