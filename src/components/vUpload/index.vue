@@ -1,16 +1,13 @@
 <template>
   <div>
     <p>任命文件：</p>
-    <div class="demo-upload-list" v-for="item in uploadList" :key="item.fileId">
-      <div v-if="item.status === 'finished'">
-        <img :src="'item.url' + 'item.fileId'">
+    <div class="demo-upload-list" v-for="(item, index) in uploadList" :key="index">
+      <div>
+        <img :src="'/api/upload/getPic?id=' + item">
         <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item.fileId, )"></Icon>
-          <Icon type="ios-trash-outline" @click.native="handleRemove(item, item.fileId)"></Icon>
+          <Icon type="ios-eye-outline" @click.native="handleView(item)"></Icon>
+          <Icon type="ios-trash-outline" @click.native="handleRemove(item, index)"></Icon>
         </div>
-      </div>
-      <div v-else>
-        <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
       </div>
     </div>
     <Upload
@@ -30,8 +27,8 @@
         <Icon type="ios-camera" size="40"></Icon>
       </div>
     </Upload>
-    <Modal title="View Image" v-model="visible">
-      <img :src="'item.url'+ Id + '/large'" v-if="visible" style="width: 100%">
+    <Modal title="查看大图" v-model="visible">
+      <img :src="'api/upload/getPic?id='+ modalImgId" v-if="visible" style="width: 100%">
     </Modal>
   </div>
 </template>
@@ -41,62 +38,44 @@
         props: ['formList', 'formKey','url','fileId'],
         data () {
             return {
-                visible: false,
-                uploadList: [{
-                  url:'api/upload/getPic',
-                  fileId: [],
-                }],
-                Id:[]
+              key: '',
+              visible: false,
+              uploadList: [],
+              modalImgId: '',
             }
         },
         methods: {
-            handleView (name,url) {
-                this.url = url;
-                this.fileId = name;
-                this.visible = true;
-            },
-           /* async getFormList(){
-                let data = {
-                    params:{
-                        id: this.$route.query.id
-                    },
-                    method: 'get',
-                    url: '/upload/getPic',
-                }
-                let res = await util.httpReq(data);
-                this.formList = res;
-            },
-            */
-           async handleRemove (file, index) {
-              let data = {
-                params: this.Id,
-                method: 'delete',
-                url: 'api/upload/deletePic',
-              };
-              let res = await util.httpReq(data);
-              // 防止 删除失败的发生
-              if (res === 'success') {
-                this.uploadList.splice(index, 1);
-                this.$Message.success('删除成功');
-              } else {
-                this.$Message.error('删除失败，请稍后再试');
-              }
-            },
+          handleView (id) {
+            this.modalImgId = id;
+            this.visible = true;
+          },
+          async handleRemove (id, index) {
+            let data = {
+              params: {
+                id: id,
+              },
+              method: 'get',
+              url: 'upload/deletePic',
+            };
+            let res = await util.httpReq(data);
+            // 防止 删除失败的发生
+            if (res === 'success') {
+              this.uploadList.splice(index, 1);
+              this.formList[this.key].splice(index, 1);
+              this.$Message.success('删除成功');
+            } else {
+              this.$Message.error('删除失败，请稍后再试');
+            }
+          },
 
-           async handleSuccess ( file) {
-                //console.log("name:" +  + "\nurl:" + res.toString());
-             let data = {
-               params: this.Id,
-               method: 'get',
-               url: 'api/upload/getPic',
-             };
-             let res = await util.httpReq(data);
-
-             this.uploadList.push({ "fileId": res.fileId.toString()});
-             this.Id.push({"Id": res.fileId.toString()})
-
-              //将后台提供的接口push到数组上
-            },
+          async handleSuccess (response, file) {
+            this.uploadList = this.uploadList.concat(response.fileId);
+            if (!this.formList[this.key]) {
+              this.formList[this.key] = [];
+            }
+            this.formList[this.key] = this.formList[this.key].concat(response.fileId);
+            //将后台提供的接口push到数组上
+          },
 
           handleFormatError (file) {
             this.$Notice.warning({
@@ -121,7 +100,8 @@
           }
         },
         mounted () {
-
+          //rcPicture_2_1
+          this.key = this.formKey.slice(0,2) + 'Picture_' + this.formKey.slice(2);
         }
     }
 </script>

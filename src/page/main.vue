@@ -34,10 +34,10 @@
           <Layout>
             <Sider hide-trigger :style="{minHeight: '100vh', position: 'fixed', top: '64px', bottom: '0', zIndex: '99'}">
               <Menu :active-name="activeOption" theme="dark" width="auto" :open-names="openMenu" @on-select="routeTo" ref="leftMenu">
-                <MenuItem name="formList">
+                <MenuItem name="formList" v-if="isadmin !== '1'">
                   <span>表单列表</span>
                 </MenuItem>
-                  <Submenu name="2">
+                  <Submenu name="2" v-if="isadmin !== '1'">
                       <template slot="title">
                           添加表单
                       </template>
