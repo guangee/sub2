@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>任命文件：</p>
-    <div class="demo-upload-list" v-for="(item, index) in uploadList" :key="index">
+    <div class="demo-upload-list" v-for="(item, index) in uploadList" :key="key + index">
       <div>
         <img :src="'/api/upload/getPic?id=' + item">
         <div class="demo-upload-list-cover">
@@ -43,6 +43,13 @@
               uploadList: [],
               modalImgId: '',
             }
+        },
+        watch:{   // 使用监听的方式，监听数据的变化
+          formList(newVal, oldVal){
+            if(newVal[this.key]) {
+              this.uploadList = newVal[this.key];
+            }
+          }
         },
         methods: {
           handleView (id) {

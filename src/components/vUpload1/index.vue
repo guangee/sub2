@@ -1,23 +1,25 @@
 <template>
   <div>
     <p>任命文件：</p>
-    <div class="demo-upload-list" v-for="(item, index) in uploadList" :key="index">
-      <div>
-        <img :src="'/api/upload/getPic?id=' + item">
-        <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item)"></Icon>
+    <div class="img-list">
+      <div class="demo-upload-list" v-for="(item, index) in uploadList" :key="key + index">
+        <div>
+          <img :src="'/api/upload/getPic?id=' + item" />
+          <div class="demo-upload-list-cover">
+            <Icon type="ios-eye-outline" @click.native="handleView(item)"></Icon>
+          </div>
         </div>
       </div>
     </div>
     <Modal title="查看大图" v-model="visible">
-      <img :src="'api/upload/getPic?id='+ modalImgId" v-if="visible" style="width: 100%">
+      <img :src="'api/upload/getPic?id='+ modalImgId" v-if="visible" style="width: 100%" />
     </Modal>
   </div>
 </template>
 <script>
     import util from '@/util/util.js';
     export default {
-        props: ['formList', 'formKey', 'url', 'fileId'],
+        props: ['formList', 'formKey'],
         data() {
             return {
                 key: '',
@@ -32,6 +34,13 @@
                 this.visible = true;
             },
         },
+        watch:{   // 使用监听的方式，监听数据的变化
+          formList(newVal, oldVal){
+            if(newVal[this.key]) {
+              this.uploadList = newVal[this.key];
+            }
+          }
+        },
         mounted () {
             //rcPicture_2_1
             this.key = this.formKey.slice(0,2) + 'Picture_' + this.formKey.slice(2);
@@ -39,6 +48,9 @@
     }
 </script>
 <style>
+  .img-list {
+    min-height: 70px;
+  }
   .demo-upload-list{
     display: inline-block;
     width: 60px;
