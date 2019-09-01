@@ -346,6 +346,8 @@
         },
       mounted() {
           this.getFormList();
+          console.log(this.formList);
+
       },
       methods: {
           async getFormList(){
