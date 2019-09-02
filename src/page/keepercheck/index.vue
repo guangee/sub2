@@ -15,7 +15,7 @@
   }
 </style>
 <template>
-  <div>
+  <div class="row" id="pdfDom" style="padding-top: 55px;background-color:#fff;">
     <Form ref="keeperForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>电梯安装维保单位监督检查记录表</h2>
       <Col>
@@ -157,6 +157,9 @@
           </FormItem>
         </Col>
       </Row>
+      <div >
+        <button type="button" class="btn btn-primary"v-on:click="getPdf()">导出PDF</button>
+      </div>
 	</Form>
   </div>
 </template>
@@ -204,7 +207,8 @@
               }
             })
           }
-                }]
+                }],
+                htmlTitle: '页面导出PDF文件名',
 		}},
       mounted() {
           this.getFormList();

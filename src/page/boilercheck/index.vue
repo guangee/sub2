@@ -11,7 +11,7 @@
   }
 </style>
 <template>
-  <div>
+  <div class="row" id="pdfDom" style="padding-top: 55px;background-color:#fff;">
     <Form ref="boilerForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>锅炉压力容器制造单位监督检查记录表</h2>
       <Form :model="formList" label-position="right" :label-width="100">
@@ -134,9 +134,9 @@
         </Col>
       </Row>
       </div>
-      <FormItem>
-        <Button  disabled type="primary" @click="handleSubmit('boilerForm')">提交</Button>
-      </FormItem>
+      <div >
+        <button type="button" class="btn btn-primary"v-on:click="getPdf()">导出PDF</button>
+      </div>
     </Form>
   </div>
 </template>
@@ -152,6 +152,7 @@
     },
     data() {
       return {
+
         formList: {
 
         },
@@ -208,7 +209,8 @@
               },
             })
           }
-        }]
+        }],
+          htmlTitle: '页面导出PDF文件名',
       }
     },
     mounted() {

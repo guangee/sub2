@@ -6,7 +6,8 @@ import 'iview/dist/styles/iview.css';
 import VueRouter from 'vue-router';
 import App from './App'
 import router from './router'
-
+import htmlToPdf from './util/htmlToPdf'
+Vue.use(htmlToPdf);
 Vue.use(VueRouter);
 Vue.use(iView);
 
