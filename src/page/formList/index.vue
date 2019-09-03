@@ -31,7 +31,7 @@
         <Panel name="3">
           精细查询
           <div slot="content">
-            <Form :model="findForm" label-position="left" :label-width="100">
+            <Form :v-model="findForm" label-position="left" :label-width="100">
               <FormItem label="表单类型">
                 <Cascader :data="tableList" trigger="hover" v-model="content"></Cascader>
               </FormItem>
@@ -197,11 +197,27 @@
     methods: {
       changepage(valued) {
         this.pageIndex = valued - 1;
+     if ("findForm"===true){
         if (this.isFindProcess) {
           this.searchReq();
         } else {
           this.getFormList();
         }
+      }
+     else if(this.searchType){
+         if (this.isFindProcess) {
+             this.searchtype();
+         } else {
+             this.searchTypeList();
+         }
+     }
+     else {
+         if (this.isFindProcess) {
+         this.searchcorp();
+     } else {
+         this.searchCorpList();
+     }
+     }
       },
 
       // 表单list 请求
@@ -227,7 +243,6 @@
           url: '/all/select',
         };
         let res = await util.httpReq(data);
-
         this.data1 = res.list;
         this.pageNum = res.num;
         console.log(this.data1);
@@ -240,11 +255,6 @@
         this.pageIndex = 0;
          this.searchtype();
          this.isFindProcess = true;
-
-
-
-
-
       },
       async searchtype(){
         this.findForm.pageIndex = this.pageIndex;
@@ -269,7 +279,6 @@
           url: '/all/checkByCom',
         };
         let res = await util.httpReq(data);
-
         this.data1 = res.list;
         this.pageNum = res.num;
         console.log(this.data1);
@@ -281,11 +290,7 @@
         this.searchcorp();
         this.isFindProcess = true;
         console.log(this.data1)
-
-
       },
-
-
       // 查询功能 整合查询数据 请求拿到list
       searchList() {
         // 后续这里 可以改用Form 的 rules 来判断
@@ -312,7 +317,6 @@
         if (this.findForm.problemResult) {
           this.findForm.problem = problem;
         }
-
         console.log(this.findForm);// 请求第一页的数据
         this.pageIndex = 0;
         this.searchReq();
