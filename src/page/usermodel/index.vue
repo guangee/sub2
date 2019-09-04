@@ -31,7 +31,7 @@
         columns1: [
           {
             title: '用户名',
-            key: 'username'
+            key: 'name'
           }, {
             title: '操作',
             key: 'action',
@@ -79,8 +79,9 @@
         this.pageNum = res.num;
       },
 
+
       // 删除接口
-      async delete(id, type, index) {
+     /* async delete(id, type, index) {
         let data = {
           params: {
             id: id,
@@ -96,7 +97,7 @@
         } else {
           this.$Message.error('删除失败，请稍后再试');
         }
-      },
+      },  */
       addUser(){
         this.$router.push({
           path:'/addUser',
