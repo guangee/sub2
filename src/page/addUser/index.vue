@@ -8,7 +8,6 @@
     </FormItem>
     <FormItem>
       <Button  type="primary" @click="handleSubmit()">提交</Button>
-      <Button  type="primary" @click="handelDelet()">删除</Button>
     </FormItem>
   </Form>
 </template>
@@ -36,6 +35,9 @@
             },
           }
         },
+        mounted() {
+            this.getUserModel();
+        },
         methods:{
           async handleSubmit () {
             let data = {
@@ -47,13 +49,24 @@
             if (res === 'success') {
               this.$Message.success( '添加成功!');
               this.$router.push({
-                path: '/formList',
+                path: '/usermodel',
               });
             } else {
               this.$Message.error(  '添加失败，请稍后再试');
             }
           },
-          async handelDelet(){
+            async getUserModel(){
+                let data = {
+                    params: {
+                        id: this.$route.query.id
+                    },
+                    method: 'get',
+                    url: '/admin/check',
+                }
+                let res = await util.httpReq(data);
+                this.usermodel= res;
+            }
+         /*async handelDelet(){
             this.delete.name = this.usermodel.username;
             this.delete.word = this.usermodel.password;
             let data = {
@@ -71,9 +84,9 @@
             } else {
               this.$Message.error( '删除失败，请稍后再试');
             }
-          }
+          }*/
 
-        }
+        },
     }
 
 </script>
