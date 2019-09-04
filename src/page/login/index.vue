@@ -111,7 +111,7 @@
               sessionStorage.setItem("id", res.content.id );
               console.log(this.username);
               this.$router.push({
-                path: '/addUser',
+                path: '/usermodel',
 
               });
             }

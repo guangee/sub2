@@ -14,6 +14,7 @@ const CraneCheck = r => require.ensure([], () => r(require('@/page/cranecheck'))
 const ElevatorCheck = r => require.ensure([], () => r(require('@/page/elevatorcheck')), 'boilercheck');
 const AddUser = r => require.ensure([], () => r(require('@/page/AddUser')), 'AddUser');
 const KeeperCheck = r => require.ensure([], () => r(require('@/page/keepercheck')), 'keepercheck');
+const UserModel = r => require.ensure([], () => r(require('@/page/usermodel')), 'usermodel');
 
 
 
@@ -40,7 +41,16 @@ const router = new Router({
           requireAuth: true
         },
         component: FormList,
-      }, {
+      },{
+        path: '/usermodel',
+        name: 'usermodel',
+        meta: {
+          label: '用户列表',
+          requireAuth: true
+        },
+        component: UserModel,
+      },
+        {
         path: '/boilerForm',
         name: 'boilerForm',
         meta: {
