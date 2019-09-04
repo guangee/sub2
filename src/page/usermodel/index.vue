@@ -21,90 +21,90 @@
 
   export default {
 
-    data() {
-      return {
-        data1: [],
-        list:[],
-        currentPage: 1,
-        pageIndex: 0,
-        pageNum: 0,
-        columns1: [
-          {
-            title: '用户名',
-            key: 'name'
-          }, {
-            title: '操作',
-            key: 'action',
-            width: 225,
-            align: 'center',
-            render: (h, params) => {
-              return h('div', [
-                h('Button', {
-                  props: {
-                    type: 'error',
-                    size: 'small'
-                  },
-                  on: {
-                    click: () => {
-                      this.delete(params.row.id, params.row.type, params.index);
-                    }
+      data() {
+          return {
+              data1: [],
+              list: [],
+              currentPage: 1,
+              pageIndex: 0,
+              pageNum: 0,
+              columns1: [
+                  {
+                      title: '用户名',
+                      key: 'name'
+                  }, {
+                      title: '操作',
+                      key: 'action',
+                      width: 225,
+                      align: 'center',
+                      render: (h, params) => {
+                          return h('div', [
+                              h('Button', {
+                                  props: {
+                                      type: 'error',
+                                      size: 'small'
+                                  },
+                                  on: {
+                                      click: () => {
+                                          this.delete(params.row.id, params.row.type, params.index);
+                                      }
+                                  }
+                              }, '删除')
+                          ]);
+                      }
                   }
-                }, '删除')
-              ]);
-            }
+              ],
           }
-        ],
-      }
-    },
-    mounted() {
-      this.getUserModel();
-    },
-    methods: {
-      changepage(valued) {
-        this.pageIndex = valued - 1;
+      },
+      mounted() {
           this.getUserModel();
       },
-
-      // 表单list 请求
-      async getUserModel(){
-        let data = {
-          params: {
-            pageIndex: this.pageIndex,
+      methods: {
+          changepage(valued) {
+              this.pageIndex = valued - 1;
+              this.getUserModel();
           },
-          method: 'get',
-          url: '/admin/check',
-        };
-        let res = await util.httpReq(data);
-        this.data1 = res.list;
-        this.pageNum = res.num;
-      },
 
-
-      // 删除接口
-     /* async delete(id, type, index) {
-        let data = {
-          params: {
-            id: id,
+          // 表单list 请求
+          async getUserModel() {
+              let data = {
+                  params: {
+                      pageIndex: this.pageIndex,
+                  },
+                  method: 'get',
+                  url: '/admin/check',
+              };
+              let res = await util.httpReq(data);
+              this.data1 = res.list;
+              this.pageNum = res.num;
           },
-          method: 'delete',
-          url: deleteRouter[type],
-        };
-        let res = await util.httpReq(data);
-        // 防止 删除失败的发生
-        if (res === 'success') {
-          this.data1.splice(index, 1);
-          this.$Message.success('删除成功');
-        } else {
-          this.$Message.error('删除失败，请稍后再试');
-        }
-      },  */
-      addUser(){
-        this.$router.push({
-          path:'/addUser',
 
-        });
 
+          // 删除接口
+          async delete(name,password) {
+              let data = {
+                  params: {
+                      username: name,
+                  },
+                  method: 'delete',
+                  url: deleteRouter[password],
+              };
+              let res = await util.httpReq(data);
+              // 防止 删除失败的发生
+              if (res === 'success') {
+                  this.data1.splice(index, 1);
+                  this.$Message.success('删除成功');
+              } else {
+                  this.$Message.error('删除失败，请稍后再试');
+              }
+          },
+          addUser() {
+              this.$router.push({
+                  path: '/addUser',
+
+              });
+
+          }
       }
-    }
   }
 </script>
