@@ -325,21 +325,21 @@
 
       // 删除接口
       async delete(id, type, index) {
-        let data = {
-          params: {
-            id: id,
-          },
-          method: 'delete',
-          url: deleteRouter[type],
-        };
-        let res = await util.httpReq(data);
-        // 防止 删除失败的发生
-        if (res === 'success') {
-          this.data1.splice(index, 1);
-          this.$Message.success('删除成功');
-        } else {
-          this.$Message.error('删除失败，请稍后再试');
-        }
+                let data = {
+                    params: {
+                        id: id,
+                    },
+                    method: 'delete',
+                    url: deleteRouter[type],
+                };
+                let res = await util.httpReq(data);
+                // 防止 删除失败的发生
+                if (res === 'success') {
+                    this.data1.splice(index, 1);
+                    this.$Message.success('删除成功');
+                } else {
+                    this.$Message.error('删除失败，请稍后再试');
+                }
       },
       addUser(){
         this.$router.push({

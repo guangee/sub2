@@ -46,7 +46,8 @@
                                   },
                                   on: {
                                       click: () => {
-                                          this.delete(params.row.id, params.row.type, params.index);
+                                          this.delete(params.row.name);
+
                                       }
                                   }
                               }, '删除')
@@ -81,13 +82,14 @@
 
 
           // 删除接口
-          async delete(name,password) {
+          async delete(name) {
+              //var name1 = name.toString();
               let data = {
                   params: {
                       username: name,
                   },
                   method: 'delete',
-                  url: deleteRouter[password],
+                  url: '/admin/delete',
               };
               let res = await util.httpReq(data);
               // 防止 删除失败的发生
