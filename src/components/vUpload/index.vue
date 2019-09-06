@@ -14,7 +14,7 @@
       ref="upload" name="file"
       :show-upload-list="false"
       :on-success="handleSuccess"
-      :format="['jpg','jpeg','png','doc']"
+      :format="['jpg','jpeg','png']"
       :max-size="2048"
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleMaxSize"
