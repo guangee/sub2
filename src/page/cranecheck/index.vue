@@ -14,6 +14,8 @@
   }
 </style>
 <template>
+  <div>
+    <button style="position:absolute;right:10px" type="button" class="btn btn-primary"v-on:click="getPdf()">导出PDF</button>
   <div class="row" id="pdfDom" style="padding-top: 55px;background-color:#fff;">
     <Form ref="craneForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>起重机械制造单位监督抽查记录表</h2>
@@ -191,10 +193,8 @@
           </FormItem>
         </Col>
       </Row>
-      <div >
-        <button type="button" class="btn btn-primary"v-on:click="getPdf()">导出PDF</button>
-      </div>
     </Form>
+  </div>
   </div>
 </template>
 <script>

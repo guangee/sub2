@@ -12,6 +12,7 @@
 </style>
 <template>
   <div>
+    <button style="position:absolute;right:10px" type="button" class="btn btn-primary"v-on:click="getPdf()">导出PDF</button>
   <div class="row" id="pdfDom" style="padding-top: 55px;background-color:#fff;">
     <Form ref="boilerForm" label-position="left" :model="formList" :rules="ruleformList" class="form-wrapper" :label-width="100">
       <h2>锅炉压力容器制造单位监督检查记录表</h2>
@@ -135,10 +136,8 @@
         </Col>
       </Row>
       </div>
-
     </Form>
   </div>
-    <button style="margin:0 auto" type="button" class="btn btn-primary"v-on:click="getPdf()">导出PDF</button>
   </div>
 </template>
 <script>

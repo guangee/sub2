@@ -14,11 +14,6 @@
 <script>
   import util from '@/util/util.js';
 
-  const routerType = ['/admin'];
-  const deleteRouter = {
-    admin: '/admin/delete',
-  };
-
   export default {
 
       data() {
@@ -83,19 +78,20 @@
 
           // 删除接口
           async delete(name) {
-              //var name1 = name.toString();
               let data = {
                   params: {
-                      username: name,
+                      name: name,
                   },
                   method: 'delete',
                   url: '/admin/delete',
               };
               let res = await util.httpReq(data);
               // 防止 删除失败的发生
-              if (res === 'success') {
-                  this.data1.splice(index, 1);
+              if (res ==='success') {
+                 // this.data1.splice(index, 1);
+                  this.getUserModel();
                   this.$Message.success('删除成功');
+
               } else {
                   this.$Message.error('删除失败，请稍后再试');
               }
