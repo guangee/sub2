@@ -131,7 +131,7 @@
           }, {
             title: '操作',
             key: 'action',
-            width: 225,
+            width: 260,
             align: 'center',
             render: (h, params) => {
               return h('div', [
@@ -197,7 +197,7 @@
     methods: {
       changepage(valued) {
         this.pageIndex = valued - 1;
-     if ("findForm"===true){
+     if ("findForm"=== true){
         if (this.isFindProcess) {
           this.searchReq();
         } else {

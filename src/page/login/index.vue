@@ -76,7 +76,7 @@
         }
       },
       methods: {
-        handleSubmit () {
+        handleSubmit(key) {
           this.$refs.loginForm.validate(async (valid) => {
             if (valid) {
               let data = {
@@ -85,12 +85,31 @@
                 url: '/tokens',
               };
               let res = await util.httpReq(data);
-              localStorage.setItem("username", this.form.username );
-              sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
-              this.$router.push({
-                path: '/formList',
-              });
-              console.log(res.content.token )
+            /*    localStorage.setItem("username", this.form.username );
+                sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
+                //localStorage.clear();
+                //localStorage.removeItem("username");
+                //sessionStorage.removeItem("authorization");
+                this.$router.push({
+                    path: '/formList',
+                });
+                console.log(res.content.token)
+*/
+                if(res.code === -1004){
+                    this.$Message.error('此账号已在别处登录!');
+                    this.$router.push({
+                        path: '/login',
+                    });
+                }
+                else {
+                    localStorage.setItem("username", this.form.username );
+                    sessionStorage.setItem("authorization", res.content.id + '_' + res.content.token);
+                    localStorage.removeItem("username");
+                    this.$router.push({
+                        path: '/formList',
+                    });
+                    console.log(res.content.token)
+                }
             }
           })
         },

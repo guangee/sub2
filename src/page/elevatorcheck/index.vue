@@ -22,33 +22,33 @@
       <h2>附表 5:电梯制造单位监督抽查记录表</h2>
       <Col>
         <FormItem label="单位名称" prop="corpnName">
-          <Input disabled v-model="formList.corpnName" placeholder="请输入单位名称"></Input>
+          <Input readonly="true" v-model="formList.corpnName" placeholder="请输入单位名称"></Input>
         </FormItem>
         <FormItem label="制造地址" prop="address">
-          <Input disabled v-model="formList.address" placeholder="请输入制造地址"></Input>
+          <Input readonly="true" v-model="formList.address" placeholder="请输入制造地址"></Input>
         </FormItem>
       </Col>
       <Row>
         <Col span='11'>
           <FormItem label="单位负责人" prop="prinpal">
-            <Input disabled v-model="formList.prinpal" placeholder="请输入单位负责人"></Input>
+            <Input readonly="true" v-model="formList.prinpal" placeholder="请输入单位负责人"></Input>
           </FormItem>
           <FormItem label="许可证编号" prop="licenceNo">
-            <Input disabled v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
+            <Input readonly="true" v-model="formList.licenceNo" placeholder="请输入许可证编号"></Input>
           </FormItem>
           <FormItem label="许可证有效期" prop="licenceDate">
-            <Input disabled v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
+            <Input readonly="true" v-model="formList.licenceDate" placeholder="请输入许可证有效期"></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="联系电话" prop="phoneNo">
-            <Input disabled v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
+            <Input readonly="true" v-model="formList.phoneNo" placeholder="请输入联系电话"></Input>
           </FormItem>
           <FormItem label="传真" prop="Fax">
-            <Input disabled v-model="formList.fax" placeholder="请输入传真"></Input>
+            <Input readonly="true" v-model="formList.fax" placeholder="请输入传真"></Input>
           </FormItem>
           <FormItem label="许可的范围" prop="licenceRange">
-            <Input disabled v-model="formList.licenceRange" placeholder="请输入许可的范围"></Input>
+            <Input readonly="true" v-model="formList.licenceRange" placeholder="请输入许可的范围"></Input>
           </FormItem>
         </Col>
       </Row>
@@ -66,18 +66,18 @@
       <Row>
         <Form :model="formList" label-position="right" >
           <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
-            <Input disabled v-model="formList.qcProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.qcProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>
         </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input disabled v-model="formList.qcChecker" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.qcChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
 
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 333px"></DatePicker>
+            <DatePicker readonly="true" type="date" placeholder="Select date" v-model="formList.qcCheckDate" style="width: 333px"></DatePicker>
 
           </FormItem>
         </Col>
@@ -86,24 +86,24 @@
       <h3>三、制造/安装/维修质量（曳引式电梯）</h3>
       <Col>
         <FormItem label="使用单位">
-          <Input disabled v-model="formList.teCorpnName" placeholder=""></Input>
+          <Input readonly="true" v-model="formList.teCorpnName" placeholder=""></Input>
         </FormItem>
       </Col>
       <Row>
         <Col span='11'>
           <FormItem label="产品型号">
-            <Input disabled v-model="formList.teType" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.teType" placeholder=""></Input>
           </FormItem>
           <FormItem label="额定速度">
-            <Input disabled v-model="formList.teSpeed" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.teSpeed" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='1'>
           <FormItem label="出厂编号">
-            <Input disabled v-model="formList.teNo" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.teNo" placeholder=""></Input>
           </FormItem>
           <FormItem label="额定载重量">
-            <Input disabled v-model="formList.teLoad" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.teLoad" placeholder=""></Input>
           </FormItem>
         </Col>
       </Row>
@@ -111,17 +111,17 @@
       <Row>
         <Form :model="formList" label-position="right" >
           <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
-            <Input disabled v-model="formList.teProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.teProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>
         </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input disabled v-model="formList.teChecker" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.teChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.teCheckDate" style="width: 333px"></DatePicker>
+            <DatePicker readonly="true" type="date" placeholder="Select date" v-model="formList.teCheckDate" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -129,24 +129,24 @@
       <h3>四、制造/安装/维修质量（自动扶梯）</h3>
       <Col>
         <FormItem label="使用单位">
-          <Input disabled v-model="formList.esCorpnName" placeholder=""></Input>
+          <Input readonly="true" v-model="formList.esCorpnName" placeholder=""></Input>
         </FormItem>
       </Col>
       <Row>
         <Col span='11'>
           <FormItem label="产品型号">
-            <Input disabled v-model="formList.esType" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.esType" placeholder=""></Input>
           </FormItem>
           <FormItem label="名义速度">
-            <Input disabled v-model="formList.esSpeed" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.esSpeed" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="出厂编号">
-            <Input disabled v-model="formList.esNo" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.esNo" placeholder=""></Input>
           </FormItem>
           <FormItem label="提升高度">
-            <Input disabled v-model="formList.esHigh" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.esHigh" placeholder=""></Input>
           </FormItem>
         </Col>
       </Row>
@@ -154,17 +154,17 @@
       <Row>
         <Form :model="formList" label-position="right" >
           <FormItem label="问题记录（包括未在“检查项目、内容与要求”栏目中列出的其他项目及其问题）：">
-            <Input disabled v-model="formList.esProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.esProblem" type="textarea":autosize="{minRows: 5,maxRows: 10}" placeholder=""></Input>
           </FormItem>
         </Form>
         <Col span='11'>
           <FormItem label="监督检查人员">
-            <Input disabled v-model="formList.esChecker" placeholder=""></Input>
+            <Input readonly="true" v-model="formList.esChecker" placeholder=""></Input>
           </FormItem>
         </Col>
         <Col span='11' offset='2'>
           <FormItem label="日期">
-            <DatePicker disabled type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 333px"></DatePicker>
+            <DatePicker readonly="true" type="date" placeholder="Select date" v-model="formList.esCheckDate" style="width: 333px"></DatePicker>
           </FormItem>
         </Col>
       </Row>
@@ -248,8 +248,8 @@
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
-                                isdisable:true,
-                            },
+                                readonly:true
+                        },
                         })
                     }
                 }, {
@@ -291,7 +291,7 @@
                                     props: {
                                         formList: this.formList,
                                         formKey: params.row.id,
-                                        isdisable:true,
+                                        readonly:true
                                     }
                                 })
                         }
@@ -314,7 +314,7 @@
                             props: {
                                 formList: this.formList,
                                 formKey: params.row.id,
-                                isdisable:true,
+                                readonly:true
                             },
                         })
                     }
