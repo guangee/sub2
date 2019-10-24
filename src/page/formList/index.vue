@@ -65,10 +65,11 @@
         </Panel>
       </Collapse>
     </Card>
+
     <Table border :columns="columns1" :data="data1"></Table>
     <div style="margin: 10px;overflow: hidden">
       <div style="float: right;">
-        <Page :total="pageNum" :page-size="10" :current="currentPage" @on-change="changepage"></Page>
+        <Page :total="pageNum" :page-size="10" :current="currentPage" @on-change="changepage" show-total /></Page>
       </div>
     </div>
   </div>
@@ -80,11 +81,19 @@
 
   const routerType = ['/boiler', '/crane', '/elevator','/keeper'];
   const deleteRouter = {
-    Boiler: '/boiler/delete',
-    Crane: '/Crane/delete',
-    Elevator: '/Elevator/delete',
+      Boiler: '/boiler/delete',
+      Crane: '/Crane/delete',
+      Elevator: '/Elevator/delete',
       Keeper: '/keeper/delete',
   };
+  const value = ['锅炉', '起重机', '电梯', '维保'];
+  /*const value = {
+      Boiler: '锅炉',
+      Crane: '起重机',
+      Elevator: '电梯',
+      Keeper: '维保',
+  };
+  */
 
   export default {
 
@@ -94,6 +103,7 @@
         findForm: {},
         data1: [],
         list:[],
+          two:[],
         isadmin: sessionStorage.getItem("isadmin"),
         formTypeList: [
          {
@@ -116,13 +126,25 @@
         content: [],
         isFindProcess: false, //标识是否在查询的分页中
         pageNum: 0,
-
         tableList: SearchData,
         columns1: [
           {
             title: '制造单位名称',
-            key: 'corpnName'
+            key: 'corpnName',
+              width: 220
           }, {
+                title: '表单类型',
+                key: 'type',
+                render: (h, params) => {
+                    return h('div', [
+                        h('p', {
+                            props: {
+                                value: [params.row.type]
+                            },
+                        },),
+                    ]);
+                }
+            },{
             title: '单位负责人',
             key: 'prinpal'
           }, {
@@ -193,8 +215,13 @@
     },
     mounted() {
       this.getFormList();
+      this.getValue();
     },
     methods: {
+        getValue(){
+            this.two=this.data1.type;
+            console.log(this.data1.type)
+        },
       changepage(valued) {
         this.pageIndex = valued - 1;
      if ("findForm"=== true){
@@ -211,12 +238,15 @@
              this.searchTypeList();
          }
      }
-     else {
+     else if(this.searchcorpnName){
          if (this.isFindProcess) {
-         this.searchcorp();
-     } else {
-         this.searchCorpList();
+             this.searchcorp();
+         } else {
+             this.searchCorpList();
+         }
      }
+     else {
+         this.getFormList();
      }
       },
 

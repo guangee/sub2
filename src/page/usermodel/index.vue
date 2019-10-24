@@ -27,6 +27,10 @@
                   {
                       title: '用户名',
                       key: 'name'
+                  },
+                  {
+                      title: '密码',
+                      key: 'password'
                   }, {
                       title: '操作',
                       key: 'action',
