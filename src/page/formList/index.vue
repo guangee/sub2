@@ -86,14 +86,13 @@
       Elevator: '/Elevator/delete',
       Keeper: '/keeper/delete',
   };
-  const value = ['锅炉', '起重机', '电梯', '维保'];
-  /*const value = {
+  //const value = ['锅炉', '起重机', '电梯', '维保'];
+  const typeChange = {
       Boiler: '锅炉',
       Crane: '起重机',
       Elevator: '电梯',
       Keeper: '维保',
   };
-  */
 
   export default {
 
@@ -136,13 +135,11 @@
                 title: '表单类型',
                 key: 'type',
                 render: (h, params) => {
-                    return h('div', [
-                        h('p', {
-                            props: {
-                                value: [params.row.type]
+                    return h('div', {
+                            domProps: {
+                                innerHTML: typeChange[params.row.type]
                             },
-                        },),
-                    ]);
+                        },)
                 }
             },{
             title: '单位负责人',
