@@ -12,6 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
+       // target: 'http://dev.coding-space.cn:7799',
        target: 'http://62.234.138.48:8080',
        changeOrigin: true,
        secure: false,
