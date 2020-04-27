@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  <div class="login">
+  <div class="login" v-show="show">
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">
@@ -75,7 +75,7 @@
       if (map["type"] === "1") {
         this.form.username = map["username"];
         this.form.password = map["password"];
-
+        this.show=false;
         axios.post('/tokens', this.form).then(
           (response) => {
             if (parseInt(response.status) === 200) {
@@ -95,6 +95,7 @@
                 duration: 5,
                 closable: true
               });
+              this.show=true;
               return response.data;
             }
           }
@@ -103,7 +104,7 @@
         this.adminmodel.adminName = map["username"];
         this.adminmodel.adminPass = map["password"];
 
-
+        this.show=false;
         axios.post('/admin/login', this.adminmodel).then(
           (response) => {
             if (parseInt(response.status) === 200) {
@@ -117,6 +118,7 @@
               this.$router.push({
                 path: '/formList',
               });
+              this.show=true;
               return response.data;
             }
           }
@@ -125,7 +127,7 @@
     },
     data() {
       return {
-
+        show:true,
         form: {
           username: '',
           password: ''
