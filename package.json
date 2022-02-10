@@ -15,7 +15,7 @@
     "html2canvas": "^1.0.0-rc.3",
     "iview": "^3.4.2",
     "jspdf": "^1.5.3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
